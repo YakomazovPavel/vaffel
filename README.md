@@ -1,4 +1,4 @@
-# vaffelbot
+# VaffelBot
 
 ## Getting started
 
