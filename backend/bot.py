@@ -161,11 +161,11 @@ class Bot:
 
     async def start(self) -> None:
         print("start bot")
-        # await self.bot.set_my_name(name="Vaffel")
+        await self.bot.set_my_name(name="Vaffel")
         # await bot.set_my_short_description(short_description="my_short_description")
-        # await self.bot.set_my_description(
-        #     description="Создавайте и делитесь корзинами, для совместного заказа норвежских вафель от Vaffel"
-        # )
+        await self.bot.set_my_description(
+            description="Создавайте и делитесь корзинами, для совместного заказа норвежских вафель от Vaffel"
+        )
         await self.dp.start_polling(self.bot, skip_updates=True)
 
 

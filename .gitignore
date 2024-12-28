@@ -6,3 +6,5 @@ image/
 img/
 requirements.txt
 test.py
+*.crt
+*.key

@@ -41,6 +41,8 @@ services:
     volumes:
       - ./nginx/public:/www/
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/vaffelbot.crt:/etc/nginx/ssl/vaffelbot.crt
+      - ./nginx/vaffelbot.key:/etc/nginx/ssl/vaffelbot.key
     ports:
       - 80:80
       - 443:443
