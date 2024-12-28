@@ -1,0 +1,46 @@
+services:
+  # bot:
+  #   container_name: bot
+  #   hostname: bot
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8080:8080
+  #   # depends_on:
+  #   #   - nginx
+  #   build:
+  #     context: ./bot
+  #     dockerfile: ./Dockerfile
+  #   # environment:
+  #   #   PYTHONUNBUFFERED: 1
+  #   env_file: ".env"
+  #   # expose:
+  #   #   - "8888"
+  backend:
+    container_name: backend
+    hostname: backend
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    # depends_on:
+    #   - nginx
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    # environment:
+    #   PYTHONUNBUFFERED: 1
+    env_file: ".env"
+    volumes:
+      - ./backend/vaffel.db:/app/vaffel.db
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    # expose:
+    #   - "8888"
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: nginx
+    volumes:
+      - ./nginx/public:/www/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
