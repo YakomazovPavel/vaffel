@@ -1,12 +1,24 @@
 import sqlite3 as db
 from Types import Basket, BasketDetail, Dishes
 from datetime import datetime
+from abc import abstractmethod
 
 users = []
 baskets = []
 
 
 class Registry:
+    @abstractmethod
+    def create_user(): ...
+
+    @abstractmethod
+    def create_basket(): ...
+
+    @abstractmethod
+    def get_menu(): ...
+
+
+class LiteRegistry(Registry):
     def __init__(self, filename: str | None) -> None:
         self.filename = filename
         # TODO: Если файла не было, неоходимо проинициальзировать пустые таблички
@@ -95,3 +107,6 @@ class Registry:
 #                 connection.close()
 
 #                 print(values)
+
+
+class AlchemyRegistry(Registry): ...
