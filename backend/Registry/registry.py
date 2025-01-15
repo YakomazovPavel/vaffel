@@ -1,21 +1,18 @@
 import sqlite3 as db
 from Types import Basket, BasketDetail, Dishes
 from datetime import datetime
-from abc import abstractmethod
-
-users = []
-baskets = []
+from abc import ABC, abstractmethod
 
 
-class Registry:
-    @abstractmethod
-    def create_user(): ...
+class Registry(ABC):
+    # @abstractmethod
+    # def create_user(): ...
 
     @abstractmethod
     def create_basket(): ...
 
-    @abstractmethod
-    def get_menu(): ...
+    # @abstractmethod
+    # def get_menu(): ...
 
 
 class LiteRegistry(Registry):

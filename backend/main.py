@@ -2,7 +2,7 @@ import uvicorn
 from server import Server
 from bot import Bot
 from os import getenv
-from Registry import Registry
+from Registry import LiteRegistry
 
 
 def main():
@@ -24,7 +24,7 @@ DEBUG       {DEBUG}
 
 ========================================================================================================================
 """)
-    registry = Registry(filename=PATH_TO_DB)
+    registry = LiteRegistry(filename=PATH_TO_DB)
     bot = Bot(token=TOKEN, url=WEB_APP_URL)
     server = Server(bot=bot, registry=registry)
     uvicorn.run(server, host="0.0.0.0", port=8000)  # log_level="info"
