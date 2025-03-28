@@ -10,7 +10,7 @@ deploy_staging:
     - echo "Value DEBUG from Staging $DEBUG"
 
 deploy_production:
-  stage: publish
+  stage: production
   environment:
     name: Production
   when: manual
