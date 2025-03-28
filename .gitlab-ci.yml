@@ -1,6 +1,6 @@
 deploy_staging:
   stage: deploy
   environment:
-    name: Staging
+    name: Production
   script:
     - echo "Deploy to staging server $DEBUG"
