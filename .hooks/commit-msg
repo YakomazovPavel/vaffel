@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+# https://habr.com/ru/companies/dins/articles/584562/
 import re
 import sys
 
@@ -12,15 +12,13 @@ yellow_color = "\033[1;33m"
 commit_msg_filepath = sys.argv[1]
 
 regex = r"^#\d+\s.+"
-error_msg = (
-    # Commit message format must match regex
-    "Формат сообщения commit`a должен соответствовать регулярному выражению " + regex
-)
+
+error_msg = f"""Формат сообщения комита должен соответствовать регулярному выражению {regex}
+Пример: {green_color}git commit -m "#123 Работа с файлами долга\""""
 
 with open(commit_msg_filepath, "r+") as file:
     commit_msg = file.read()
     if not re.search(regex, commit_msg):
-        print(red_color + "Bad commit " + blue_color + commit_msg)
+        print(red_color + "Ошибка! Сообщение комита не содержит номер задачи")
         print(yellow_color + error_msg)
-        print("commit-msg hook failed (add --no-verify to bypass)")
         sys.exit(1)
