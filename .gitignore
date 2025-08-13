@@ -2,8 +2,6 @@ venv
 .env
 vaffel.db
 app.requirements.txt
-image/
-img/
 test.py
 *.crt
 *.key
