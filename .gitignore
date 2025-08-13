@@ -6,3 +6,4 @@ test.py
 *.crt
 *.key
 database
+**node_modules
