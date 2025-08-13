@@ -4,7 +4,6 @@ vaffel.db
 app.requirements.txt
 image/
 img/
-requirements.txt
 test.py
 *.crt
 *.key
