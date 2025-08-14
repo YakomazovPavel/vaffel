@@ -11,8 +11,8 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    // <CreateBasket></CreateBasket>
-    <Shop></Shop>
+    <CreateBasket></CreateBasket>
+    // <Shop></Shop>
     // <CreateBasket></CreateBasket>
     // <BasketDetail></BasketDetail>
     // <>
