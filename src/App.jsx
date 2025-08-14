@@ -8,8 +8,6 @@ import BasketDetail from "./pages/BasketDetail/BasketDetail.jsx";
 import Shop from "./pages/Shop/Shop.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <CreateBasket></CreateBasket>
     // <Shop></Shop>

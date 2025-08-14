@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function CreateBasket() {
+  const [startApp, setStartApp] = useState(0);
+  useEffect(() => {
+    setStartApp(window?.Telegram?.WebApp?.WebAppInitData?.start_param);
+  }, []);
+
   return (
     <div id="page_basket_create">
       <div className="create_basket_header">
@@ -8,7 +13,7 @@ function CreateBasket() {
         <div className="main_title_wrap">
           <h1 className="main_title">VAFFEL</h1>
           <h2 className="main_subtitle" id="main_subtitle">
-            Поделись корзиной вафель
+            {`Поделись корзиной вафель\n${startApp}`}
           </h2>
         </div>
       </div>
