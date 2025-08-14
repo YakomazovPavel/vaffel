@@ -10,7 +10,7 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 3000,
   },
-  base: "dist/",
+  base: "/dist/",
   root: "public",
   build: {
     outDir: "../dist",
@@ -29,7 +29,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: normalizePath(path.resolve(__dirname, "public/assets/spider-crawl-folder.gif")), // Or a glob pattern like './static/**/*'
+          src: normalizePath(path.resolve(__dirname, "public/assets/*")), // Or a glob pattern like './static/**/*'
           dest: "assets", // Relative to dist, e.g., 'assets' or '.' for root
         },
         // Add more targets as needed
