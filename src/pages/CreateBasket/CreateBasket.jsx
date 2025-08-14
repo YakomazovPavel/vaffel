@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function CreateBasket() {
-  const [startApp, setStartApp] = useState(0);
+  const [startApp, setStartApp] = useState("");
   useEffect(() => {
-    setStartApp(window?.Telegram?.WebApp?.WebAppInitData?.start_param);
+    setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
   }, []);
 
   return (
