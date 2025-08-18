@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 
 function CreateBasket() {
+  const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
 
   var onClickCreateBasketHandler = async () => {
@@ -54,6 +58,11 @@ function CreateBasket() {
     }
   };
 
+  var toBasketHandler = (e) => {
+    console.log("toBasketHandler", e);
+    dispatch(setCurrentPage(PAGE.BasketList));
+  };
+
   return (
     <div id="page_basket_create">
       <div className="create_basket_header">
@@ -86,7 +95,7 @@ function CreateBasket() {
             <input className="input_basket_datetime" id="input_basket_time" type="time" name="basket_end" />
           </div> */}
         </form>
-        <button id="to_baskets_button">
+        <button id="to_baskets_button" onClick={toBasketHandler}>
           <p>К корзинам</p>
           <svg className="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
             <use xlinkHref="#arrow"></use>

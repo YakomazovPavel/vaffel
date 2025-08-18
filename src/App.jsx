@@ -6,10 +6,19 @@ import CreateBasket from "./pages/CreateBasket/CreateBasket.jsx";
 import BasketList from "./pages/BasketList/BasketList.jsx";
 import BasketDetail from "./pages/BasketDetail/BasketDetail.jsx";
 import Shop from "./pages/Shop/Shop.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { PAGE } from "./slices/appSlice.js";
 
 function App() {
+  var page = useSelector((state) => state.app.page);
+  console.log("page", page);
+
   return (
-    <CreateBasket></CreateBasket>
+    <>
+      {page === PAGE.CreateBasket && <CreateBasket />}
+      {page === PAGE.BasketList && <BasketList />}
+    </>
+
     // <Shop></Shop>
     // <CreateBasket></CreateBasket>
     // <BasketDetail></BasketDetail>
