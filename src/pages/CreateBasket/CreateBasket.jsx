@@ -90,6 +90,7 @@ function CreateBasket() {
               placeholder="Название корзины"
               name="basket_name"
               onChange={onChangeBasketName}
+              autoComplete="off"
             />
           </div>
           {/* <div className="settings_item">
