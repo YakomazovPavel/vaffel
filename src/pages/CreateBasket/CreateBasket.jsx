@@ -9,7 +9,7 @@ function CreateBasket() {
   return (
     <div id="page_basket_create">
       <div className="create_basket_header">
-        <img src="/dist/assets/icon.jpg" alt="" className="icon" />
+        <img src="icon.jpg" alt="" className="icon" />
         <div className="main_title_wrap">
           <h1 className="main_title">VAFFEL</h1>
           <h2 className="main_subtitle" id="main_subtitle">
