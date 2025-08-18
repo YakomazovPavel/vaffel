@@ -54,9 +54,11 @@ function CreateBasket() {
   var onChangeBasketName = (e) => {
     console.log(e.target.value);
     if (e.target.value.trim()) {
+      window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.isVisible = true;
       window.Telegram.WebApp.MainButton.isActive = true;
     } else {
+      window.Telegram.WebApp.MainButton.hide();
       window.Telegram.WebApp.MainButton.isVisible = false;
       window.Telegram.WebApp.MainButton.isActive = false;
     }
