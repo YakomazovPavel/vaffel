@@ -303,6 +303,10 @@ input:checked ~ .basket_list_item:last-child {
   color: var(--tg-theme-text-color);
 }
 
+::-webkit-input-placeholder {
+  background: none;
+}
+
 #input_basket_name:autofill {
   background: none;
 }
