@@ -12,7 +12,6 @@ function BasketList() {
   var open = () => {
     window.Telegram.WebApp.BackButton.isVisible = true;
     window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
-    ы;
   };
 
   var close = () => {
