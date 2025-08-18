@@ -2,8 +2,23 @@ import React, { useEffect, useState } from "react";
 
 function CreateBasket() {
   const [startApp, setStartApp] = useState("");
+
+  var open = () => {
+    window.Telegram.WebApp.MainButton.text = "Создать корзину";
+    window.Telegram.WebApp.BackButton.isVisible = false;
+    window.Telegram.WebApp.MainButton.isVisible = true;
+    window.Telegram.WebApp.MainButton.isActive = true;
+    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+  };
+  var close = () => {
+    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+    window.Telegram.WebApp.MainButton.isVisible = false;
+  };
+
   useEffect(() => {
-    setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
+    // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
+    open();
+    return close;
   }, []);
 
   return (
@@ -13,7 +28,7 @@ function CreateBasket() {
         <div className="main_title_wrap">
           <h1 className="main_title">VAFFEL</h1>
           <h2 className="main_subtitle" id="main_subtitle">
-            {`Поделись корзиной вафель\n${startApp}`}
+            {`Поделись корзиной вафель`}
           </h2>
         </div>
       </div>
@@ -23,14 +38,14 @@ function CreateBasket() {
           <div className="settings_item">
             <input id="input_basket_name" type="text" placeholder="Название корзины" name="basket_name" />
           </div>
-          <div className="settings_item">
+          {/* <div className="settings_item">
             <p>Дата окончания</p>
             <input className="input_basket_datetime" id="input_basket_date" type="date" name="basket_start" />
-          </div>
-          <div className="settings_item">
+          </div> */}
+          {/* <div className="settings_item">
             <p>Время окончания</p>
             <input className="input_basket_datetime" id="input_basket_time" type="time" name="basket_end" />
-          </div>
+          </div> */}
         </form>
         <button id="to_baskets_button">
           <p>К корзинам</p>
