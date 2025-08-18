@@ -37,6 +37,7 @@ function CreateBasket() {
     window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
   var close = () => {
+    window.Telegram.WebApp.MainButton.offClick(onClickCreateBasketHandler);
     // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
     // window.Telegram.WebApp.MainButton.isVisible = false;
   };

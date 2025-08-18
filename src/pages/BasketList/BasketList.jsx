@@ -9,13 +9,23 @@ function BasketList() {
     dispatch(setCurrentPage(PAGE.CreateBasket));
   };
 
+  var mainButtonHandler = () => {
+    dispatch(setCurrentPage(PAGE.CreateBasket));
+  };
+
   var open = () => {
     window.Telegram.WebApp.BackButton.isVisible = true;
     window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+
+    window.Telegram.WebApp.MainButton.text = "Добавить";
+    window.Telegram.WebApp.MainButton.isVisible = true;
+    window.Telegram.WebApp.MainButton.isActive = true;
+    window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
   };
 
   var close = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
+    window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
   };
 
   useEffect(() => {
