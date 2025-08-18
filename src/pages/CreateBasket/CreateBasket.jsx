@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function CreateBasket() {
-  const [startApp, setStartApp] = useState("");
+  var [basketName, setBasketName] = useState("");
 
-  const onClickCreateBasketHandler = async () => {
+  var onClickCreateBasketHandler = async () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
     // console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
     // var basketName = document.getElementById("input_basket_name")?.value || "";
@@ -28,20 +28,31 @@ function CreateBasket() {
 
   var open = () => {
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
-    window.Telegram.WebApp.MainButton.isVisible = true;
-    window.Telegram.WebApp.MainButton.isActive = true;
-    // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+    window.Telegram.WebApp.MainButton.isVisible = false;
+    window.Telegram.WebApp.MainButton.isActive = false;
+    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
-  // var close = () => {
-  //   window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
-  //   window.Telegram.WebApp.MainButton.isVisible = false;
-  // };
+  var close = () => {
+    // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+    // window.Telegram.WebApp.MainButton.isVisible = false;
+  };
 
-  // useEffect(() => {
-  //   // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
-  //   open();
-  //   // return close;
-  // }, []);
+  useEffect(() => {
+    // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
+    open();
+    return close;
+  }, []);
+
+  var onChangeBasketName = (e) => {
+    console.log(e.target.value);
+    if (e.target.value.trim()) {
+      window.Telegram.WebApp.MainButton.isVisible = true;
+      window.Telegram.WebApp.MainButton.isActive = true;
+    } else {
+      window.Telegram.WebApp.MainButton.isVisible = false;
+      window.Telegram.WebApp.MainButton.isActive = false;
+    }
+  };
 
   return (
     <div id="page_basket_create">
@@ -58,7 +69,13 @@ function CreateBasket() {
       <div className="settings_wrap">
         <form className="settings" name="form_create_basket" action="./">
           <div className="settings_item">
-            <input id="input_basket_name" type="text" placeholder="Название корзины" name="basket_name" />
+            <input
+              id="input_basket_name"
+              type="text"
+              placeholder="Название корзины"
+              name="basket_name"
+              onChange={onChangeBasketName}
+            />
           </div>
           {/* <div className="settings_item">
             <p>Дата окончания</p>
