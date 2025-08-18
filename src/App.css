@@ -166,8 +166,9 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 #page_basket_create {
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   min-height: var(--tg-viewport-height);
   padding-bottom: 10px;
