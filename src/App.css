@@ -303,8 +303,15 @@ input:checked ~ .basket_list_item:last-child {
   color: var(--tg-theme-text-color);
 }
 
-::-webkit-input-placeholder {
+#input_basket_name::-webkit-input-placeholder {
   background: none;
+}
+
+#input_basket_name:-webkit-autofill,
+#input_basket_name:-webkit-autofill:hover,
+#input_basket_name:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000; /* Sets the text color */
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset; /* Overlays the background with desired color */
 }
 
 #input_basket_name:autofill {
