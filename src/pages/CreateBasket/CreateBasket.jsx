@@ -34,6 +34,7 @@ function CreateBasket() {
     window.Telegram.WebApp.BackButton.hide();
     window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
+    window.Telegram.WebApp.MainButton.hide();
     window.Telegram.WebApp.MainButton.isVisible = false;
     window.Telegram.WebApp.MainButton.isActive = false;
     window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
