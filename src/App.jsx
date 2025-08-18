@@ -10,16 +10,13 @@ import { useSelector } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 
 function App() {
-  var sate = useSelector((state) => state);
-  console.log("sate", sate);
-  var page = useSelector((state) => state.appSlice.page);
-  console.log("page", page);
+  var currentPage = useSelector((state) => state.appSlice.currentPage);
+  console.log("currentPage", currentPage);
 
   return (
     <>
-      {/* {page === PAGE.CreateBasket && <CreateBasket />}
-      {page === PAGE.BasketList && <BasketList />} */}
-      <CreateBasket />
+      {currentPage === PAGE.CreateBasket && <CreateBasket />}
+      {currentPage === PAGE.BasketList && <BasketList />}
     </>
 
     // <Shop></Shop>
