@@ -3,6 +3,29 @@ import React, { useEffect, useState } from "react";
 function CreateBasket() {
   const [startApp, setStartApp] = useState("");
 
+  var onClickCreateBasketHandler = async () => {
+    window.Telegram.WebApp.MainButton.showProgress(false);
+    // console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
+    // var basketName = document.getElementById("input_basket_name")?.value || "";
+    // var date = document.getElementById("input_basket_date");
+    // var time = document.getElementById("input_basket_time");
+    // var expiredAt = `${date.value}T${time.value}`;
+    // // new Date(Date.parse(`${date.value}T${time.value}`)).toISOString();
+    // // console.log();
+
+    // // .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+    // // ?.toISOString() || "";
+    // console.log("expiredAt", expiredAt);
+    // var response = await VaffelBotApi.createBasket(
+    //   window.Telegram.WebApp.initDataUnsafe.user.id,
+    //   basketName,
+    //   expiredAt
+    // );
+    setTimeout(() => {
+      window.Telegram.WebApp.MainButton.hideProgress();
+    }, 3000);
+  };
+
   var open = () => {
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
     window.Telegram.WebApp.BackButton.isVisible = false;
