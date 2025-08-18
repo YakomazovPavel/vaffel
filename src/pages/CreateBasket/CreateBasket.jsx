@@ -31,7 +31,7 @@ function CreateBasket() {
     window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.isVisible = true;
     window.Telegram.WebApp.MainButton.isActive = true;
-    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+    // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
   var close = () => {
     window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
@@ -41,7 +41,7 @@ function CreateBasket() {
   useEffect(() => {
     // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
     open();
-    return close;
+    // return close;
   }, []);
 
   return (
