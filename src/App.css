@@ -177,6 +177,7 @@ input:checked ~ .basket_list_item:last-child {
   animation: open 0.7s forwards;
   max-height: var(--tg-viewport-height);
   overflow-y: scroll;
+  background: var(--tg-theme-secondary-bg-color);
 }
 
 @keyframes open {
