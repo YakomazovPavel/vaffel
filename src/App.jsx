@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 
 function App() {
-  var sate = useSelector((state) => sate);
+  var sate = useSelector((state) => state);
   console.log("sate", sate);
   var page = useSelector((state) => state.appSlice.page);
   console.log("page", page);
