@@ -18,6 +18,7 @@ body {
   transition: min-height 0.25s ease 0.4s;
   animation: open 0.7s forwards;
   max-height: var(--tg-viewport-stable-height);
+  overflow-y: scroll;
 }
 
 .basket_list_section {
@@ -169,6 +170,7 @@ input:checked ~ .basket_list_item:last-child {
   transition: min-height 0.25s ease 0.4s;
   animation: open 0.7s forwards;
   max-height: var(--tg-viewport-stable-height);
+  overflow-y: scroll;
 }
 
 @keyframes open {
