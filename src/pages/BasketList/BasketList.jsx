@@ -1,4 +1,29 @@
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+
 function BasketList() {
+  const dispatch = useDispatch();
+
+  var backButtonHandler = () => {
+    dispatch(setCurrentPage(PAGE.CreateBasket));
+  };
+
+  var open = () => {
+    window.Telegram.WebApp.BackButton.isVisible = true;
+    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+    ы;
+  };
+
+  var close = () => {
+    window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
+  };
+
+  useEffect(() => {
+    open();
+    return close;
+  }, []);
+
   return (
     <div id="page_basket_list">
       <div className="settings_wrap">
