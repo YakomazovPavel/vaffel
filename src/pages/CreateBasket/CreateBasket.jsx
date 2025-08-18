@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 function CreateBasket() {
   const [startApp, setStartApp] = useState("");
 
-  var onClickCreateBasketHandler = async () => {
+  const onClickCreateBasketHandler = async () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
     // console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
     // var basketName = document.getElementById("input_basket_name")?.value || "";
@@ -33,10 +33,10 @@ function CreateBasket() {
     window.Telegram.WebApp.MainButton.isActive = true;
     // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
-  var close = () => {
-    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
-    window.Telegram.WebApp.MainButton.isVisible = false;
-  };
+  // var close = () => {
+  //   window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+  //   window.Telegram.WebApp.MainButton.isVisible = false;
+  // };
 
   useEffect(() => {
     // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
