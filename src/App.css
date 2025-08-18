@@ -304,7 +304,7 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 #input_basket_name:autofill {
-  color: var(--tg-theme-subtitle-text-color);
+  background: none;
 }
 
 #input_basket_name::placeholder {
