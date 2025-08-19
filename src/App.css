@@ -57,7 +57,7 @@ body {
   min-height: var(--tg-viewport-height);
   padding-bottom: 10px;
   box-sizing: border-box;
-  transition: min-height 0.25s ease 0.4s;
+  transition: min-height 0.25s ease 0.2s;
   animation: open 0.7s forwards;
   max-height: var(--tg-viewport-height);
   overflow-y: scroll;
@@ -205,16 +205,15 @@ input:checked ~ .basket_list_item:last-child {
 #page_basket_create {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   min-height: var(--tg-viewport-height);
-  /* padding-bottom: 10px; */
   box-sizing: border-box;
-  transition: min-height 0.25s ease 0.4s;
+  transition: min-height 0.25s ease 0.2s;
   animation: open 0.7s forwards;
   max-height: var(--tg-viewport-height);
   overflow-y: scroll;
-  /* background: var(--tg-theme-secondary-bg-color); */
+  padding-bottom: 10px;
 }
 
 @keyframes open {
@@ -234,7 +233,7 @@ input:checked ~ .basket_list_item:last-child {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  transition: min-height 0.25s ease 0.4s;
+  transition: min-height 0.25s ease 0.2s;
   box-sizing: border-box;
 }
 
@@ -391,7 +390,7 @@ input:checked ~ .basket_list_item:last-child {
   min-height: var(--tg-viewport-height);
   /* padding-bottom: 10px; */
   box-sizing: border-box;
-  transition: min-height 0.25s ease 0.4s;
+  transition: min-height 0.25s ease 0.2s;
   animation: open 0.7s forwards;
 }
 
