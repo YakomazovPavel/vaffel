@@ -278,6 +278,7 @@ input:checked ~ .basket_list_item:last-child {
   overflow: hidden;
   padding: 0 0 0 15px;
   box-sizing: border-box;
+  min-height: 46px;
 }
 
 .settings_item {
