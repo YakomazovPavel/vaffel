@@ -53,6 +53,14 @@ function BasketDetail() {
     return close;
   }, []);
 
+  var copyLinkHandler = async () => {
+    if (navigator?.clipboard?.writeText) {
+      await navigator.clipboard.writeText("Рандомный текст в буфере обмена");
+      console.log("Text copied to clipboard successfully!");
+      Telegram.WebApp.showAlert("Ссылка скопирована");
+    }
+  };
+
   return (
     <div id="page_basket_detail">
       <div class="settings_wrap">
@@ -62,7 +70,7 @@ function BasketDetail() {
             <div>
               <h1>Посиделки на поминки</h1>
               <h2>#1</h2>
-              <button>Поделиться</button>
+              <button onClick={copyLinkHandler}>Поделиться</button>
             </div>
           </div>
 
