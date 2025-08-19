@@ -1011,7 +1011,7 @@ input:checked ~ .basket_shop_item:last-child {
 }
 
 #input_basket_name {
-  cursor: pointer;
+  cursor: text;
 }
 
 #to_baskets_button {
