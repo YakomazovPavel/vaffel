@@ -401,6 +401,7 @@ input:checked ~ .basket_list_item:last-child {
   box-sizing: border-box;
   padding: 15px 0 15px 15px;
   margin-top: 10px;
+  margin-bottom: 10px;
   width: 95%;
   border-radius: 15px;
   background-color: var(--tg-theme-secondary-bg-color);

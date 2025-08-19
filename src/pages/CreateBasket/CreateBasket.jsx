@@ -41,6 +41,7 @@ function CreateBasket() {
   };
   var close = () => {
     window.Telegram.WebApp.MainButton.offClick(onClickCreateBasketHandler);
+    window.Telegram.WebApp.MainButton.hide();
     // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
     // window.Telegram.WebApp.MainButton.isVisible = false;
   };

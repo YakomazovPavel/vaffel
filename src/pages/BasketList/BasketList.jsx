@@ -85,6 +85,7 @@ function BasketList() {
   var close = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
+    window.Telegram.WebApp.MainButton.hide();
   };
 
   useEffect(() => {
