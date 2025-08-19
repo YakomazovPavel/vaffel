@@ -1003,7 +1003,7 @@ input:checked ~ .basket_shop_item:last-child {
 }
 
 .basket_list_section > div:not(:last-child) {
-  border-bottom: solid var(--tg-theme-subtitle-text-color) 1px;
+  border-bottom: solid var(--tg-theme-bg-color) 1px;
 }
 
 .basket_list_item > button {
