@@ -214,6 +214,7 @@ input:checked ~ .basket_list_item:last-child {
   max-height: var(--tg-viewport-height);
   overflow-y: scroll;
   padding-bottom: 16px;
+  padding-top: 16px;
 }
 
 @keyframes open {
@@ -263,6 +264,7 @@ input:checked ~ .basket_list_item:last-child {
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  margin-bottom: auto;
 }
 
 .settings {
