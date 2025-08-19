@@ -55,7 +55,7 @@ body {
   justify-content: space-between;
   align-items: center;
   min-height: var(--tg-viewport-height);
-  /* padding-bottom: 10px; */
+  padding-bottom: 10px;
   box-sizing: border-box;
   transition: min-height 0.25s ease 0.4s;
   animation: open 0.7s forwards;
@@ -997,4 +997,16 @@ input:checked ~ .basket_shop_item:has(input:checked) > .description {
 
 input:checked ~ .basket_shop_item:last-child {
   margin-bottom: 10px;
+}
+
+.basket_section_label {
+  cursor: pointer;
+}
+
+.basket_list_section > div:not(:last-child) {
+  border-bottom: solid var(--tg-theme-bg-color) 1px;
+}
+
+.basket_list_item > button {
+  cursor: pointer;
 }
