@@ -285,6 +285,7 @@ input:checked ~ .basket_list_item:last-child {
   justify-content: space-between;
   width: 100%;
   height: 46px;
+  min-height: 46px;
   align-items: center;
   padding: 0 15px 0 0;
   box-sizing: border-box;
