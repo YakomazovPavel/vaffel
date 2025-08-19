@@ -114,7 +114,7 @@ function BasketList() {
           </svg>
           <input type="text" placeholder="Поиск корзины" onChange={searchHandler} />
         </div>
-        {baskets?.my?.length && (
+        {!!baskets?.my?.length && (
           <div className="basket_list_section">
             <input className="hide" type="checkbox" name="my_basket" value="value" id="my_basket_section" />
             <label htmlFor="my_basket_section" className="basket_section_label">
@@ -140,7 +140,7 @@ function BasketList() {
           </div>
         )}
 
-        {baskets?.other?.length && (
+        {!!baskets?.other?.length && (
           <div className="basket_list_section">
             <input className="hide" type="checkbox" name="my_basket" value="value" id="not_my_basket_section" />
             <label htmlFor="not_my_basket_section" className="basket_section_label">
