@@ -125,7 +125,7 @@ function BasketList() {
             </label>
 
             {baskets.my.map((basket) => (
-              <div className="basket_list_item">
+              <div className="basket_list_item" key={basket.id}>
                 <img src={basket.photo_url} />
                 <div>
                   <h1>{basket.name}</h1>
@@ -151,7 +151,7 @@ function BasketList() {
             </label>
 
             {baskets.other.map((basket) => (
-              <div className="basket_list_item">
+              <div className="basket_list_item" key={basket.id}>
                 <img src={basket.photo_url} />
                 <div>
                   <h1>{basket.name}</h1>
