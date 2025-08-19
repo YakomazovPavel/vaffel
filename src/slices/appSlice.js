@@ -10,6 +10,7 @@ export var PAGE = {
 const initialState = {
   currentPage: PAGE.CreateBasket,
   currentBasketId: "",
+  userId: "1",
 };
 
 const appSlice = createSlice({

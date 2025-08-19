@@ -1,12 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 
-var basketDetailData = {};
+var basketDetailData = {
+  author_id: "1",
+};
 
 function BasketDetail() {
+  const dispatch = useDispatch();
+  var userId = useSelector((state) => state.appSlice.userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  var [basketDetail, setBasketDetail] = useState(basketDetailData);
   console.log("currentBasketId", currentBasketId);
+
+  var orderBasketHandler = () => {
+    console.log("orderBasketHandler");
+    window.Telegram.WebApp.MainButton.showProgress(false);
+    window.Telegram.WebApp.showPopup({ title: "Заказ", message: "Функция в разработке" });
+    setTimeout(() => {
+      window.Telegram.WebApp.MainButton.hideProgress();
+    }, 3000);
+  };
+
+  var backButtonHandler = () => {
+    dispatch(setCurrentPage(PAGE.BasketList));
+  };
+
+  var open = () => {
+    if (basketDetail.author_id === userId) {
+      window.Telegram.WebApp.MainButton.text = "Заказать";
+      window.Telegram.WebApp.MainButton.hasShineEffect = true;
+      window.Telegram.WebApp.MainButton.show();
+      // window.Telegram.WebApp.MainButton.isVisible = false;
+      // window.Telegram.WebApp.MainButton.isActive = true;
+      window.Telegram.WebApp.MainButton.onClick(orderBasketHandler);
+
+      window.Telegram.WebApp.BackButton.show();
+      // window.Telegram.WebApp.BackButton.isVisible = true;
+      window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+    }
+  };
+
+  var close = () => {
+    window.Telegram.WebApp.MainButton.offClick(orderBasketHandler);
+    window.Telegram.WebApp.MainButton.hide();
+    window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
+  };
+
+  useEffect(() => {
+    open();
+    return close;
+  }, []);
 
   return (
     <div id="page_basket_detail">

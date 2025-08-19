@@ -27,7 +27,7 @@ const mockBasketListData = {
     {
       id: "2",
       photo_url: "2.jpg",
-      author_id: "1",
+      author_id: "2",
       name: "Посиделки на похоронах",
       is_locked: false,
       created: "2025-08-19T14:52:54.348Z",
