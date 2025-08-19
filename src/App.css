@@ -1010,3 +1010,11 @@ input:checked ~ .basket_shop_item:last-child {
 .basket_list_item > button {
   cursor: pointer;
 }
+
+#input_basket_name {
+  cursor: pointer;
+}
+
+#to_baskets_button {
+  cursor: pointer;
+}
