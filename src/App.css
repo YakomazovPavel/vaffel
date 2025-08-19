@@ -266,7 +266,7 @@ input:checked ~ .basket_list_item:last-child {
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
 }
 
 .settings {
