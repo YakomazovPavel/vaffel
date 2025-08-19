@@ -1,3 +1,39 @@
+/* :root { */
+/* --tg-color-scheme: dark;
+  --tg-theme-bg-color: #212121;
+  --tg-theme-button-color: #8774e1;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-hint-color: #aaaaaa;
+  --tg-theme-link-color: #8774e1;
+  --tg-theme-secondary-bg-color: #181818;
+  --tg-theme-text-color: #ffffff;
+  --tg-theme-header-bg-color: #212121;
+  --tg-theme-accent-text-color: #8774e1;
+  --tg-theme-section-bg-color: #212121;
+  --tg-theme-section-header-text-color: #8774e1;
+  --tg-theme-subtitle-text-color: #aaaaaa;
+  --tg-theme-destructive-text-color: #ff595a;
+  --tg-viewport-height: 100vh;
+  --tg-viewport-stable-height: 100vh; */
+
+/* --tg-color-scheme: light;
+  --tg-theme-bg-color: #ffffff;
+  --tg-theme-button-color: #3390ec;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-hint-color: #707579;
+  --tg-theme-link-color: #00488f;
+  --tg-theme-secondary-bg-color: #f4f4f5;
+  --tg-theme-text-color: #000000;
+  --tg-theme-header-bg-color: #ffffff;
+  --tg-theme-accent-text-color: #3390ec;
+  --tg-theme-section-bg-color: #ffffff;
+  --tg-theme-section-header-text-color: #3390ec;
+  --tg-theme-subtitle-text-color: #707579;
+  --tg-theme-destructive-text-color: #df3f40;
+  --tg-viewport-height: 100vh;
+  --tg-viewport-stable-height: 100vh; */
+/* } */
+
 * {
   box-sizing: border-box;
 }
@@ -33,7 +69,7 @@ body {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -234,7 +270,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -270,7 +306,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: row;
   column-gap: 10px;
@@ -365,7 +401,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -526,7 +562,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -609,7 +645,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-top: 10px;
   width: 95%;
   border-radius: 15px;
-  background-color: var(--tg-theme-section-bg-color);
+  background-color: var(--tg-theme-secondary-bg-color);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
