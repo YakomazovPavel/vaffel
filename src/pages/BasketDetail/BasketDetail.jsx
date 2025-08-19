@@ -1,6 +1,13 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+
+var basketDetailData = {};
+
 function BasketDetail() {
+  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  console.log("currentBasketId", currentBasketId);
+
   return (
     <div id="page_basket_detail">
       <div class="settings_wrap">

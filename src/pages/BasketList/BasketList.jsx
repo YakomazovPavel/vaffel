@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import { setCurrentPage, PAGE, setCurrentBasketId } from "../../slices/appSlice.js";
 
 const mockBasketListData = {
   my: [
@@ -104,6 +104,11 @@ function BasketList() {
     }
   };
 
+  var openBasketHandler = (basketId) => {
+    dispatch(setCurrentBasketId(basketId));
+    dispatch(setCurrentPage(PAGE.BasketDetail));
+  };
+
   return (
     <div id="page_basket_list">
       <div className="settings_wrap">
@@ -130,7 +135,11 @@ function BasketList() {
                 <div>
                   <h1>{basket.name}</h1>
                 </div>
-                <button>
+                <button
+                  onClick={() => {
+                    openBasketHandler(basket.id);
+                  }}
+                >
                   <svg className="arrow_rigth" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                     <use xlinkHref="#circle_arrow"></use>
                   </svg>
@@ -156,7 +165,11 @@ function BasketList() {
                 <div>
                   <h1>{basket.name}</h1>
                 </div>
-                <button>
+                <button
+                  onClick={() => {
+                    openBasketHandler(basket.id);
+                  }}
+                >
                   <svg className="arrow_rigth" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                     <use xlinkHref="#circle_arrow"></use>
                   </svg>

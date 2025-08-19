@@ -9,6 +9,7 @@ export var PAGE = {
 
 const initialState = {
   currentPage: PAGE.CreateBasket,
+  currentBasketId: "",
 };
 
 const appSlice = createSlice({
@@ -18,8 +19,11 @@ const appSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
+    setCurrentBasketId: (state, action) => {
+      state.currentBasketId = action.payload;
+    },
   },
 });
 
-export const { setCurrentPage } = appSlice.actions;
+export const { setCurrentPage, setCurrentBasketId } = appSlice.actions;
 export default appSlice.reducer;
