@@ -236,6 +236,7 @@ input:checked ~ .basket_list_item:last-child {
   justify-content: space-around;
   transition: min-height 0.25s ease 0.2s;
   box-sizing: border-box;
+  overflow: hidden;
   /* margin-bottom: 32px; */
 }
 
