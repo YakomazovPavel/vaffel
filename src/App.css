@@ -1036,5 +1036,9 @@ input:checked ~ .basket_shop_item:last-child {
 }
 
 button:active {
-  transform: translateY(-1px);
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(+1px);
 }
