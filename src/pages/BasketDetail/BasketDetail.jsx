@@ -54,7 +54,9 @@ function BasketDetail() {
   }, []);
 
   var copyLinkHandler = async () => {
+    // window.Telegram.WebApp.shareMessage(1);
     if (navigator?.clipboard?.writeText) {
+      // Это работает на телефоне =/
       await navigator.clipboard.writeText("Рандомный текст в буфере обмена");
       console.log("Text copied to clipboard successfully!");
       Telegram.WebApp.showAlert("Ссылка скопирована");
