@@ -18,6 +18,7 @@ function App() {
       {currentPage === PAGE.CreateBasket && <CreateBasket />}
       {currentPage === PAGE.BasketList && <BasketList />}
       {currentPage === PAGE.BasketDetail && <BasketDetail />}
+      {currentPage === PAGE.Shop && <Shop />}
     </>
 
     // <Shop></Shop>

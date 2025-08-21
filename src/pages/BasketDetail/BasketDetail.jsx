@@ -63,6 +63,10 @@ function BasketDetail() {
     }
   };
 
+  var addItemHandler = () => {
+    dispatch(setCurrentPage(PAGE.Shop));
+  };
+
   return (
     <div id="page_basket_detail">
       <div class="settings_wrap">
@@ -161,12 +165,11 @@ function BasketDetail() {
             <p class="count">x2</p>
           </div>
           <div class="basket_detail_item basket_add_item">
-            <button id="basket_add_item_button">
+            <button onClick={addItemHandler}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                 <use xlinkHref="#plus"></use>
               </svg>
             </button>
-
             <p class="name">Добавить</p>
           </div>
         </div>

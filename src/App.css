@@ -537,6 +537,7 @@ input:checked ~ .basket_list_item:last-child {
   min-width: 40px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .basket_add_item > button > svg {
