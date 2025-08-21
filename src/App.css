@@ -560,6 +560,7 @@ input:checked ~ .basket_list_item:last-child {
   box-sizing: border-box;
   transition: min-height 0.25s ease 0.4s;
   animation: open 0.7s forwards;
+  padding-bottom: 10px;
 }
 
 /* #page_basket_shop > .settings_wrap {
@@ -1031,7 +1032,7 @@ input:checked ~ .basket_shop_item:last-child {
   cursor: pointer;
 }
 
-button:active {
+button {
   cursor: pointer;
 }
 

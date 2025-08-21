@@ -6,6 +6,7 @@ import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 var mockShopListData = [{}];
 
 function Shop() {
+  const dispatch = useDispatch();
   const [shopListData, setShopListData] = useState(mockShopListData);
   const [searchBasketListData, setSearchBasketListData] = useState();
 
