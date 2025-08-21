@@ -671,11 +671,6 @@ input:checked ~ .basket_list_item:last-child {
   /* animation: open 0.7s forwards; */
 }
 
-.basket_shop_section:last-child {
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
 .basket_shop_section > label {
   display: flex;
   width: 100%;
@@ -684,6 +679,7 @@ input:checked ~ .basket_list_item:last-child {
   align-items: center;
   height: 46px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .basket_shop_section > label > div {
