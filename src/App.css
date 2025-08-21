@@ -429,6 +429,7 @@ input:checked ~ .basket_list_item:last-child {
   column-gap: 15px;
   padding-bottom: 15px;
   border-bottom: solid var(--tg-theme-bg-color) 1px;
+  width: 100%;
 }
 
 .basket_detail_heared > img {
