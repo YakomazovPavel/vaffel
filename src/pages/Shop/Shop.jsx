@@ -11,16 +11,12 @@ function Shop() {
   };
 
   var open = () => {
-    if (basketDetail.author_id === userId) {
-      window.Telegram.WebApp.MainButton.hide();
-      window.Telegram.WebApp.BackButton.show();
-      window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
-    }
+    window.Telegram.WebApp.MainButton.hide();
+    window.Telegram.WebApp.BackButton.show();
+    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
   };
 
   var close = () => {
-    window.Telegram.WebApp.MainButton.offClick(orderBasketHandler);
-    window.Telegram.WebApp.MainButton.hide();
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
   };
 
