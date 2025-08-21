@@ -443,7 +443,7 @@ input:checked ~ .basket_list_item:last-child {
   display: flex;
   flex-direction: column;
   row-gap: 6px;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .basket_detail_heared h1 {
