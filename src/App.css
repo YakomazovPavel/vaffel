@@ -671,6 +671,11 @@ input:checked ~ .basket_list_item:last-child {
   /* animation: open 0.7s forwards; */
 }
 
+.basket_shop_section:last-child {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
 .basket_shop_section > label {
   display: flex;
   width: 100%;
@@ -884,6 +889,7 @@ input:checked ~ .basket_list_item:last-child {
   justify-content: center;
   width: max-content;
   transition: padding 0.3s linear 0s;
+  cursor: pointer;
 }
 
 .basket_shop_item > .header > label > img {
@@ -1027,4 +1033,8 @@ input:checked ~ .basket_shop_item:last-child {
 
 #to_baskets_button {
   cursor: pointer;
+}
+
+button:active {
+  transform: translateY(-1px);
 }
