@@ -9,6 +9,11 @@ function CreateBasket() {
 
   var onClickCreateBasketHandler = async () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
+    window.Telegram.WebApp.showAlert("Функция в разработке", () => {
+      window.Telegram.WebApp.MainButton.hideProgress();
+    });
+
+    // window.Telegram.WebApp.showPopup({ title: "Заказ", message: "Функция в разработке" });
     // console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
     // var basketName = document.getElementById("input_basket_name")?.value || "";
     // var date = document.getElementById("input_basket_date");
@@ -25,9 +30,9 @@ function CreateBasket() {
     //   basketName,
     //   expiredAt
     // );
-    setTimeout(() => {
-      window.Telegram.WebApp.MainButton.hideProgress();
-    }, 3000);
+    // setTimeout(() => {
+    //   window.Telegram.WebApp.MainButton.hideProgress();
+    // }, 3000);
   };
 
   var open = () => {

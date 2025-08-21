@@ -17,10 +17,10 @@ function BasketDetail() {
   var orderBasketHandler = () => {
     console.log("orderBasketHandler");
     window.Telegram.WebApp.MainButton.showProgress(false);
-    window.Telegram.WebApp.showPopup({ title: "Заказ", message: "Функция в разработке" });
-    setTimeout(() => {
+    window.Telegram.WebApp.showAlert("Функция в разработке", () => {
       window.Telegram.WebApp.MainButton.hideProgress();
-    }, 3000);
+    });
+    // window.Telegram.WebApp.showPopup({ title: "Заказ", message: "Функция в разработке" });
   };
 
   var backButtonHandler = () => {
