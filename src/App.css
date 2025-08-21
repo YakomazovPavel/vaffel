@@ -163,7 +163,7 @@ input:checked + label .arrow_down {
 
 .basket_list_item h2 {
   color: var(--tg-theme-hint-color);
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -428,8 +428,7 @@ input:checked ~ .basket_list_item:last-child {
   flex-direction: row;
   column-gap: 15px;
   padding-bottom: 15px;
-
-  border-bottom: solid 1px var(--tg-theme-section-separator-color);
+  border-bottom: solid var(--tg-theme-bg-color) 1px;
 }
 
 .basket_detail_heared > img {
@@ -456,7 +455,7 @@ input:checked ~ .basket_list_item:last-child {
 
 .basket_detail_heared h2 {
   color: var(--tg-theme-hint-color);
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -469,8 +468,7 @@ input:checked ~ .basket_list_item:last-child {
   border: none;
   background-color: var(--tg-theme-button-color);
   color: var(--tg-theme-button-text-color);
-  margin-top: auto;
-  margin-right: auto;
+  margin-right: 15px;
   padding: 0 10px;
 }
 
@@ -483,14 +481,19 @@ input:checked ~ .basket_list_item:last-child {
 .basket_detail_item {
   display: flex;
   flex-direction: row;
-
   align-items: center;
   width: 100%;
-  margin-top: 10px;
   column-gap: 10px;
   box-sizing: border-box;
   height: 40px;
   overflow: hidden;
+  box-sizing: content-box;
+  padding-top: 5px;
+}
+
+.basket_detail_item:not(:last-child) {
+  padding-bottom: 5px;
+  border-bottom: solid var(--tg-theme-bg-color) 1px;
 }
 
 .basket_detail_item > img {
@@ -509,7 +512,7 @@ input:checked ~ .basket_list_item:last-child {
 
 .basket_detail_item > .count {
   margin-right: 15px;
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 14px;
   font-weight: 600;
 }
@@ -768,7 +771,7 @@ input:checked ~ .basket_list_item:last-child {
 
 .description_header > h2 {
   color: var(--tg-theme-subtitle-text-color);
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -782,7 +785,7 @@ input:checked ~ .basket_list_item:last-child {
 
 .description > .price_wrap > h2 {
   color: var(--tg-theme-subtitle-text-color);
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -926,7 +929,7 @@ input:checked ~ .basket_list_item:last-child {
 
 .basket_shop_item > .header h2 {
   color: var(--tg-theme-hint-color);
-  font-family: Menlo;
+  /* font-family: Menlo; */
   font-size: 14px;
   margin: 0;
   padding: 0;

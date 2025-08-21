@@ -71,7 +71,7 @@ function BasketDetail() {
             <img src="1.jpg" />
             <div>
               <h1>Посиделки на поминки</h1>
-              <h2>#1</h2>
+              {/* <h2>#1</h2> */}
               <button onClick={copyLinkHandler}>Поделиться</button>
             </div>
           </div>
