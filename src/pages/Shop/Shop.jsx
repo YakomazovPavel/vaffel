@@ -130,16 +130,16 @@ function Shop() {
 
 var Dish = ({ dish }) => {
   return (
-    <div className="basket_shop_item" key={`category_${category.id}_dish_${dish?.id}`}>
+    <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
         <input
           className="hide"
           type="checkbox"
-          name={`category_${category.id}_dish_${dish?.id}`}
+          name={`category_${dish.category_id}_dish_${dish?.id}`}
           value="value"
-          id={`category_${category.id}_dish_${dish?.id}`}
+          id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
-        <label htmlFor={`category_${category.id}_dish_${dish?.id}`}>
+        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
           <p>{dish?.count}</p>
         </label>
