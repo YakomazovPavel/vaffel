@@ -50,7 +50,7 @@ function Shop() {
   const dispatch = useDispatch();
   const [shopListData, setShopListData] = useState(mockShopListData);
   const [searchShopListData, setSearchShopListData] = useState(shopListData);
-  console.log("searchShopListData1", searchShopListData);
+  console.log("searchShopListData2", searchShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
@@ -110,113 +110,85 @@ function Shop() {
                     <use xlinkHref="#arrow"></use>
                   </svg>
                 </label>
-                {!!category.dishes.length && (
-                  <>
-                    {category.dishes.map((dish) => (
-                      <div className="basket_shop_item" key={`category_${category.id}_dish_${dish.id}`}>
-                        <div className="header">
-                          <input
-                            className="hide"
-                            type="checkbox"
-                            name={`category_${category.id}_dish_${dish.id}`}
-                            value="value"
-                            id={`category_${category.id}_dish_${dish.id}`}
-                          />
-                          <label htmlFor={`category_${category.id}_dish_${dish.id}`}>
-                            <img src={dish.photo_url} />
-                            {dish?.count && dish.count > 0 && <p>{dish.count}</p>}
-                          </label>
-                          <div className="short_description">
-                            <h1>{dish.name}</h1>
-                            <h2>{dish.weight}гр</h2>
-                          </div>
-                          <div className="control">
-                            <button>
-                              <svg
-                                width="30"
-                                height="30"
-                                viewBox="0 0 30 30"
-                                fill=""
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <use xlinkHref="#circle_minus"></use>
-                              </svg>
-                            </button>
-                            <button>
-                              <svg
-                                width="30"
-                                height="30"
-                                viewBox="0 0 30 30"
-                                fill=""
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <use xlinkHref="#circle_plus"></use>
-                              </svg>
-                            </button>
-                          </div>
+                {category.dishes.map((dish) => (
+                  <div className="basket_shop_item" key={`category_${category.id}_dish_${dish.id}`}>
+                    <div className="header">
+                      <input
+                        className="hide"
+                        type="checkbox"
+                        name={`category_${category.id}_dish_${dish.id}`}
+                        value="value"
+                        id={`category_${category.id}_dish_${dish.id}`}
+                      />
+                      <label htmlFor={`category_${category.id}_dish_${dish.id}`}>
+                        <img src={dish.photo_url} />
+                        {dish?.count && dish.count > 0 && <p>{dish.count}</p>}
+                      </label>
+                      <div className="short_description">
+                        <h1>{dish.name}</h1>
+                        <h2>{dish.weight}гр</h2>
+                      </div>
+                      <div className="control">
+                        <button>
+                          <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                            <use xlinkHref="#circle_minus"></use>
+                          </svg>
+                        </button>
+                        <button>
+                          <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                            <use xlinkHref="#circle_plus"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="description">
+                      <div className="description_header">
+                        <div className="name_wrap">
+                          <h1>{dish.name}</h1>
+                          {dish?.count && dish.count > 0 && <p>{dish.count}</p>}
                         </div>
-                        <div className="description">
-                          <div className="description_header">
-                            <div className="name_wrap">
-                              <h1>{dish.name}</h1>
-                              {dish?.count && dish.count > 0 && <p>{dish.count}</p>}
-                            </div>
 
-                            <div className="description_header_control">
-                              <button>
-                                <svg
-                                  width="30"
-                                  height="30"
-                                  viewBox="0 0 30 30"
-                                  fill=""
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <use xlinkHref="#circle_minus"></use>
-                                </svg>
-                              </button>
-                              <button>
-                                <svg
-                                  width="30"
-                                  height="30"
-                                  viewBox="0 0 30 30"
-                                  fill=""
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <use xlinkHref="#circle_plus"></use>
-                                </svg>
-                              </button>
-                            </div>
-                          </div>
-                          {dish.description && <p>{dish.description}</p>}
+                        <div className="description_header_control">
+                          <button>
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                              <use xlinkHref="#circle_minus"></use>
+                            </svg>
+                          </button>
+                          <button>
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                              <use xlinkHref="#circle_plus"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {dish.description && <p>{dish.description}</p>}
 
-                          {/* <!-- <div className="price_wrap"> -->
+                      {/* <!-- <div className="price_wrap"> -->
                             <!-- <h2>540₽</h2> -->
                             <!-- <h2>350гр</h2> -->
                             <!-- </div> --> */}
 
-                          <div className="description_header_components">
-                            <div>
-                              <h3>В 100 г</h3>
-                              <p>{dish} ккал</p>
-                            </div>
-                            <div>
-                              <h3>Белки</h3>
-                              <p>{dish.proteins} г</p>
-                            </div>
-                            <div>
-                              <h3>Жиры</h3>
-                              <p>{dish.fats} г</p>
-                            </div>
-                            <div>
-                              <h3>Углеводы</h3>
-                              <p>{dish.carbs} г</p>
-                            </div>
-                          </div>
+                      <div className="description_header_components">
+                        <div>
+                          <h3>В 100 г</h3>
+                          <p>{dish} ккал</p>
+                        </div>
+                        <div>
+                          <h3>Белки</h3>
+                          <p>{dish.proteins} г</p>
+                        </div>
+                        <div>
+                          <h3>Жиры</h3>
+                          <p>{dish.fats} г</p>
+                        </div>
+                        <div>
+                          <h3>Углеводы</h3>
+                          <p>{dish.carbs} г</p>
                         </div>
                       </div>
-                    ))}
-                  </>
-                )}
+                    </div>
+                  </div>
+                ))}
               </div>
             ))}
           </>
