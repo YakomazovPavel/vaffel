@@ -724,6 +724,7 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 .basket_shop_item:not(:last-child) {
+  border-bottom: solid 1px;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
 }
