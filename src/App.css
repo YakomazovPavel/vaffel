@@ -765,12 +765,12 @@ input:checked ~ .basket_list_item:last-child {
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .basket_shop_item > .description > p {
   padding: 0;
-  margin: 0;
+  margin: auto 0px;
 }
 
 .description_header > .name_wrap {
@@ -855,6 +855,7 @@ input:checked ~ .basket_list_item:last-child {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  margin: auto 0px;
 }
 
 .description_header_components > div {
@@ -865,20 +866,20 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 .description_header_components > div:not(:last-child) {
-  border-right: solid 1px var(--tg-theme-section-separator-color);
+  border-right: solid var(--tg-theme-bg-color) 1px;
 }
 
 .description_header_components > div > h3 {
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 100;
 }
 
 .description_header_components > div > p {
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 

@@ -224,19 +224,19 @@ var Dish = ({ dish }) => {
         <div className="description_header_components">
           <div>
             <h3>В 100 г</h3>
-            <p>{dish?.calories}</p>
+            <p>{dish?.calories} ккал</p>
           </div>
           <div>
             <h3>Белки</h3>
-            <p>{dish?.proteins}</p>
+            <p>{dish?.proteins} г</p>
           </div>
           <div>
             <h3>Жиры</h3>
-            <p>{dish?.fats}</p>
+            <p>{dish?.fats} г</p>
           </div>
           <div>
             <h3>Углеводы</h3>
-            <p>{dish?.carbs}</p>
+            <p>{dish?.carbs} г</p>
           </div>
         </div>
       </div>
