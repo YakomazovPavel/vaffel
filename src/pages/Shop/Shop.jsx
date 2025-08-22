@@ -50,7 +50,7 @@ function Shop() {
   const dispatch = useDispatch();
   const [shopListData, setShopListData] = useState(mockShopListData);
   const [searchShopListData, setSearchShopListData] = useState(shopListData);
-  console.log("searchShopListData6", searchShopListData);
+  console.log("searchShopListData7", searchShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
