@@ -185,7 +185,7 @@ var Dish = ({ dish }) => {
         <div className="description_header_components">
           <div>
             <h3>В 100 г</h3>
-            <p>{dish}</p>
+            <p>{dish?.calories}</p>
           </div>
           <div>
             <h3>Белки</h3>
