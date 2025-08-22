@@ -110,7 +110,8 @@ function Shop() {
                   </svg>
                 </label>
                 {category.dishes.map((dish) => (
-                  <div>{dish?.name}</div>
+                  // <div>{dish?.name}</div>
+                  <Dish dish={dish} />
                 ))}
               </div>
             ))}
@@ -144,7 +145,7 @@ var Dish = ({ dish }) => {
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
-          <h2>{dish?.weight}гр</h2>
+          <h2>{dish?.weight}</h2>
         </div>
         <div className="control">
           <button>
@@ -184,19 +185,19 @@ var Dish = ({ dish }) => {
         <div className="description_header_components">
           <div>
             <h3>В 100 г</h3>
-            <p>{dish} ккал</p>
+            <p>{dish}</p>
           </div>
           <div>
             <h3>Белки</h3>
-            <p>{dish?.proteins} г</p>
+            <p>{dish?.proteins}</p>
           </div>
           <div>
             <h3>Жиры</h3>
-            <p>{dish?.fats} г</p>
+            <p>{dish?.fats}</p>
           </div>
           <div>
             <h3>Углеводы</h3>
-            <p>{dish?.carbs} г</p>
+            <p>{dish?.carbs}</p>
           </div>
         </div>
       </div>
