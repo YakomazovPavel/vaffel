@@ -13,6 +13,7 @@ export default defineConfig({
   base: "/vaffel/dist/",
   root: "public",
   build: {
+    sourcemap: true,
     outDir: "../dist",
     emptyOutDir: true, // also necessary
     // assetsDir: "assets",
