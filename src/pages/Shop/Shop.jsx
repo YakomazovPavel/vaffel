@@ -44,6 +44,45 @@ var mockShopListData = [
       },
     ],
   },
+  {
+    id: "2",
+    name: "Картофельные вафли",
+    count: 0,
+    dishes: [
+      {
+        id: "3",
+        category_id: "2",
+        name: "Барбекю",
+        description:
+          "Котлета из говядины, жареный бекон, сыр чеддер, айсберг, маринованные огурец и красный лук, соус барбекю, соус сладкая аджика, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи",
+        price: "540",
+        calories: "206.6",
+        proteins: "6.6",
+        fats: "13.1",
+        carbs: "15.6",
+        weight: "350",
+        photo_url:
+          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561134/56c41996237e9cc6ef75fcb48d671352.webp",
+        count: 0,
+      },
+      {
+        id: "4",
+        category_id: "2",
+        name: "Индиана Джонс",
+        description:
+          "Запеченное куриное филе, сыр чеддер, яблоко, руккола, домашний майонез, соус брусничный, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи)",
+        price: "510",
+        calories: "191",
+        proteins: "7.1",
+        fats: "12",
+        carbs: "13.5",
+        weight: "380",
+        photo_url:
+          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561136/6d384469f83aa62fc707807d122aaa9d.webp",
+        count: 0,
+      },
+    ],
+  },
 ];
 
 function Shop() {
@@ -103,7 +142,7 @@ function Shop() {
                 <label htmlFor={`category_${category.id}`}>
                   <div>
                     <p>{category.name}</p>
-                    <span>{category.count}</span>
+                    {!!category.count && <span>{category.count}</span>}
                   </div>
                   <svg className="arrow_down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
                     <use xlinkHref="#arrow"></use>
@@ -164,7 +203,7 @@ var Dish = ({ dish }) => {
         <div className="description_header">
           <div className="name_wrap">
             <h1>{dish?.name}</h1>
-            <p>{dish?.count}</p>
+            {!!dish?.count && <p>{dish?.count}</p>}
           </div>
 
           <div className="description_header_control">
