@@ -624,6 +624,7 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 #not_found {
+  display: flex;
   flex-direction: column;
   row-gap: 10px;
   align-items: center;
