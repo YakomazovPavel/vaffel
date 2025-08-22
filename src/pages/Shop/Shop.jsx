@@ -180,7 +180,7 @@ var Dish = ({ dish }) => {
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
-          <p>{dish?.count}</p>
+          {!!dish?.count && <p>{dish?.count}</p>}
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
