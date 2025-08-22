@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setCurrentBasketId } from "../../slices/appSlice.js";
 
 const mockBasketListData = {
@@ -56,7 +56,6 @@ const mockBasketListData = {
 
 function BasketList() {
   const dispatch = useDispatch();
-  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   // const [dataLoading, setDataLoading] = useState(true);
   const [basketListData, setBasketListData] = useState(mockBasketListData);
   const [searchBasketListData, setSearchBasketListData] = useState();

@@ -87,6 +87,7 @@ var mockShopListData = [
 
 function Shop() {
   const dispatch = useDispatch();
+  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   const [shopListData, setShopListData] = useState(mockShopListData);
   const [searchShopListData, setSearchShopListData] = useState(shopListData);
   console.log("searchShopListData7", searchShopListData);
@@ -149,7 +150,6 @@ function Shop() {
                   </svg>
                 </label>
                 {category.dishes.map((dish) => (
-                  // <div>{dish?.name}</div>
                   <Dish dish={dish} />
                 ))}
               </div>
@@ -184,7 +184,7 @@ var Dish = ({ dish }) => {
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
-          <h2>{dish?.weight}</h2>
+          <h2>{dish?.weight} г</h2>
         </div>
         <div className="control">
           <button>
