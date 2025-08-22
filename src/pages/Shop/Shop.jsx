@@ -1258,7 +1258,7 @@ function Shop() {
           </>
         ) : (
           <div id="not_found">
-            <img src="/dist/assets/spider-crawl-folder.gif" />
+            <img src="spider-crawl-folder.gif" />
             <h1>Безрезультатно</h1>
             <h2>Поробуйте что-то другое</h2>
           </div>
