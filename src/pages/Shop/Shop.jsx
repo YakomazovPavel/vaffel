@@ -259,12 +259,25 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           </div>
 
           <div className="description_header_control">
-            <button>
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                <use xlinkHref="#circle_minus"></use>
-              </svg>
-            </button>
-            <button>
+            {dish?.count > 0 && (
+              <button
+                onClick={() => {
+                  removeDishHandler(dish.category_id, dish.id);
+                  setCounterKey((prev) => prev++);
+                }}
+              >
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                  <use xlinkHref="#circle_minus"></use>
+                </svg>
+              </button>
+            )}
+
+            <button
+              onClick={() => {
+                addDishHandler(dish.category_id, dish.id);
+                setCounterKey((prev) => prev++);
+              }}
+            >
               <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                 <use xlinkHref="#circle_plus"></use>
               </svg>
