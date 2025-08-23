@@ -952,6 +952,8 @@ input:checked ~ .basket_list_item:last-child {
   flex-direction: row;
   column-gap: 15px;
   align-items: center;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out 0.4s;
 }
 
 .basket_shop_item .control > button {
@@ -1008,7 +1010,8 @@ input:checked ~ .basket_shop_item:has(input:checked) > .header > .short_descript
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .control {
-  display: none;
+  /* display: none; */
+  opacity: 0;
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .description {
