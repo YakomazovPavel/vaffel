@@ -738,7 +738,8 @@ input:checked ~ .basket_list_item:last-child {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 0px;
-  transition: height 0.2s linear 0.2s;
+  /* transition: height 0.2s linear 0.2s; */
+  transition: height 0.25s ease 0.1s;
 }
 
 .basket_shop_item > .description {
@@ -991,7 +992,8 @@ input:checked ~ .basket_shop_item:has(input:checked) {
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header {
   height: calc(100dvmin - 48px);
-  transition: height 0.2s linear 0s;
+  /* transition: height 0.2s linear 0s; */
+  transition: height 0.25s ease 0.1s;
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > label {
