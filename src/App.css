@@ -717,7 +717,7 @@ input:checked ~ .basket_list_item:last-child {
   height: 0px;
   opacity: 0;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-sizing: border-box;
   transition: opacity 0.2s ease-in 0s, height 0.15s ease 0.1s, margin-bottom 0.1s ease-in 0.1s;
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
@@ -1048,4 +1048,13 @@ button {
 
 button:active {
   transform: translateY(+1px);
+}
+
+@keyframes change {
+  0% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

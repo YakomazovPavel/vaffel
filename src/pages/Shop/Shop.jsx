@@ -200,6 +200,7 @@ function Shop() {
 }
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
+  const [counterKey, setCounterKey] = useState(0);
   return (
     <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
@@ -212,25 +213,34 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
-          {!!dish?.count && <p>{dish?.count}</p>}
+          {!!dish?.count && (
+            <p key={counterKey} style={{ animation: counterKey > 0 ? "change 0.7s forwards" : "" }}>
+              {dish?.count}
+            </p>
+          )}
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
           <h2>{dish?.weight} г</h2>
         </div>
         <div className="control">
-          <button
-            onClick={() => {
-              removeDishHandler(dish.category_id, dish.id);
-            }}
-          >
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-              <use xlinkHref="#circle_minus"></use>
-            </svg>
-          </button>
+          {dish?.count > 0 && (
+            <button
+              onClick={() => {
+                removeDishHandler(dish.category_id, dish.id);
+                setCounterKey((prev) => prev++);
+              }}
+            >
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                <use xlinkHref="#circle_minus"></use>
+              </svg>
+            </button>
+          )}
+
           <button
             onClick={() => {
               addDishHandler(dish.category_id, dish.id);
+              setCounterKey((prev) => prev++);
             }}
           >
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +253,9 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         <div className="description_header">
           <div className="name_wrap">
             <h1>{dish?.name}</h1>
-            {!!dish?.count && <p>{dish?.count}</p>}
+            <p key={counterKey} style={{ animation: counterKey > 0 ? "change 0.7s forwards" : "" }}>
+              {dish?.count}
+            </p>
           </div>
 
           <div className="description_header_control">
