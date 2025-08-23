@@ -214,7 +214,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
           {!!dish?.count && (
-            <p key={counterKey} style={{ animation: counterKey > 0 ? "change 0.7s forwards" : "" }}>
+            <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
               {dish?.count}
             </p>
           )}
