@@ -1003,9 +1003,9 @@ input:checked ~ .basket_shop_item:has(input:checked) > .header > label {
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > label > p {
-  /* opacity: 0;
-  transition: opacity 0.2s linear 0s; */
-  display: none;
+  opacity: 0;
+  transition: opacity 0.2s linear 0.25s;
+  /* display: none; */
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .short_description {
