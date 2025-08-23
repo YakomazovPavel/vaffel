@@ -230,7 +230,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
             <button
               onClick={() => {
                 removeDishHandler(dish.category_id, dish.id);
-                setCounterKey((prev) => prev++);
+                setCounterKey((prev) => ++prev);
               }}
             >
               <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -242,7 +242,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           <button
             onClick={() => {
               addDishHandler(dish.category_id, dish.id);
-              setCounterKey((prev) => prev++);
+              setCounterKey((prev) => ++prev);
             }}
           >
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -267,7 +267,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
               <button
                 onClick={() => {
                   removeDishHandler(dish.category_id, dish.id);
-                  setCounterKey((prev) => prev++);
+                  setCounterKey((prev) => ++prev);
                 }}
               >
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -279,7 +279,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
             <button
               onClick={() => {
                 addDishHandler(dish.category_id, dish.id);
-                setCounterKey((prev) => prev++);
+                setCounterKey((prev) => ++prev);
               }}
             >
               <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
