@@ -112,8 +112,11 @@ function Shop() {
       var copyShopListData = structuredClone(shopListData)
         .map((category) => {
           category.dishes = category.dishes.filter((dish) => dish?.name.includes(value));
+          if (!!category?.dishes?.length) {
+            return category;
+          }
         })
-        .filter((category) => !!category?.dishes?.length);
+        .filter((category) => !!category);
 
       console.log("setSearchShopListData copyShopListData", copyShopListData);
 
