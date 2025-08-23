@@ -115,8 +115,11 @@ function Shop() {
         })
         .filter((category) => !!category?.dishes?.length);
 
+      console.log("setSearchShopListData copyShopListData", copyShopListData);
+
       setSearchShopListData(copyShopListData);
     } else {
+      console.log("setSearchShopListData shopListData", shopListData);
       setSearchShopListData(shopListData);
     }
   };
