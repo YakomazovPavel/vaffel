@@ -928,6 +928,8 @@ input:checked ~ .basket_list_item:last-child {
   flex-direction: column;
   row-gap: 6px;
   justify-content: flex-start;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out 0.4s;
 }
 
 .basket_shop_item > .header h1 {
@@ -1001,7 +1003,8 @@ input:checked ~ .basket_shop_item:has(input:checked) > .header > label > p {
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .short_description {
-  display: none;
+  /* display: none; */
+  opacity: 0;
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .control {
@@ -1056,3 +1059,12 @@ button:active {
     transform: scale(1);
   }
 }
+
+/* @keyframes short_description_show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */
