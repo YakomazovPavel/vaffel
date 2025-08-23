@@ -182,7 +182,7 @@ function Shop() {
                   </svg>
                 </label>
                 {category.dishes.map((dish) => (
-                  <Dish dish addDishHandler removeDishHandler />
+                  <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
                 ))}
               </div>
             ))}
