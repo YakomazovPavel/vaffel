@@ -127,6 +127,32 @@ function Shop() {
     }
   };
 
+  var addDishHandler = (categoryId, dishId) => {
+    var copy = structuredClone(searchShopListData);
+    var category = copy.filter((category) => category.id === categoryId)?.at(0);
+    if (category) {
+      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+      dish.count++;
+      category.count++;
+      setSearchShopListData(copy);
+    }
+  };
+
+  var removeDishHandler = (categoryId, dishId) => {
+    var copy = structuredClone(searchShopListData);
+    var category = copy.filter((category) => category.id === categoryId)?.at(0);
+    if (category) {
+      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+      if (dish && dish.count > 0) {
+        dish.count--;
+        if (category.count > 0) {
+          category.count--;
+        }
+        setSearchShopListData(copy);
+      }
+    }
+  };
+
   useEffect(() => {
     open();
     return close;
@@ -156,7 +182,7 @@ function Shop() {
                   </svg>
                 </label>
                 {category.dishes.map((dish) => (
-                  <Dish dish={dish} />
+                  <Dish dish addDishHandler removeDishHandler />
                 ))}
               </div>
             ))}
@@ -173,7 +199,7 @@ function Shop() {
   );
 }
 
-var Dish = ({ dish }) => {
+var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   return (
     <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
@@ -193,12 +219,20 @@ var Dish = ({ dish }) => {
           <h2>{dish?.weight} г</h2>
         </div>
         <div className="control">
-          <button>
+          <button
+            onClick={() => {
+              removeDishHandler(dish.category_id, dish.id);
+            }}
+          >
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
               <use xlinkHref="#circle_minus"></use>
             </svg>
           </button>
-          <button>
+          <button
+            onClick={() => {
+              addDishHandler(dish.category_id, dish.id);
+            }}
+          >
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
               <use xlinkHref="#circle_plus"></use>
             </svg>
