@@ -201,6 +201,8 @@ function Shop() {
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   const [counterKey, setCounterKey] = useState(0);
+  console.log("counterKey", counterKey);
+
   return (
     <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
@@ -253,9 +255,11 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         <div className="description_header">
           <div className="name_wrap">
             <h1>{dish?.name}</h1>
-            <p key={counterKey} style={{ animation: counterKey > 0 ? "change 0.7s forwards" : "" }}>
-              {dish?.count}
-            </p>
+            {!!dish?.count && (
+              <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
+                {dish?.count}
+              </p>
+            )}
           </div>
 
           <div className="description_header_control">
