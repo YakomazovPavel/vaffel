@@ -736,9 +736,7 @@ input:checked ~ .basket_list_item:last-child {
   column-gap: 10px;
   height: 100%;
   box-sizing: border-box;
-  overflow: hidden;
   width: 100%;
-  /* overflow: hidden; */
   margin-bottom: 0px;
   transition: height 0.2s linear 0.2s;
 }
