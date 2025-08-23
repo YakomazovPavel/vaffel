@@ -1008,13 +1008,11 @@ input:checked ~ .basket_shop_item:has(input:checked) > .header > label > p {
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .short_description {
   opacity: 0;
   transition: unset;
-  display: none;
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header > .control {
   opacity: 0;
   transition: unset;
-  display: none;
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .description {
