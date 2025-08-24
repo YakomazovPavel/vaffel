@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
@@ -10,12 +10,13 @@ function CreateBasket() {
 
   const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
+  var refBasketName = useRef(null);
   console.log("basketName", basketName);
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
-  var onClickCreateBasketHandler = (basketName) => {
-    console.log("onClickCreateBasketHandler basketName", basketName);
+  var onClickCreateBasketHandler = () => {
+    console.log("onClickCreateBasketHandler basketName", refBasketName.current);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
     dispatch(
@@ -23,7 +24,7 @@ function CreateBasket() {
         id: basketsCount++,
         photo_url: `${basketsCount % 10}.jpg`,
         author_id: userId,
-        name: basketName,
+        name: refBasketName.current,
         is_locked: false,
         created: new Date().toISOString(),
         updated: new Date().toISOString(),
@@ -43,14 +44,10 @@ function CreateBasket() {
     window.Telegram.WebApp.MainButton.hide();
     window.Telegram.WebApp.MainButton.isVisible = false;
     window.Telegram.WebApp.MainButton.isActive = false;
-    window.Telegram.WebApp.MainButton.onClick(() => {
-      onClickCreateBasketHandler(basketName);
-    });
+    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
   var close = () => {
-    window.Telegram.WebApp.MainButton.offClick(() => {
-      onClickCreateBasketHandler(basketName);
-    });
+    window.Telegram.WebApp.MainButton.offClick(onClickCreateBasketHandler);
     window.Telegram.WebApp.MainButton.hide();
   };
 
@@ -64,6 +61,7 @@ function CreateBasket() {
     console.log(e.target.value);
     var value = e.target.value.trim();
     setBasketName(value);
+    refBasketName.current = value;
     if (value) {
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.isVisible = true;

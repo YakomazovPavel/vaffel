@@ -58,6 +58,9 @@ const initialState = {
       updated: "2025-08-19T14:52:54.348Z",
     },
   ],
+  categories: [],
+  dishes: [],
+  basketDishes: [],
 };
 
 const appSlice = createSlice({
