@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import { setCurrentPage, PAGE, addBasket } from "../../slices/appSlice.js";
 
 function CreateBasket() {
+  var userId = useSelector((state) => state.appSlice.userId);
+  var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
+  console.log("basketsCount", basketsCount);
+
   const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
 
@@ -12,27 +16,17 @@ function CreateBasket() {
     window.Telegram.WebApp.showAlert("Функция в разработке", () => {
       window.Telegram.WebApp.MainButton.hideProgress();
     });
-
-    // window.Telegram.WebApp.showPopup({ title: "Заказ", message: "Функция в разработке" });
-    // console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
-    // var basketName = document.getElementById("input_basket_name")?.value || "";
-    // var date = document.getElementById("input_basket_date");
-    // var time = document.getElementById("input_basket_time");
-    // var expiredAt = `${date.value}T${time.value}`;
-    // // new Date(Date.parse(`${date.value}T${time.value}`)).toISOString();
-    // // console.log();
-
-    // // .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-    // // ?.toISOString() || "";
-    // console.log("expiredAt", expiredAt);
-    // var response = await VaffelBotApi.createBasket(
-    //   window.Telegram.WebApp.initDataUnsafe.user.id,
-    //   basketName,
-    //   expiredAt
-    // );
-    // setTimeout(() => {
-    //   window.Telegram.WebApp.MainButton.hideProgress();
-    // }, 3000);
+    dispatch(
+      addBasket({
+        id: userId,
+        photo_url: `${basketsCount % 10}.jpg`,
+        author_id: userId,
+        name: basketName,
+        is_locked: false,
+        created: new Date().toISOString(),
+        updated: new Date().toISOString(),
+      })
+    );
   };
 
   var open = () => {
@@ -47,8 +41,6 @@ function CreateBasket() {
   var close = () => {
     window.Telegram.WebApp.MainButton.offClick(onClickCreateBasketHandler);
     window.Telegram.WebApp.MainButton.hide();
-    // window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
-    // window.Telegram.WebApp.MainButton.isVisible = false;
   };
 
   useEffect(() => {
