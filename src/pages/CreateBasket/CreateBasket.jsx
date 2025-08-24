@@ -14,7 +14,7 @@ function CreateBasket() {
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
-  var onClickCreateBasketHandler = async () => {
+  var onClickCreateBasketHandler = () => {
     console.log("onClickCreateBasketHandler basketName", basketName);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
