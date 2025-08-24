@@ -10,15 +10,18 @@ function CreateBasket() {
 
   const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
+  console.log("basketName", basketName);
+
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
   var onClickCreateBasketHandler = async () => {
+    console.log("onClickCreateBasketHandler basketName", basketName);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
     window.Telegram.WebApp.MainButton.hideProgress();
     dispatch(
       addBasket({
-        id: userId,
+        id: basketsCount++,
         photo_url: `${basketsCount % 10}.jpg`,
         author_id: userId,
         name: basketName,
