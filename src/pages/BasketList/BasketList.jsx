@@ -61,7 +61,6 @@ function BasketList() {
 
   useEffect(() => {
     open();
-    computingBaskets();
     return close;
   }, []);
 
