@@ -14,7 +14,7 @@ const initialState = {
   baskets: [
     {
       id: "1",
-      photo_url: "1.jpg",
+      photo_url: "0.jpg",
       author_id: "1",
       name: "Посиделки на свадьбе",
       is_locked: false,
