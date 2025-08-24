@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setCurrentPage, PAGE, addBasket } from "../../slices/appSlice.js";
+import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
 
 function CreateBasket() {
   var userId = useSelector((state) => state.appSlice.userId);
@@ -30,7 +30,8 @@ function CreateBasket() {
     setTimeout(() => {
       window.Telegram.WebApp.MainButton.hideProgress();
       setToBasketsDisable(false);
-    }, 2000);
+    }, 3000);
+    dispatch(setCurrentPage(PAGE.BasketDetail));
   };
 
   var open = () => {
