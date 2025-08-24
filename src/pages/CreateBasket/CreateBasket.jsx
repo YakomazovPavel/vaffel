@@ -18,7 +18,6 @@ function CreateBasket() {
     console.log("onClickCreateBasketHandler basketName", basketName);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
-    window.Telegram.WebApp.MainButton.hideProgress();
     dispatch(
       addBasket({
         id: basketsCount++,
