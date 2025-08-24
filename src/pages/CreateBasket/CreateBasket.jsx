@@ -19,9 +19,10 @@ function CreateBasket() {
     console.log("onClickCreateBasketHandler basketName", refBasketName.current);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
+    var newBasketId = basketsCount + 1;
     dispatch(
       addBasket({
-        id: basketsCount++,
+        id: newBasketId,
         photo_url: `${basketsCount % 10}.jpg`,
         author_id: userId,
         name: refBasketName.current,
@@ -33,6 +34,7 @@ function CreateBasket() {
     setTimeout(() => {
       window.Telegram.WebApp.MainButton.hideProgress();
       setToBasketsDisable(false);
+      dispatch(setCurrentBasketId(newBasketId));
       dispatch(setCurrentPage(PAGE.BasketDetail));
     }, 3000);
   };
@@ -78,46 +80,52 @@ function CreateBasket() {
   };
 
   return (
-    <div id="page_basket_create">
-      <div className="create_basket_header">
-        <img src="icon.jpg" alt="" className="icon" />
-        <div className="main_title_wrap">
-          <h1 className="main_title">VAFFEL</h1>
-          <h2 className="main_subtitle" id="main_subtitle">
-            {`Поделись корзиной вафель`}
-          </h2>
-        </div>
-      </div>
-
-      <div className="settings_wrap">
-        <form className="settings" name="form_create_basket" action="./">
-          <div className="settings_item">
-            <input
-              id="input_basket_name"
-              type="text"
-              placeholder="Название корзины"
-              name="basket_name"
-              onChange={onChangeBasketName}
-              autoComplete="off"
-            />
+    <>
+      <div id="page_basket_create">
+        <div className="create_basket_header">
+          <img src="icon.jpg" alt="" className="icon" />
+          <div className="main_title_wrap">
+            <h1 className="main_title">VAFFEL</h1>
+            <h2 className="main_subtitle" id="main_subtitle">
+              {`Поделись корзиной вафель`}
+            </h2>
           </div>
-          {/* <div className="settings_item">
+        </div>
+
+        <div className="settings_wrap">
+          <form className="settings" name="form_create_basket" action="./">
+            <div className="settings_item">
+              <input
+                id="input_basket_name"
+                type="text"
+                placeholder="Название корзины"
+                name="basket_name"
+                onChange={onChangeBasketName}
+                autoComplete="off"
+              />
+            </div>
+            {/* <div className="settings_item">
             <p>Дата окончания</p>
             <input className="input_basket_datetime" id="input_basket_date" type="date" name="basket_start" />
           </div> */}
-          {/* <div className="settings_item">
+            {/* <div className="settings_item">
             <p>Время окончания</p>
             <input className="input_basket_datetime" id="input_basket_time" type="time" name="basket_end" />
           </div> */}
-        </form>
-        <button id="to_baskets_button" onClick={toBasketHandler} disabled={toBasketsDisable}>
-          <p>К корзинам</p>
-          <svg className="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
-            <use xlinkHref="#arrow"></use>
-          </svg>
-        </button>
+          </form>
+          <button id="to_baskets_button" onClick={toBasketHandler} disabled={toBasketsDisable}>
+            <p>К корзинам</p>
+            <svg className="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
+              <use xlinkHref="#arrow"></use>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
+      <div className="author">
+        <p>made by</p>
+        <a href="https://web.telegram.org/k/#@Hope_Push">@pavel_yakomazov</a>
+      </div>
+    </>
   );
 }
 

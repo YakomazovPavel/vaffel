@@ -4,7 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 
 var basketDetailData = {
+  id: "1",
+  photo_url: "0.jpg",
   author_id: "1",
+  name: "Посиделки на свадьбе",
+  is_locked: false,
+  created: "2025-08-19T14:52:54.348Z",
+  updated: "2025-08-19T14:52:54.348Z",
 };
 
 function BasketDetail() {
