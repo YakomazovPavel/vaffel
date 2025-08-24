@@ -14,7 +14,7 @@ function CreateBasket() {
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
-  var onClickCreateBasketHandler = () => {
+  var onClickCreateBasketHandler = (basketName) => {
     console.log("onClickCreateBasketHandler basketName", basketName);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
@@ -33,8 +33,8 @@ function CreateBasket() {
     setTimeout(() => {
       window.Telegram.WebApp.MainButton.hideProgress();
       setToBasketsDisable(false);
+      dispatch(setCurrentPage(PAGE.BasketDetail));
     }, 3000);
-    dispatch(setCurrentPage(PAGE.BasketDetail));
   };
 
   var open = () => {
@@ -44,10 +44,14 @@ function CreateBasket() {
     window.Telegram.WebApp.MainButton.hide();
     window.Telegram.WebApp.MainButton.isVisible = false;
     window.Telegram.WebApp.MainButton.isActive = false;
-    window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
+    window.Telegram.WebApp.MainButton.onClick(() => {
+      onClickCreateBasketHandler(basketName);
+    });
   };
   var close = () => {
-    window.Telegram.WebApp.MainButton.offClick(onClickCreateBasketHandler);
+    window.Telegram.WebApp.MainButton.offClick(() => {
+      onClickCreateBasketHandler(basketName);
+    });
     window.Telegram.WebApp.MainButton.hide();
   };
 
