@@ -10,12 +10,12 @@ function CreateBasket() {
 
   const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
+  var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
   var onClickCreateBasketHandler = async () => {
+    setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
-    window.Telegram.WebApp.showAlert("Функция в разработке", () => {
-      window.Telegram.WebApp.MainButton.hideProgress();
-    });
+    window.Telegram.WebApp.MainButton.hideProgress();
     dispatch(
       addBasket({
         id: userId,
@@ -27,6 +27,10 @@ function CreateBasket() {
         updated: new Date().toISOString(),
       })
     );
+    setTimeout(() => {
+      window.Telegram.WebApp.MainButton.hideProgress();
+      setToBasketsDisable(false);
+    }, 2000);
   };
 
   var open = () => {
@@ -51,7 +55,9 @@ function CreateBasket() {
 
   var onChangeBasketName = (e) => {
     console.log(e.target.value);
-    if (e.target.value.trim()) {
+    var value = e.target.value.trim();
+    setBasketName(value);
+    if (value) {
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.isVisible = true;
       window.Telegram.WebApp.MainButton.isActive = true;
@@ -63,7 +69,6 @@ function CreateBasket() {
   };
 
   var toBasketHandler = (e) => {
-    console.log("toBasketHandler", e);
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 
@@ -100,7 +105,7 @@ function CreateBasket() {
             <input className="input_basket_datetime" id="input_basket_time" type="time" name="basket_end" />
           </div> */}
         </form>
-        <button id="to_baskets_button" onClick={toBasketHandler}>
+        <button id="to_baskets_button" onClick={toBasketHandler} disabled={toBasketsDisable}>
           <p>К корзинам</p>
           <svg className="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
             <use xlinkHref="#arrow"></use>
