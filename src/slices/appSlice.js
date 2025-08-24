@@ -8,7 +8,7 @@ export var PAGE = {
 };
 
 const initialState = {
-  currentPage: PAGE.Shop,
+  currentPage: PAGE.CreateBasket,
   currentBasketId: "",
   userId: "1",
   baskets: [
