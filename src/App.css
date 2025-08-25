@@ -695,7 +695,7 @@ input:checked ~ .basket_list_item:last-child {
   align-items: center;
   text-align: center;
   animation: open 0.7s forwards;
-  height: 100%;
+  min-height: 100%;
 }
 
 #not_found img {
