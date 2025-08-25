@@ -100,7 +100,7 @@ function BasketDetail() {
           {!!basketDishes?.length &&
             basketDishes.map((item) => (
               <div class="basket_detail_item">
-                <div className="basket_detail_item_image">
+                <div className="photo">
                   <img src={item?.dish?.photo_url} />
                   <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p>
                 </div>
