@@ -107,11 +107,11 @@ function Shop() {
   };
 
   var filteredListData = () => {
-    var value = searhc.trim();
+    var value = searhc.trim().toLowerCase();
     if (value) {
       var copyShopListData = structuredClone(shopListData)
         .map((category) => {
-          category.dishes = category.dishes.filter((dish) => dish?.name.includes(value));
+          category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(value));
           if (!!category?.dishes?.length) {
             return category;
           }
