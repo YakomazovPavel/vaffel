@@ -694,7 +694,7 @@ input:checked ~ .basket_list_item:last-child {
   row-gap: 10px;
   align-items: center;
   text-align: center;
-  animation: open 1s forwards;
+  animation: open 0.7s forwards;
 }
 
 #not_found img {
