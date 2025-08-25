@@ -29,7 +29,7 @@ function BasketDetail() {
   var basket = baskets.filter((basket) => basket.id === currentBasketId)?.at(0);
   var initBasketDishes = useSelector((state) => state.appSlice.basketDishes);
   var basketDishes = computingDishes(initBasketDishes);
-  console.log("computingDishes dishes", dishes);
+  console.log("computingDishes basketDishes", basketDishes);
 
   console.log("currentBasketId", currentBasketId);
   console.log("basket", basket);
