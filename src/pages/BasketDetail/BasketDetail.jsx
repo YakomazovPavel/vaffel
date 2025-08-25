@@ -89,7 +89,7 @@ function BasketDetail() {
       <div class="settings_wrap">
         <div class="basket_detail">
           <div class="basket_detail_heared">
-            <img src="1.jpg" />
+            <img src={basket?.photo_url} />
             <div>
               <h1>{basket?.name}</h1>
               {/* <h2>#1</h2> */}
