@@ -93,7 +93,7 @@ function BasketDetail() {
             <div>
               <h1>{basket?.name}</h1>
               {/* <h2>#1</h2> */}
-              {basket?.is_locked && <button onClick={copyLinkHandler}>Поделиться</button>}
+              {!basket?.is_locked && <button onClick={copyLinkHandler}>Поделиться</button>}
             </div>
           </div>
 
