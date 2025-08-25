@@ -497,6 +497,11 @@ input:checked ~ .basket_list_item:last-child {
   border-bottom: solid var(--tg-theme-bg-color) 1px;
 }
 
+.basket_detail_item > .photo {
+  height: 40px;
+  width: 40px;
+}
+
 .basket_detail_item > .photo > img {
   height: 40px;
   width: 40px;
