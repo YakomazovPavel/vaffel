@@ -474,12 +474,13 @@ input:checked ~ .basket_list_item:last-child {
   margin-left: auto;
   padding: 0;
   border-radius: 50%;
-  stroke: var(--tg-theme-button-text-color);
 }
 
 .basket_detail_heared button svg {
   height: 16px;
   width: 16px;
+  stroke: var(--tg-theme-button-text-color);
+  fill: var(--tg-theme-button-text-color);
 }
 
 .share_link {
