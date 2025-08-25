@@ -474,6 +474,7 @@ input:checked ~ .basket_list_item:last-child {
   margin-left: auto;
   padding: 0;
   border-radius: 50%;
+  padding-top: 4px;
 }
 
 .basket_detail_heared button svg {
