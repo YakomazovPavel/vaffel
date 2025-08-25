@@ -100,9 +100,13 @@ function BasketDetail() {
           {!!basketDishes?.length &&
             basketDishes.map((item) => (
               <div class="basket_detail_item">
-                <img src={item?.dish?.photo_url} />
+                <div>
+                  <img src={item?.dish?.photo_url} />
+                  <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p>
+                </div>
+
                 <p class="name">{item?.dish?.name}</p>
-                <p class="count">x{item?.count}</p>
+                {/* <p class="count">x{item?.count}</p> */}
                 <div class="control">
                   <button>
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">

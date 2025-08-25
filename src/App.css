@@ -527,6 +527,36 @@ input:checked ~ .basket_list_item:last-child {
   /* color: var(--tg-theme-button-text-color); */
 }
 
+.basket_detail_item > .control {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out 0.4s;
+  margin-right: 15px;
+}
+
+.basket_detail_item button {
+  box-sizing: border-box;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tg-theme-button-color);
+  fill: var(--tg-theme-button-text-color);
+  border: solid 2px var(--tg-theme-button-color);
+  overflow: hidden;
+  height: 28px;
+  width: 28px;
+}
+
+.basket_detail_item button > svg {
+  min-width: 28px;
+  min-height: 28px;
+}
+
 .basket_add_item > button {
   margin: 0;
   padding: 0;
