@@ -94,11 +94,11 @@ function BasketDetail() {
               <h1>{basket?.name}</h1>
               {/* <h2>#1</h2> */}
               {/* {!basket?.is_locked && <button onClick={copyLinkHandler}></button>} */}
-              <button>
+              {/* <button>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <use xlinkHref="#share"></use>
                 </svg>
-              </button>
+              </button> */}
               <button>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <use xlinkHref="#share2"></use>
