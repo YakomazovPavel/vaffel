@@ -103,7 +103,7 @@ function BasketDetail() {
                 <img src={item?.dish?.photo_url} />
                 {/* <!-- <img src="вальхалла-1.png" /> --> */}
                 <p class="name">{item?.dish?.name}</p>
-                <p class="count">{item?.dish?.count}</p>
+                <p class="count">x{item?.dish?.count}</p>
                 <div class="control">
                   <button>
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
