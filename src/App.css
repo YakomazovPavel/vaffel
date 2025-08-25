@@ -487,7 +487,6 @@ input:checked ~ .basket_list_item:last-child {
   column-gap: 10px;
   box-sizing: border-box;
   height: 40px;
-  overflow: hidden;
   box-sizing: content-box;
   padding-top: 5px;
 }
@@ -498,6 +497,7 @@ input:checked ~ .basket_list_item:last-child {
 }
 
 .basket_detail_item > .photo {
+  position: relative;
   height: 40px;
   width: 40px;
 }
@@ -507,6 +507,26 @@ input:checked ~ .basket_list_item:last-child {
   width: 40px;
   object-fit: cover;
   border-radius: 4px;
+}
+
+.basket_detail_item .photo p {
+  position: absolute;
+  top: calc(-6px);
+  right: calc(-6px);
+  color: var(--tg-theme-button-text-color);
+  margin: 0;
+  padding: 0;
+  background-color: var(--tg-theme-button-color);
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 2px;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.2s linear 0.3s;
+  line-height: 18px;
 }
 
 .basket_detail_item > .name {
