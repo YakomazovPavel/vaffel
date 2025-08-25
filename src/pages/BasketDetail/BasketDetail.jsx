@@ -11,14 +11,28 @@ var basketDetailData = {
   is_locked: false,
   created: "2025-08-19T14:52:54.348Z",
   updated: "2025-08-19T14:52:54.348Z",
+  dishes: [],
+};
+
+var computingDishes = (basketDishes) => {
+  var groupDishes = Object.groupBy(basketDishes, (item) => item.dish.id);
+  return Object.keys(groupDishes).map((key) => {
+    return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
+  });
 };
 
 function BasketDetail() {
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var [basketDetail, setBasketDetail] = useState(basketDetailData);
+  var baskets = useSelector((state) => state.appSlice.baskets);
+  var basket = baskets.filter((basket) => basket.id === currentBasketId)?.at(0);
+  var basketDishes = useSelector((state) => state.appSlice.basketDishes);
+  var dishes = computingDishes(basketDishes);
+  console.log("computingDishes dishes", dishes);
+
   console.log("currentBasketId", currentBasketId);
+  console.log("basket", basket);
 
   var orderBasketHandler = () => {
     console.log("orderBasketHandler");
@@ -34,16 +48,13 @@ function BasketDetail() {
   };
 
   var open = () => {
-    if (basketDetail.author_id === userId) {
+    if (basket?.author_id === userId) {
       window.Telegram.WebApp.MainButton.text = "Заказать";
       window.Telegram.WebApp.MainButton.hasShineEffect = true;
       window.Telegram.WebApp.MainButton.show();
-      // window.Telegram.WebApp.MainButton.isVisible = false;
-      // window.Telegram.WebApp.MainButton.isActive = true;
       window.Telegram.WebApp.MainButton.onClick(orderBasketHandler);
 
       window.Telegram.WebApp.BackButton.show();
-      // window.Telegram.WebApp.BackButton.isVisible = true;
       window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
     }
   };
@@ -80,11 +91,44 @@ function BasketDetail() {
           <div class="basket_detail_heared">
             <img src="1.jpg" />
             <div>
-              <h1>Посиделки на поминки</h1>
+              <h1>{basket?.name}</h1>
               {/* <h2>#1</h2> */}
-              <button onClick={copyLinkHandler}>Поделиться</button>
+              {basket?.is_locked && <button onClick={copyLinkHandler}>Поделиться</button>}
             </div>
           </div>
+
+          {!!basketDishes?.length &&
+            basketDishes.map((item) => (
+              <div class="basket_detail_item">
+                <img src={item?.dish?.photo_url} />
+                {/* <!-- <img src="вальхалла-1.png" /> --> */}
+                <p class="name">{item?.dish?.name}</p>
+                <p class="count">x1</p>
+                {/* <!-- TODO: Рассмотреть возможность редактирования количества вафель прямо на странице корзины -->
+            <!-- <div class="control">
+              <button>
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15 0C12.0333 0 9.13319 0.879735 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649922 12.0006 -0.290551 15.0166 0.288228 17.9264C0.867006 20.8361 2.29562 23.5088 4.39341 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.4721 23.3336C29.1203 20.8668 30 17.9667 30 15C29.9957 11.0231 28.4139 7.2103 25.6018 4.39819C22.7897 1.58609 18.9769 0.00434263 15 0ZM15 28.5938C12.3114 28.5938 9.6832 27.7965 7.44772 26.3028C5.21224 24.8091 3.4699 22.686 2.44102 20.2021C1.41214 17.7182 1.14294 14.9849 1.66746 12.348C2.19197 9.71106 3.48665 7.28889 5.38777 5.38777C7.28889 3.48665 9.71107 2.19197 12.348 1.66745C14.9849 1.14293 17.7182 1.41213 20.2021 2.44101C22.686 3.46989 24.8091 5.21224 26.3028 7.44772C27.7965 9.6832 28.5938 12.3114 28.5938 15C28.5894 18.604 27.1558 22.0591 24.6074 24.6074C22.0591 27.1558 18.604 28.5894 15 28.5938Z"
+                  />
+                  <path
+                    d="M21.0938 14.2969H8.90625C8.71977 14.2969 8.54093 14.371 8.40907 14.5028C8.2772 14.6347 8.20312 14.8135 8.20312 15C8.20312 15.1865 8.2772 15.3653 8.40907 15.4972C8.54093 15.629 8.71977 15.7031 8.90625 15.7031H21.0938C21.2802 15.7031 21.4591 15.629 21.5909 15.4972C21.7228 15.3653 21.7969 15.1865 21.7969 15C21.7969 14.8135 21.7228 14.6347 21.5909 14.5028C21.4591 14.371 21.2802 14.2969 21.0938 14.2969Z"
+                  />
+                </svg>
+              </button>
+              <button>
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15 0C12.0333 0 9.13319 0.879735 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649922 12.0006 -0.290551 15.0166 0.288228 17.9264C0.867006 20.8361 2.29562 23.5088 4.39341 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.4721 23.3336C29.1203 20.8668 30 17.9667 30 15C29.9957 11.0231 28.4139 7.2103 25.6018 4.39819C22.7897 1.58609 18.9769 0.00434263 15 0ZM15 28.5938C12.3114 28.5938 9.6832 27.7965 7.44772 26.3028C5.21224 24.8091 3.4699 22.686 2.44102 20.2021C1.41214 17.7182 1.14294 14.9849 1.66746 12.348C2.19197 9.71106 3.48665 7.28889 5.38777 5.38777C7.28889 3.48665 9.71107 2.19197 12.348 1.66745C14.9849 1.14293 17.7182 1.41213 20.2021 2.44101C22.686 3.46989 24.8091 5.21224 26.3028 7.44772C27.7965 9.6832 28.5938 12.3114 28.5938 15C28.5894 18.604 27.1558 22.0591 24.6074 24.6074C22.0591 27.1558 18.604 28.5894 15 28.5938Z"
+                  />
+                  <path
+                    d="M21.0938 14.2969H15.7031V8.90625C15.7031 8.71977 15.629 8.54093 15.4972 8.40907C15.3653 8.2772 15.1865 8.20312 15 8.20312C14.8135 8.20312 14.6347 8.2772 14.5028 8.40907C14.371 8.54093 14.2969 8.71977 14.2969 8.90625V14.2969H8.90625C8.71977 14.2969 8.54093 14.371 8.40907 14.5028C8.2772 14.6347 8.20312 14.8135 8.20312 15C8.20312 15.1865 8.2772 15.3653 8.40907 15.4972C8.54093 15.629 8.71977 15.7031 8.90625 15.7031H14.2969V21.0938C14.2969 21.2802 14.371 21.4591 14.5028 21.5909C14.6347 21.7228 14.8135 21.7969 15 21.7969C15.1865 21.7969 15.3653 21.7228 15.4972 21.5909C15.629 21.4591 15.7031 21.2802 15.7031 21.0938V15.7031H21.0938C21.2802 15.7031 21.4591 15.629 21.5909 15.4972C21.7228 15.3653 21.7969 15.1865 21.7969 15C21.7969 14.8135 21.7228 14.6347 21.5909 14.5028C21.4591 14.371 21.2802 14.2969 21.0938 14.2969Z"
+                  />
+                </svg>
+              </button>
+            </div> --> */}
+              </div>
+            ))}
 
           <div class="basket_detail_item">
             <img src="https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3560858/2ef2838474c7e8d3ba5a069b8ec1f623.webp" />
@@ -170,14 +214,16 @@ function BasketDetail() {
             <p class="name">Цезарь с креветками</p>
             <p class="count">x2</p>
           </div>
-          <div class="basket_detail_item basket_add_item">
-            <button onClick={addItemHandler}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                <use xlinkHref="#plus"></use>
-              </svg>
-            </button>
-            <p class="name">Добавить</p>
-          </div>
+          {basket?.is_locked && (
+            <div class="basket_detail_item basket_add_item">
+              <button onClick={addItemHandler}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                  <use xlinkHref="#plus"></use>
+                </svg>
+              </button>
+              <p class="name">Добавить</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
