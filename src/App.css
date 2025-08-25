@@ -497,7 +497,7 @@ input:checked ~ .basket_list_item:last-child {
   border-bottom: solid var(--tg-theme-bg-color) 1px;
 }
 
-.basket_detail_item > img {
+.basket_detail_item > .photo > img {
   height: 40px;
   width: 40px;
   object-fit: cover;
@@ -511,12 +511,11 @@ input:checked ~ .basket_list_item:last-child {
   text-overflow: ellipsis;
 }
 
-.basket_detail_item > .count {
+/* .basket_detail_item > .count {
   margin-right: 15px;
-  /* font-family: Menlo; */
   font-size: 14px;
   font-weight: 600;
-}
+} */
 
 .basket_add_item > .name {
   width: 100%;
