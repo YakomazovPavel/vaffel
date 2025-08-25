@@ -21,8 +21,6 @@ var filteringBaskets = (basketListData, search) => {
   } else {
     res = basketListData;
   }
-
-  console.log("filteringBaskets", res);
   return res;
 };
 
@@ -47,7 +45,7 @@ function BasketList() {
     window.Telegram.WebApp.BackButton.isVisible = true;
     window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
 
-    window.Telegram.WebApp.MainButton.text = "Добавить";
+    window.Telegram.WebApp.MainButton.text = "Создать корзину";
     window.Telegram.WebApp.MainButton.isVisible = true;
     window.Telegram.WebApp.MainButton.isActive = true;
     window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
@@ -85,7 +83,14 @@ function BasketList() {
         </div>
         {!!baskets?.my?.length && (
           <div className="basket_list_section">
-            <input className="hide" type="checkbox" name="my_basket" value="value" id="my_basket_section" />
+            <input
+              className="hide"
+              type="checkbox"
+              name="my_basket"
+              value="value"
+              id="my_basket_section"
+              defaultValue={true}
+            />
             <label htmlFor="my_basket_section" className="basket_section_label">
               <p>Мои корзины</p>
               <svg className="arrow_down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
@@ -115,7 +120,14 @@ function BasketList() {
 
         {!!baskets?.other?.length && (
           <div className="basket_list_section">
-            <input className="hide" type="checkbox" name="my_basket" value="value" id="not_my_basket_section" />
+            <input
+              className="hide"
+              type="checkbox"
+              name="my_basket"
+              value="value"
+              id="not_my_basket_section"
+              defaultValue={true}
+            />
             <label htmlFor="not_my_basket_section" className="basket_section_label">
               <p>Доступные мне</p>
               <svg className="arrow_down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
