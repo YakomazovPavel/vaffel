@@ -89,7 +89,7 @@ function BasketList() {
               name="my_basket"
               value="value"
               id="my_basket_section"
-              defaultValue={true}
+              defaultChecked={true}
             />
             <label htmlFor="my_basket_section" className="basket_section_label">
               <p>Мои корзины</p>
@@ -126,7 +126,7 @@ function BasketList() {
               name="my_basket"
               value="value"
               id="not_my_basket_section"
-              defaultValue={true}
+              defaultChecked={true}
             />
             <label htmlFor="not_my_basket_section" className="basket_section_label">
               <p>Доступные мне</p>
