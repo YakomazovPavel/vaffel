@@ -53,10 +53,9 @@ function BasketDetail() {
       window.Telegram.WebApp.MainButton.hasShineEffect = true;
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.onClick(orderBasketHandler);
-
-      window.Telegram.WebApp.BackButton.show();
-      window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
     }
+    window.Telegram.WebApp.BackButton.show();
+    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
   };
 
   var close = () => {
