@@ -477,6 +477,11 @@ input:checked ~ .basket_list_item:last-child {
   stroke: var(--tg-theme-button-text-color);
 }
 
+.basket_detail_heared button svg {
+  height: 16px;
+  width: 16px;
+}
+
 .share_link {
   fill: var(--tg-theme-button-text-color);
   min-width: 100%;
