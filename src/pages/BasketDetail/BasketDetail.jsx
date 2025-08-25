@@ -27,8 +27,8 @@ function BasketDetail() {
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var baskets = useSelector((state) => state.appSlice.baskets);
   var basket = baskets.filter((basket) => basket.id === currentBasketId)?.at(0);
-  var basketDishes = useSelector((state) => state.appSlice.basketDishes);
-  var dishes = computingDishes(basketDishes);
+  var initBasketDishes = useSelector((state) => state.appSlice.basketDishes);
+  var basketDishes = computingDishes(initBasketDishes);
   console.log("computingDishes dishes", dishes);
 
   console.log("currentBasketId", currentBasketId);
@@ -97,13 +97,13 @@ function BasketDetail() {
             </div>
           </div>
 
-          {!!dishes?.length &&
-            dishes.map((dish) => (
+          {!!basketDishes?.length &&
+            basketDishes.map((item) => (
               <div class="basket_detail_item">
-                <img src={dish?.photo_url} />
+                <img src={item?.dish?.photo_url} />
                 {/* <!-- <img src="вальхалла-1.png" /> --> */}
-                <p class="name">{dish?.name}</p>
-                <p class="count">{dish?.count}</p>
+                <p class="name">{item?.dish?.name}</p>
+                <p class="count">{item?.dish?.count}</p>
                 <div class="control">
                   <button>
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
