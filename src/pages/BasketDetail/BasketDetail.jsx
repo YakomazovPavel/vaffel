@@ -15,14 +15,16 @@ var basketDetailData = {
 };
 
 var computingDishes = (basketDishes) => {
-  try {
-    var groupDishes = Object?.groupBy(basketDishes, (item) => item.dish.id);
-    return Object.keys(groupDishes).map((key) => {
-      return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
-    });
-  } catch (error) {
-    return [];
-  }
+  var groupDishes = basketDishes.reduce(function (accum, item) {
+    (accum[item[item.dish.id]] ??= []).push(item);
+    return accum;
+  }, {});
+
+  console.log("groupDishes", groupDishes);
+
+  return Object.keys(groupDishes).map((key) => {
+    return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
+  });
 };
 
 function BasketDetail() {
