@@ -16,6 +16,7 @@ var basketDetailData = {
 
 var computingDishes = (basketDishes) => {
   var groupDishes = basketDishes.reduce(function (accum, item) {
+    console.log("computingDishes item", item);
     (accum[item.dish.id] ??= []).push(item);
     return accum;
   }, {});
