@@ -28,27 +28,18 @@ function CreateBasket() {
     console.log("onClickCreateBasketHandler basketName", refBasketName.current);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
-    var newBasketId = basketsCount + 1;
-    response = await Backend.createBasket({ author_id: refUserId.current, name: refBasketName.current });
-    console.log(response);
-
-    dispatch(
-      addBasket({
-        id: newBasketId,
-        photo_url: `${basketsCount % 10}.jpg`,
-        author_id: userId,
-        name: refBasketName.current,
-        is_locked: false,
-        created: new Date().toISOString(),
-        updated: new Date().toISOString(),
-      })
-    );
-    setTimeout(() => {
+    try {
+      var response = await Backend.createBasket({ author_id: refUserId.current, name: refBasketName.current });
+      console.log(response);
+      var data = await response.json();
       window.Telegram.WebApp.MainButton.hideProgress();
       setToBasketsDisable(false);
-      dispatch(setCurrentBasketId(newBasketId));
+      dispatch(setCurrentBasketId(data.id));
       dispatch(setCurrentPage(PAGE.BasketDetail));
-    }, 3000);
+    } catch (error) {
+      window.Telegram.WebApp.MainButton.hideProgress();
+      setToBasketsDisable(false);
+    }
   };
 
   var open = () => {
