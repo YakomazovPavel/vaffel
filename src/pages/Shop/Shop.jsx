@@ -149,9 +149,9 @@ function Shop() {
   var basketDishes = useSelector((state) => state.appSlice.basketDishes);
   var [searhc, setSearhc] = useState("");
   var [dishes, categoties] = useGetData();
-  var [a, b] = groupByCategory(dishes, categoties, basketDishes);
+  var [initialShopListData, unCategoriesShopListData] = groupByCategory(dishes, categoties, basketDishes);
 
-  var [shopListData, setShopListData] = useState(mockShopListData);
+  var [shopListData, setShopListData] = useState(initialShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
