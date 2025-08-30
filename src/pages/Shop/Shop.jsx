@@ -110,23 +110,24 @@ var groupByCategory = (dishes, categories, basketDishes) => {
   console.log("useGetData categories", categories);
   console.log("useGetData basketDishes", basketDishes);
 
-  // var result = structuredClone(categories);
-  var result = categories;
+  var result = structuredClone(categories);
+  // var result = categories;
   var unCategories = [];
   for (let category of categories) {
     category.count = basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
   }
   for (let dish of dishes) {
-    dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
+    var copyDish = structuredClone(dish);
+    copyDish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
     var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
     if (category) {
       console.log("!groupByCategory 1");
       if (!!category?.dishes?.length) {
         console.log("!groupByCategory 2");
-        category.dishes.push(dish);
+        category.dishes.push(copyDish);
       } else {
         console.log("!groupByCategory 3");
-        category.dishes = [dish];
+        category.dishes = [copyDish];
       }
       // (category.dishes ??= []).push(dish);
     } else {
