@@ -29,7 +29,7 @@ function CreateBasket() {
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
     var newBasketId = basketsCount + 1;
-    response = await Backend.createBasket({ author_id: userId, name: refBasketName.current });
+    response = await Backend.createBasket({ author_id: refUserId.current, name: refBasketName.current });
     console.log(response);
 
     dispatch(
