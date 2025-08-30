@@ -18,7 +18,7 @@ var basketDetailData = {
 var computingDishes = (basketDishes) => {
   var groupDishes = basketDishes.reduce(function (accum, item) {
     console.log("computingDishes item", item);
-    (accum[item.dish.id] ??= []).push(item);
+    (accum[item?.dish?.id] ??= []).push(item);
     return accum;
   }, {});
 
@@ -31,7 +31,7 @@ var computingDishes = (basketDishes) => {
 
 var useGetData = (basketId) => {
   var [basket, setBasket] = useState();
-  var [dishes, setDishes] = useState();
+  var [dishes, setDishes] = useState([]);
   useEffect(() => {
     Backend.getBasketDetail({ basketId })
       .then((response) => response.json())
@@ -58,7 +58,7 @@ function BasketDetail() {
   console.log("basket", basket);
   console.log("dishes", dishes);
 
-  var basketDishes = computingDishes(dishes);
+  var basketDishes = !!dishes ? computingDishes(dishes) : [];
   console.log("basketDishes", basketDishes);
 
   var orderBasketHandler = () => {
