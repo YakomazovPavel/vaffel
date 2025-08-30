@@ -33,12 +33,16 @@ var useGetData = (basketId) => {
   var [basket, setBasket] = useState();
   var [dishes, setDishes] = useState();
   useEffect(() => {
-    Backend.getBasketDetail({ basketId: basketId })
+    Backend.getBasketDetail({ basketId })
       .then((response) => response.json())
       .then((data) => {
         setBasket(data);
       });
-    // Backend.getBasketDishes(basket_id);
+    Backend.getBasketDishes({ basketId })
+      .then((response) => response.json())
+      .then((data) => {
+        setDishes(data);
+      });
   }, []);
 
   return [basket, dishes];
@@ -48,15 +52,14 @@ function BasketDetail() {
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-
-  var baskets = useSelector((state) => state.appSlice.baskets);
-  var basket = baskets.filter((basket) => basket.id === currentBasketId)?.at(0);
-  var initBasketDishes = useSelector((state) => state.appSlice.basketDishes);
-  var basketDishes = computingDishes(initBasketDishes);
-  console.log("computingDishes basketDishes", basketDishes);
-
   console.log("currentBasketId", currentBasketId);
+
+  var [basket, dishes] = useGetData(currentBasketId);
   console.log("basket", basket);
+  console.log("dishes", dishes);
+
+  var basketDishes = computingDishes(dishes);
+  console.log("basketDishes", basketDishes);
 
   var orderBasketHandler = () => {
     console.log("orderBasketHandler");

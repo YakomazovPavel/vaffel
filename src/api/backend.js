@@ -21,11 +21,11 @@ class Backend {
       body: JSON.stringify({ first_name, last_name, photo_url, telegram_id, username }),
     });
   };
-  getBasketDetail = ({ basket_id }) => {
-    return fetch(this.BASE_URL + `baskets/${basket_id}/`);
+  getBasketDetail = ({ basketId }) => {
+    return fetch(this.BASE_URL + `baskets/${basketId}/`);
   };
-  getBasketDishes = ({ basket_id }) => {
-    return fetch(this.BASE_URL + `baskets/${basket_id}/dishes/`);
+  getBasketDishes = ({ basketId }) => {
+    return fetch(this.BASE_URL + `baskets/${basketId}/dishes/`);
   };
   getBasketList = ({ userId }) => {
     return fetch(this.BASE_URL + `user/${userId}/baskets/`);
