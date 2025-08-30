@@ -10,7 +10,7 @@ export var PAGE = {
 const initialState = {
   currentPage: PAGE.CreateBasket,
   currentBasketId: "1",
-  userId: "1",
+  userId: null,
   baskets: [
     {
       id: "1",
