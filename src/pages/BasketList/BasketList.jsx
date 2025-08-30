@@ -5,13 +5,15 @@ import Backend from "../../api/backend.js";
 
 var useGetBasketList = (userId) => {
   var [basketList, setBasketList] = useState([]);
-  if (!!userId) {
-    Backend.getBasketList({ userId })
-      .then((response) => response.json())
-      .then((data) => {
-        setBasketList(data);
-      });
-  }
+  useEffect(() => {
+    if (!!userId) {
+      Backend.getBasketList({ userId })
+        .then((response) => response.json())
+        .then((data) => {
+          setBasketList(data);
+        });
+    }
+  }, []);
   return basketList;
 };
 
