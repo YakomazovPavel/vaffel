@@ -1,7 +1,8 @@
 class Backend {
   BASE_URL = "https://yakomazovpavel.pythonanywhere.com/api/";
+
   createBasket = (author_id, name) => {
-    return fetch(BASE_URL + "/api/baskets/", {
+    return fetch(this.BASE_URL + "/api/baskets/", {
       method: "POST",
       headers: {
         Accept: "application/json",
