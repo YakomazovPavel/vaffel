@@ -788,12 +788,6 @@ input:checked ~ .basket_list_item:last-child {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
 }
 
-.basket_shop_item:not(:last-child) {
-  border-bottom: solid 1px;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
-}
-
 .basket_shop_item > .header {
   display: flex;
   flex-direction: row;
@@ -1053,6 +1047,12 @@ input:checked ~ .basket_shop_item {
 input:checked ~ .basket_shop_item:has(input:checked) {
   height: calc(100dvmin + 201px);
   transition: height 0.3s linear 0.1s;
+}
+
+input:checked ~ .basket_shop_item:has(input:checked):not(:last-child) {
+  border-bottom: solid 1px;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
 }
 
 input:checked ~ .basket_shop_item:has(input:checked) > .header {
