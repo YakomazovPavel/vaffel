@@ -120,7 +120,12 @@ var groupByCategory = (dishes, categories, basketDishes) => {
     dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
     var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
     if (category) {
-      (category.dishes ??= []).push(dish);
+      if (!!category?.dishes?.length) {
+        category.dishes.push(dish);
+      } else {
+        category.dishes = [dish];
+      }
+      // (category.dishes ??= []).push(dish);
     } else {
       unCategories.push(dish);
     }
