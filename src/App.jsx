@@ -9,7 +9,7 @@ import Shop from "./pages/Shop/Shop.jsx";
 import { useSelector } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 
-useFirstLoadData = () => {
+var useFirstLoadData = () => {
   useEffect(() => {
     console.log("window.Telegram.WebApp.initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
   }, []);
