@@ -113,8 +113,9 @@ var groupByCategory = (dishes, categories, basketDishes) => {
   var result = structuredClone(categories);
   // var result = categories;
   var unCategories = [];
-  for (let category of categories) {
+  for (let category of result) {
     category.count = basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
+    category.dishes = [];
   }
   for (let dish of dishes) {
     var copyDish = structuredClone(dish);
@@ -122,14 +123,7 @@ var groupByCategory = (dishes, categories, basketDishes) => {
     var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
     if (category) {
       console.log("!groupByCategory 1");
-      if (!!category?.dishes?.length) {
-        console.log("!groupByCategory 2");
-        category.dishes.push(copyDish);
-      } else {
-        console.log("!groupByCategory 3");
-        category.dishes = [copyDish];
-      }
-      // (category.dishes ??= []).push(dish);
+      category.dishes.push(copyDish);
     } else {
       unCategories.push(dish);
     }
