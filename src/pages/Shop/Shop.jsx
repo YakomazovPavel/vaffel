@@ -111,19 +111,17 @@ var groupByCategory = (dishes, categories, basketDishes) => {
   console.log("useGetData basketDishes", basketDishes);
 
   var result = structuredClone(categories);
-  // var result = categories;
   var unCategories = [];
   for (let category of result) {
     category.count = basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
     category.dishes = [];
   }
   for (let dish of dishes) {
-    var copyDish = structuredClone(dish);
-    copyDish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
-    var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
-    if (category?.dishes) {
-      console.log("!groupByCategory 1");
-      category.dishes.push(copyDish);
+    // var copyDish = structuredClone(dish);
+    dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
+    var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id)?.at(0);
+    if (category) {
+      category.dishes.push(dish);
     } else {
       unCategories.push(dish);
     }
