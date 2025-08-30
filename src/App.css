@@ -1097,11 +1097,11 @@ input:checked ~ .basket_shop_item:last-child {
   cursor: pointer;
 }
 
-.basket_list_section > div:not(:last-child) {
+/* .basket_list_section > div:not(:last-child) {
   border-bottom: solid 1px;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
-}
+} */
 
 .basket_list_item > button {
   cursor: pointer;

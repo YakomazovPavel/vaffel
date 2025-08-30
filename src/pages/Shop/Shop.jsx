@@ -154,23 +154,23 @@ function Shop() {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
   };
 
-  var filteredListData = () => {
-    var value = searhc.trim().toLowerCase();
-    if (value) {
-      var copyShopListData = structuredClone(shopListData)
-        .map((category) => {
-          category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(value));
-          if (!!category?.dishes?.length) {
-            return category;
-          }
-        })
-        .filter((category) => !!category);
+  // var filteredListData = () => {
+  //   var value = searhc.trim().toLowerCase();
+  //   if (value) {
+  //     var copyShopListData = structuredClone(shopListData)
+  //       .map((category) => {
+  //         category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(value));
+  //         if (!!category?.dishes?.length) {
+  //           return category;
+  //         }
+  //       })
+  //       .filter((category) => !!category);
 
-      return copyShopListData;
-    } else {
-      return shopListData;
-    }
-  };
+  //     return copyShopListData;
+  //   } else {
+  //     return shopListData;
+  //   }
+  // };
 
   // var searchShopListData = filteredListData();
 
