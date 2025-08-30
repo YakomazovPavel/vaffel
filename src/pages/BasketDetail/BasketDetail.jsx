@@ -32,12 +32,14 @@ var computingDishes = (basketDishes) => {
 var useGetData = (basketId) => {
   var [basket, setBasket] = useState();
   var [dishes, setDishes] = useState();
-  Backend.getBasketDetail({ basketId: basketId })
-    .then((response) => response.json())
-    .then((data) => {
-      setBasket(data);
-    });
-  // Backend.getBasketDishes(basket_id);
+  useEffect(() => {
+    Backend.getBasketDetail({ basketId: basketId })
+      .then((response) => response.json())
+      .then((data) => {
+        setBasket(data);
+      });
+    // Backend.getBasketDishes(basket_id);
+  }, []);
 
   return [basket, dishes];
 };
