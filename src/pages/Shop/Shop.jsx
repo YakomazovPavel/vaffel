@@ -90,7 +90,7 @@ var useGetData = () => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
   useEffect(() => {
-    Backend.getDishes({ userId })
+    Backend.getDishes()
       .then((response) => response.json())
       .then((data) => {
         setDishes(data);
