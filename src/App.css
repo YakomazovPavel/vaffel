@@ -1153,3 +1153,6 @@ button:active {
   color: var(--tg-theme-link-color);
   text-decoration: none;
 }
+
+/* backdrop-filter: blur(20px); */
+/* background-color: rgba(var(--body-background-color-rgb), .65); # 24, 24, 24; */
