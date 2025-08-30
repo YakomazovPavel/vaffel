@@ -9,7 +9,14 @@ import Shop from "./pages/Shop/Shop.jsx";
 import { useSelector } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 
+useFirstLoadData = () => {
+  useEffect(() => {
+    console.log("window.Telegram.WebApp.initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
+  }, []);
+};
+
 function App() {
+  useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
   console.log("currentPage", currentPage);
 
