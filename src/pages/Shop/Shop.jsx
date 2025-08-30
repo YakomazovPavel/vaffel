@@ -121,7 +121,7 @@ var groupByCategory = (dishes, categories, basketDishes) => {
     var copyDish = structuredClone(dish);
     copyDish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
     var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
-    if (category) {
+    if (category?.dishes) {
       console.log("!groupByCategory 1");
       category.dishes.push(copyDish);
     } else {
