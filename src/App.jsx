@@ -15,7 +15,7 @@ var useFirstLoadData = () => {
   var dispatch = useDispatch();
   useEffect(() => {
     console.log("window.Telegram.WebApp.initDataUnsafe", window?.Telegram?.WebApp?.initDataUnsafe);
-    user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
+    var user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
     Backend.createUser({
       first_name: user?.first_name,
       last_name: user?.last_name,
