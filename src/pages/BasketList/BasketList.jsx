@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, PAGE, setCurrentBasketId } from "../../slices/appSlice.js";
+import Backend from "../../api/backend.js";
+
+var useGetBasketList = (userId) => {
+  var [basketList, setBasketList] = useState([]);
+  if (!!userId) {
+    Backend.getBasketList({ userId })
+      .then((response) => response.json())
+      .then((data) => {
+        setBasketList(data);
+      });
+  }
+  return basketList;
+};
 
 var computingBaskets = (initialBaskets, userId) => {
   var newBasketListData = { my: [], other: [] };
@@ -28,9 +41,12 @@ function BasketList() {
   var dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var initialBaskets = useSelector((state) => state.appSlice.baskets);
+  var basketList = useGetBasketList(userId);
+  console.log("!basketList", basketList);
+
   console.log("initialBaskets", initialBaskets);
   var [search, setSearch] = useState("");
-  var baskets = filteringBaskets(computingBaskets(initialBaskets, userId), search);
+  var baskets = filteringBaskets(computingBaskets(basketList, userId), search);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.CreateBasket));

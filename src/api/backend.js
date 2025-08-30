@@ -21,6 +21,15 @@ class Backend {
       body: JSON.stringify({ first_name, last_name, photo_url, telegram_id, username }),
     });
   };
+  getBasketDetail = ({ basket_id }) => {
+    return fetch(this.BASE_URL + `baskets/${basket_id}/`);
+  };
+  getBasketDishes = ({ basket_id }) => {
+    return fetch(this.BASE_URL + `baskets/${basket_id}/dishes/`);
+  };
+  getBasketList = ({ userId }) => {
+    return fetch(this.BASE_URL + `user/${userId}/baskets/`);
+  };
 }
 
 export default new Backend();

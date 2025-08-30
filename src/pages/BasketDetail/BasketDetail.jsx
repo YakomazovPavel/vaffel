@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import Backend from "../../api/backend.js";
 
 var basketDetailData = {
   id: "1",
@@ -28,10 +29,24 @@ var computingDishes = (basketDishes) => {
   });
 };
 
+var useGetData = (basketId) => {
+  var [basket, setBasket] = useState();
+  var [dishes, setDishes] = useState();
+  Backend.getBasketDetail({ basketId: basketId })
+    .then((response) => response.json())
+    .then((data) => {
+      setBasket(data);
+    });
+  // Backend.getBasketDishes(basket_id);
+
+  return [basket, dishes];
+};
+
 function BasketDetail() {
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+
   var baskets = useSelector((state) => state.appSlice.baskets);
   var basket = baskets.filter((basket) => basket.id === currentBasketId)?.at(0);
   var initBasketDishes = useSelector((state) => state.appSlice.basketDishes);
