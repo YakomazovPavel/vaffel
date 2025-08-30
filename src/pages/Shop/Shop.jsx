@@ -138,7 +138,7 @@ function Shop() {
   var [initialShopListData, unCategoriesShopListData] = groupByCategory(dishes, categoties, basketDishes);
   // var filteredShopListData =
   var [s, setShopListData] = useState([]);
-  var shopListData = initialShopListData;
+  // var shopListData = initialShopListData;
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
@@ -172,7 +172,9 @@ function Shop() {
     }
   };
 
-  var searchShopListData = filteredListData();
+  // var searchShopListData = filteredListData();
+
+  var searchShopListData = initialShopListData;
 
   var addDishHandler = (categoryId, dishId) => {
     var copy = structuredClone(shopListData);
