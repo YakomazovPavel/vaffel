@@ -12,7 +12,7 @@ class Backend {
     });
   };
   createUser = ({ first_name, last_name, photo_url, telegram_id, username }) => {
-    return fetch(this.BASE_URL + "baskets/", {
+    return fetch(this.BASE_URL + "users/", {
       method: "POST",
       headers: {
         Accept: "application/json",

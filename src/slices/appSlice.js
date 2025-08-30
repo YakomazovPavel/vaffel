@@ -146,6 +146,9 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    setCurrentUserId: (state, action) => {
+      state.userId = action.payload;
+    },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
@@ -161,5 +164,5 @@ const appSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setCurrentBasketId, addBasket } = appSlice.actions;
+export const { setCurrentPage, setCurrentBasketId, addBasket, setCurrentUserId } = appSlice.actions;
 export default appSlice.reducer;

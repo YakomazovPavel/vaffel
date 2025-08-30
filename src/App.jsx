@@ -6,12 +6,28 @@ import CreateBasket from "./pages/CreateBasket/CreateBasket.jsx";
 import BasketList from "./pages/BasketList/BasketList.jsx";
 import BasketDetail from "./pages/BasketDetail/BasketDetail.jsx";
 import Shop from "./pages/Shop/Shop.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
+import Backend from "./api/backend.js";
+import { setCurrentUserId } from "./slices/appSlice.js";
 
 var useFirstLoadData = () => {
+  var dispatch = useDispatch();
   useEffect(() => {
-    console.log("window.Telegram.WebApp.initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
+    console.log("window.Telegram.WebApp.initDataUnsafe", window?.Telegram?.WebApp?.initDataUnsafe);
+    user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
+    Backend.createUser({
+      first_name: user?.first_name,
+      last_name: user?.last_name,
+      photo_url: user?.photo_url,
+      telegram_id: user?.id,
+      username: user?.username,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        dispatch(setCurrentUserId(data?.id));
+      });
   }, []);
 };
 
