@@ -14,7 +14,6 @@ import { setCurrentUserId } from "./slices/appSlice.js";
 var useFirstLoadData = () => {
   var dispatch = useDispatch();
   useEffect(() => {
-    console.log("window.Telegram.WebApp.initDataUnsafe", window?.Telegram?.WebApp?.initDataUnsafe);
     var user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
     Backend.createUser({
       first_name: user?.first_name,
@@ -25,7 +24,6 @@ var useFirstLoadData = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         dispatch(setCurrentUserId(data?.id));
       });
   }, []);
@@ -34,7 +32,6 @@ var useFirstLoadData = () => {
 function App() {
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
-  console.log("currentPage", currentPage);
 
   return (
     <>

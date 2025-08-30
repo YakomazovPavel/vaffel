@@ -132,12 +132,9 @@ var groupByCategory = (dishes, categories, basketDishes) => {
   // if (!!basketDishes?.length) {
   //   var categories = [];
   //   var groupDishes = basketDishes.reduce(function (accum, item) {
-  //     console.log("computingDishes item", item);
   //     (accum[item?.category?.id] ??= []).push(item);
   //     return accum;
   //   }, {});
-
-  //   console.log("groupDishes", groupDishes);
 
   //   return Object.keys(groupDishes).map((key) => {
   //     return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
@@ -153,10 +150,8 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var [dishes, categoties] = useGetData();
   var [a, b] = groupByCategory(dishes, categoties, basketDishes);
-  // console.log();
 
   var [shopListData, setShopListData] = useState(mockShopListData);
-  console.log("searchShopListData7", searchShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));

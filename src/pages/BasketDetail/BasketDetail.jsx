@@ -7,12 +7,9 @@ import Backend from "../../api/backend.js";
 var computingDishes = (basketDishes) => {
   if (!!basketDishes?.length) {
     var groupDishes = basketDishes.reduce(function (accum, item) {
-      console.log("computingDishes item", item);
       (accum[item?.dish?.id] ??= []).push(item);
       return accum;
     }, {});
-
-    console.log("groupDishes", groupDishes);
 
     return Object.keys(groupDishes).map((key) => {
       return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
@@ -47,17 +44,12 @@ function BasketDetail() {
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  console.log("currentBasketId", currentBasketId);
 
   var [basket, dishes] = useGetData(currentBasketId);
-  console.log("basket", basket);
-  console.log("dishes", dishes);
 
   var basketDishes = computingDishes(dishes);
-  console.log("basketDishes", basketDishes);
 
   var orderBasketHandler = () => {
-    console.log("orderBasketHandler");
     window.Telegram.WebApp.MainButton.showProgress(false);
     window.Telegram.WebApp.showAlert("Функция в разработке", () => {
       window.Telegram.WebApp.MainButton.hideProgress();
@@ -97,7 +89,6 @@ function BasketDetail() {
     // if (navigator?.clipboard?.writeText) {
     // Это работает на телефоне =/
     // await navigator.clipboard.writeText("Рандомный текст в буфере обмена");
-    // console.log("Text copied to clipboard successfully!");
     Telegram.WebApp.showAlert("Ссылка скопирована");
     // }
   };

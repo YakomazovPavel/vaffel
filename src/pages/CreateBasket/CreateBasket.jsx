@@ -6,31 +6,25 @@ import Backend from "../../api/backend.js";
 
 function CreateBasket() {
   var userId = useSelector((state) => state.appSlice.userId);
-  console.log("userId", userId);
   var refUserId = useRef(userId);
-  console.log("refUserId", refUserId);
 
   useEffect(() => {
     refUserId.current = userId;
   }, [userId]);
 
   var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
-  console.log("basketsCount", basketsCount);
 
   const dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
   var refBasketName = useRef(null);
-  console.log("basketName", basketName);
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
   var onClickCreateBasketHandler = async () => {
-    console.log("onClickCreateBasketHandler basketName", refBasketName.current);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
     try {
       var response = await Backend.createBasket({ author_id: refUserId.current, name: refBasketName.current });
-      console.log(response);
       var data = await response.json();
       window.Telegram.WebApp.MainButton.hideProgress();
       setToBasketsDisable(false);
@@ -63,7 +57,6 @@ function CreateBasket() {
   }, []);
 
   var onChangeBasketName = (e) => {
-    console.log(e.target.value);
     var value = e.target.value.trim();
     setBasketName(value);
     refBasketName.current = value;

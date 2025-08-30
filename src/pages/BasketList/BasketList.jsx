@@ -22,7 +22,6 @@ var computingBaskets = (initialBaskets, userId) => {
   for (var basket of initialBaskets) {
     basket.author_id === userId ? newBasketListData.my.push(basket) : newBasketListData.other.push(basket);
   }
-  console.log("computingBaskets", newBasketListData);
   return newBasketListData;
 };
 
@@ -44,9 +43,6 @@ function BasketList() {
   var userId = useSelector((state) => state.appSlice.userId);
   var initialBaskets = useSelector((state) => state.appSlice.baskets);
   var basketList = useGetBasketList(userId);
-  console.log("!basketList", basketList);
-
-  console.log("initialBaskets", initialBaskets);
   var [search, setSearch] = useState("");
   var baskets = filteringBaskets(computingBaskets(basketList, userId), search);
 
