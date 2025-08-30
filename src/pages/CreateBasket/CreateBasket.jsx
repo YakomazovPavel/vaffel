@@ -6,6 +6,7 @@ import Backend from "../../api/backend.js";
 
 function CreateBasket() {
   var userId = useSelector((state) => state.appSlice.userId);
+  console.log("userId", userId);
   var refUserId = useRef(userId);
   console.log("refUserId", refUserId);
 
