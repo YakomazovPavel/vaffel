@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
+import Backend from "../../api/backend.js";
 
 function CreateBasket() {
   var userId = useSelector((state) => state.appSlice.userId);
@@ -15,11 +16,14 @@ function CreateBasket() {
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
-  var onClickCreateBasketHandler = () => {
+  var onClickCreateBasketHandler = async () => {
     console.log("onClickCreateBasketHandler basketName", refBasketName.current);
     setToBasketsDisable(true);
     window.Telegram.WebApp.MainButton.showProgress(false);
     var newBasketId = basketsCount + 1;
+    response = await Backend.createBasket({ author_id: userId, name: refBasketName.current });
+    console.log(response);
+
     dispatch(
       addBasket({
         id: newBasketId,
