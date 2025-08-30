@@ -30,6 +30,12 @@ class Backend {
   getBasketList = ({ userId }) => {
     return fetch(this.BASE_URL + `user/${userId}/baskets/`);
   };
+  getDishes = () => {
+    return fetch(this.BASE_URL + `dishes/`);
+  };
+  getCategories = () => {
+    return fetch(this.BASE_URL + `categories/`);
+  };
 }
 
 export default new Backend();

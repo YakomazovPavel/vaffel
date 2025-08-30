@@ -161,8 +161,11 @@ const appSlice = createSlice({
     addBasketDish: (state, action) => {
       state.basketDishes.push(action.payload);
     },
+    setBasketDish: (state, action) => {
+      state.basketDishes = action.payload;
+    },
   },
 });
 
-export const { setCurrentPage, setCurrentBasketId, addBasket, setCurrentUserId } = appSlice.actions;
+export const { setCurrentPage, setCurrentBasketId, addBasket, setCurrentUserId, setBasketDish } = appSlice.actions;
 export default appSlice.reducer;

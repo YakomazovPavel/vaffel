@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
-
-var basketDetailData = {
-  id: "1",
-  photo_url: "0.jpg",
-  author_id: "1",
-  name: "Посиделки на свадьбе",
-  is_locked: false,
-  created: "2025-08-19T14:52:54.348Z",
-  updated: "2025-08-19T14:52:54.348Z",
-  dishes: [],
-};
 
 var computingDishes = (basketDishes) => {
   if (!!basketDishes?.length) {
@@ -36,6 +25,7 @@ var computingDishes = (basketDishes) => {
 var useGetData = (basketId) => {
   var [basket, setBasket] = useState();
   var [dishes, setDishes] = useState([]);
+  var dispatch = useDispatch();
   useEffect(() => {
     Backend.getBasketDetail({ basketId })
       .then((response) => response.json())
@@ -46,6 +36,7 @@ var useGetData = (basketId) => {
       .then((response) => response.json())
       .then((data) => {
         setDishes(data);
+        dispatch(setBasketDish(data));
       });
   }, []);
 

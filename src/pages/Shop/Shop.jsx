@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import Backend from "../../api/backend.js";
 
 // Эта структура данных строится из иформации о том какие блюда есть и о том, что уже есть в корзине
 var mockShopListData = [
@@ -85,11 +86,70 @@ var mockShopListData = [
   },
 ];
 
+var useGetData = () => {
+  var [dishes, setDishes] = useState([]);
+  var [categoties, setCategoties] = useState([]);
+  useEffect(() => {
+    Backend.getDishes({ userId })
+      .then((response) => response.json())
+      .then((data) => {
+        setDishes(data);
+      });
+    Backend.getCategories()
+      .then((response) => response.json())
+      .then((data) => {
+        setCategoties(data);
+      });
+  }, []);
+  return [dishes, categoties];
+};
+
+var groupByCategory = (dishes, categories, basketDishes) => {
+  // var result = structuredClone(categories);
+  var result = categories;
+  var unCategories = [];
+  for (let category of categories) {
+    category.count = basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
+  }
+  for (let dish of dishes) {
+    dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
+    var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id);
+    if (category) {
+      (category.dishes ??= []).push(dish);
+    } else {
+      unCategories.push(dish);
+    }
+  }
+  console.log("!groupByCategory result", result, "unCategories", unCategories);
+  return [result, unCategories];
+
+  // if (!!basketDishes?.length) {
+  //   var categories = [];
+  //   var groupDishes = basketDishes.reduce(function (accum, item) {
+  //     console.log("computingDishes item", item);
+  //     (accum[item?.category?.id] ??= []).push(item);
+  //     return accum;
+  //   }, {});
+
+  //   console.log("groupDishes", groupDishes);
+
+  //   return Object.keys(groupDishes).map((key) => {
+  //     return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
+  //   });
+  // } else {
+  //   return [];
+  // }
+};
+
 function Shop() {
-  const dispatch = useDispatch();
-  // var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  const [searhc, setSearhc] = useState("");
-  const [shopListData, setShopListData] = useState(mockShopListData);
+  var dispatch = useDispatch();
+  var basketDishes = useSelector((state) => state.appSlice.basketDishes);
+  var [searhc, setSearhc] = useState("");
+  var [dishes, categoties] = useGetData();
+  var [a, b] = groupByCategory(dishes, categoties, basketDishes);
+  // console.log();
+
+  var [shopListData, setShopListData] = useState(mockShopListData);
   console.log("searchShopListData7", searchShopListData);
 
   var backButtonHandler = () => {
