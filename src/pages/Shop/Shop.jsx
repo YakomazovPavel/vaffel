@@ -105,6 +105,11 @@ var useGetData = () => {
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
+  console.log("useGetData");
+  console.log("useGetData dishes", dishes);
+  console.log("useGetData categories", categories);
+  console.log("useGetData basketDishes", basketDishes);
+
   // var result = structuredClone(categories);
   var result = categories;
   var unCategories = [];
@@ -120,7 +125,7 @@ var groupByCategory = (dishes, categories, basketDishes) => {
       unCategories.push(dish);
     }
   }
-  console.log("!groupByCategory result", result, "unCategories", unCategories);
+  console.log("result", result, "unCategories", unCategories);
   return [result, unCategories];
 
   // if (!!basketDishes?.length) {
