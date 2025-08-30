@@ -128,20 +128,6 @@ var groupByCategory = (dishes, categories, basketDishes) => {
   }
   console.log("result", result, "unCategories", unCategories);
   return [result, unCategories];
-
-  // if (!!basketDishes?.length) {
-  //   var categories = [];
-  //   var groupDishes = basketDishes.reduce(function (accum, item) {
-  //     (accum[item?.category?.id] ??= []).push(item);
-  //     return accum;
-  //   }, {});
-
-  //   return Object.keys(groupDishes).map((key) => {
-  //     return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
-  //   });
-  // } else {
-  //   return [];
-  // }
 };
 
 function Shop() {
@@ -150,8 +136,9 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var [dishes, categoties] = useGetData();
   var [initialShopListData, unCategoriesShopListData] = groupByCategory(dishes, categoties, basketDishes);
-
-  var [shopListData, setShopListData] = useState(initialShopListData);
+  // var filteredShopListData =
+  var [s, setShopListData] = useState([]);
+  var shopListData = initialShopListData;
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
