@@ -10,6 +10,10 @@ function CreateBasket() {
   var refUserId = useRef(userId);
   console.log("refUserId", refUserId);
 
+  useEffect(() => {
+    refUserId.current = userId;
+  }, [userId]);
+
   var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
   console.log("basketsCount", basketsCount);
 
