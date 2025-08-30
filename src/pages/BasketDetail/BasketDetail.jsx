@@ -16,17 +16,21 @@ var basketDetailData = {
 };
 
 var computingDishes = (basketDishes) => {
-  var groupDishes = basketDishes.reduce(function (accum, item) {
-    console.log("computingDishes item", item);
-    (accum[item?.dish?.id] ??= []).push(item);
-    return accum;
-  }, {});
+  if (!!basketDishes?.length) {
+    var groupDishes = basketDishes.reduce(function (accum, item) {
+      console.log("computingDishes item", item);
+      (accum[item?.dish?.id] ??= []).push(item);
+      return accum;
+    }, {});
 
-  console.log("groupDishes", groupDishes);
+    console.log("groupDishes", groupDishes);
 
-  return Object.keys(groupDishes).map((key) => {
-    return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
-  });
+    return Object.keys(groupDishes).map((key) => {
+      return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
+    });
+  } else {
+    return [];
+  }
 };
 
 var useGetData = (basketId) => {
@@ -58,7 +62,7 @@ function BasketDetail() {
   console.log("basket", basket);
   console.log("dishes", dishes);
 
-  var basketDishes = !!dishes ? computingDishes(dishes) : [];
+  var basketDishes = computingDishes(dishes);
   console.log("basketDishes", basketDishes);
 
   var orderBasketHandler = () => {
