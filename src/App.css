@@ -1049,7 +1049,7 @@ input:checked ~ .basket_shop_item:has(input:checked) {
   transition: height 0.3s linear 0.1s;
 }
 
-input:checked ~ .basket_shop_item:has(input:checked):not(:last-child) {
+input:checked ~ .basket_shop_item:not(:last-child) {
   border-bottom: solid 1px;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
