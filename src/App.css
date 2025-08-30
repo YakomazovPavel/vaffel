@@ -464,8 +464,8 @@ input:checked ~ .basket_list_item:last-child {
 
 .basket_detail_heared button {
   font-size: 14px;
-  height: 30px;
-  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
   border-radius: 8px;
   border: none;
   background-color: var(--tg-theme-button-color);
