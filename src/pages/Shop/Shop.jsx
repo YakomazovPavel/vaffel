@@ -98,10 +98,6 @@ var filtering = (searhc, shopListData) => {
   } else {
     return shopListData;
   }
-
-  // return !!searhc
-  //   ?
-  //   : shopListData;
 };
 
 function Shop() {
@@ -211,7 +207,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
       setIsOpen(true);
       setTimeout(() => {
         setFakeIsOpen(true);
-      }, 100);
+      }, 300);
     }
   };
 
