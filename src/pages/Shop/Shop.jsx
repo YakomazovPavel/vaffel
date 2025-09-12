@@ -94,6 +94,8 @@ var useGetData = (basketId) => {
       Backend.getCategories().then((response) => response.json()),
       Backend.getBasketDishes({ basketId }).then((response) => response.json()),
     ]).then(([dishes, categories, basketDishes]) => {
+      console.log("[dishes, categories, basketDishes]", [dishes, categories, basketDishes]);
+
       var unCategories = [];
       for (let category of categories) {
         category.count =
