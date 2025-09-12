@@ -234,7 +234,7 @@ function Shop() {
         {!!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
-              <Category category={category} />
+              <Category category={category} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
               // <div className="basket_shop_section" key={`category_${category.id}`}>
               //   <input className="hide" type="checkbox" name="my_basket" value="value" id={`category_${category.id}`} />
               //   <label htmlFor={`category_${category.id}`}>
@@ -264,7 +264,7 @@ function Shop() {
   );
 }
 
-var Category = ({ category }) => {
+var Category = ({ category, addDishHandler, removeDishHandler }) => {
   var [isOpen, setIsOpen] = useState(false);
   var onChange = () => {
     setIsOpen((prev) => !prev);
