@@ -114,7 +114,7 @@ var useGetData = (basketId) => {
 var groupByCategory = (dishes, categories, basketDishes) => {
   console.log("groupByCategory");
 
-  var [resultCategories, setResultCategories] = useState();
+  var [resultCategories, setResultCategories] = useState([]);
   // console.log("useGetData");
   // console.log("useGetData dishes", dishes);
   // console.log("useGetData categories", categories);
