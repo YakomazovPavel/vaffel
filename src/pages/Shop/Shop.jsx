@@ -227,7 +227,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {/* {false ? (
+        {!!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
               <div className="basket_shop_section" key={`category_${category.id}`}>
@@ -253,12 +253,12 @@ function Shop() {
             <h1>Безрезультатно</h1>
             <h2>Поробуйте что-то другое</h2>
           </div>
-        )} */}
-        <div id="not_found">
+        )}
+        {/* <div id="not_found">
           <img src="spider-crawl-folder.gif" />
           <h1>Безрезультатно</h1>
           <h2>Поробуйте что-то другое</h2>
-        </div>
+        </div> */}
       </div>
     </div>
   );
