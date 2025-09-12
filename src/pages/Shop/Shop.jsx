@@ -88,25 +88,12 @@ var mockShopListData = [
 
 var useGetData = (basketId) => {
   var [shopListData, setShopListData] = useState([]);
-  var dishes, categories, basketDishes;
   useEffect(() => {
     Promise.all([
-      Backend.getDishes()
-        .then((response) => response.json())
-        .then((data) => {
-          dishes = data;
-        }),
-      Backend.getCategories()
-        .then((response) => response.json())
-        .then((data) => {
-          categories = data;
-        }),
-      Backend.getBasketDishes({ basketId })
-        .then((response) => response.json())
-        .then((data) => {
-          basketDishes = data;
-        }),
-    ]).then(() => {
+      Backend.getDishes().then((response) => response.json()),
+      Backend.getCategories().then((response) => response.json()),
+      Backend.getBasketDishes({ basketId }).then((response) => response.json()),
+    ]).then(([dishes, categories, basketDishes]) => {
       var unCategories = [];
       for (let category of categories) {
         category.count =
