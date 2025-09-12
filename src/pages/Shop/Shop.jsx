@@ -117,7 +117,7 @@ var useGetData = (basketId) => {
 
 var filtering = (searhc, shopListData) => {
   if (!!searhc) {
-    return shopListData
+    return structuredClone(shopListData)
       .map((category) => {
         category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc));
         if (!!category?.dishes?.length) {
