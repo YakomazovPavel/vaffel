@@ -231,25 +231,12 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {!!filteredShopListData?.length ? (
+        {loading ? (
+          <div>Загрузка...</div>
+        ) : !!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
               <Category category={category} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
-              // <div className="basket_shop_section" key={`category_${category.id}`}>
-              //   <input className="hide" type="checkbox" name="my_basket" value="value" id={`category_${category.id}`} />
-              //   <label htmlFor={`category_${category.id}`}>
-              //     <div>
-              //       <p>{category.name}</p>
-              //       {!!category.count && <span>{category.count}</span>}
-              //     </div>
-              //     <svg className="arrow_down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129">
-              //       <use xlinkHref="#arrow"></use>
-              //     </svg>
-              //   </label>
-              //   {category.dishes.map((dish) => (
-              //     <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
-              //   ))}
-              // </div>
             ))}
           </>
         ) : (
