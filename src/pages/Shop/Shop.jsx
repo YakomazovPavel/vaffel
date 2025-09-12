@@ -202,31 +202,31 @@ function Shop() {
 
   // var searchShopListData = filteredListData();
 
-  var addDishHandler = (categoryId, dishId) => {
-    var copy = structuredClone(shopListData);
-    var category = copy.filter((category) => category.id === categoryId)?.at(0);
-    if (category) {
-      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
-      dish.count++;
-      category.count++;
-      setShopListData(copy);
-    }
-  };
+  // var addDishHandler = (categoryId, dishId) => {
+  //   var copy = structuredClone(shopListData);
+  //   var category = copy.filter((category) => category.id === categoryId)?.at(0);
+  //   if (category) {
+  //     var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+  //     dish.count++;
+  //     category.count++;
+  //     setShopListData(copy);
+  //   }
+  // };
 
-  var removeDishHandler = (categoryId, dishId) => {
-    var copy = structuredClone(shopListData);
-    var category = copy.filter((category) => category.id === categoryId)?.at(0);
-    if (category) {
-      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
-      if (dish && dish.count > 0) {
-        dish.count--;
-        if (category.count > 0) {
-          category.count--;
-        }
-        setShopListData(copy);
-      }
-    }
-  };
+  // var removeDishHandler = (categoryId, dishId) => {
+  //   var copy = structuredClone(shopListData);
+  //   var category = copy.filter((category) => category.id === categoryId)?.at(0);
+  //   if (category) {
+  //     var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+  //     if (dish && dish.count > 0) {
+  //       dish.count--;
+  //       if (category.count > 0) {
+  //         category.count--;
+  //       }
+  //       setShopListData(copy);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     open();
@@ -250,7 +250,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {false ? (
+        {/* {false ? (
           <>
             {filteredShopListData.map((category) => (
               <div className="basket_shop_section" key={`category_${category.id}`}>
@@ -276,7 +276,12 @@ function Shop() {
             <h1>Безрезультатно</h1>
             <h2>Поробуйте что-то другое</h2>
           </div>
-        )}
+        )} */}
+        <div id="not_found">
+          <img src="spider-crawl-folder.gif" />
+          <h1>Безрезультатно</h1>
+          <h2>Поробуйте что-то другое</h2>
+        </div>
       </div>
     </div>
   );
