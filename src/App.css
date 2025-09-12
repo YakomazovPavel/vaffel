@@ -1003,6 +1003,11 @@ input:checked ~ .basket_list_item:not(:last-child) {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .basket_shop_item > .header h2 {
