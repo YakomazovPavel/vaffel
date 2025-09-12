@@ -94,8 +94,6 @@ var useGetData = (basketId) => {
       Backend.getCategories().then((response) => response.json()),
       Backend.getBasketDishes({ basketId }).then((response) => response.json()),
     ]).then(([dishes, categories, basketDishes]) => {
-      console.log("[dishes, categories, basketDishes]", [dishes, categories, basketDishes]);
-
       var unCategories = [];
       for (let category of categories) {
         category.count =
@@ -115,33 +113,6 @@ var useGetData = (basketId) => {
     });
   }, []);
   return [shopListData, setShopListData];
-};
-
-var groupByCategory = (dishes, categories, basketDishes) => {
-  var [a, b] = useState([]);
-  console.log("groupByCategory");
-  console.log("useGetData dishes", dishes);
-  console.log("useGetData categories", categories);
-  console.log("useGetData basketDishes", basketDishes);
-
-  var result = structuredClone(categories);
-  var unCategories = [];
-  for (let category of result) {
-    category.count = basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
-    category.dishes = [];
-  }
-  for (let dish of dishes) {
-    dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
-    var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id)?.at(0);
-    if (category) {
-      category.dishes.push(dish);
-    } else {
-      unCategories.push(dish);
-    }
-  }
-  // return result;
-  b(result);
-  return [a, b];
 };
 
 var filtering = (searhc, shopListData) => {
@@ -164,11 +135,8 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [shopListData, setShopListData] = useGetData(currentBasketId);
-  console.log("shopListData", shopListData);
-
-  // var shopListData = groupByCategory(dishes, categoties, basketDishes);
-
-  // var filteredShopListData = filtering(searhc, shopListData);
+  var filteredShopListData = filtering(searhc, shopListData);
+  console.log("filteredShopListData", filteredShopListData);
 
   // console.log("filteredShopListData", filteredShopListData);
 
