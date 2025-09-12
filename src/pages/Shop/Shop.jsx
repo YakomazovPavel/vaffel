@@ -87,34 +87,45 @@ var mockShopListData = [
 ];
 
 var useGetData = (basketId) => {
-  var [dishes, setDishes] = useState([]);
-  var [categoties, setCategoties] = useState([]);
-  var [basketDishes, setBasketDishes] = useState([]);
-  var dishesBuff, categotiesBuff, basketDishesBuff;
+  var [shopListData, setShopListData] = useState([]);
+  var dishes, categories, basketDishes;
   useEffect(() => {
     Promise.all([
       Backend.getDishes()
         .then((response) => response.json())
         .then((data) => {
-          dishesBuff = data;
+          dishes = data;
         }),
       Backend.getCategories()
         .then((response) => response.json())
         .then((data) => {
-          categotiesBuff = data;
+          categories = data;
         }),
       Backend.getBasketDishes({ basketId })
         .then((response) => response.json())
         .then((data) => {
-          basketDishesBuff = data;
+          basketDishes = data;
         }),
     ]).then(() => {
-      setDishes(dishesBuff);
-      setCategoties(categotiesBuff);
-      setBasketDishes(basketDishesBuff);
+      var unCategories = [];
+      for (let category of categories) {
+        category.count =
+          basketDishes?.filter((basketDish) => basketDish?.dish?.category?.id == category?.id)?.length || 0;
+        category.dishes = [];
+      }
+      for (let dish of dishes) {
+        dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
+        var category = categories.filter((category) => category?.id == dish?.category?.id)?.at(0);
+        if (category) {
+          category.dishes.push(dish);
+        } else {
+          unCategories.push(dish);
+        }
+      }
+      setShopListData(categories);
     });
   }, []);
-  return [dishes, categoties, basketDishes];
+  return [shopListData, setShopListData];
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
@@ -163,11 +174,10 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
-
-  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
-  // var shopListData = groupByCategory(dishes, categoties, basketDishes);
+  var [shopListData, setShopListData] = useGetData(currentBasketId);
   console.log("shopListData", shopListData);
+
+  // var shopListData = groupByCategory(dishes, categoties, basketDishes);
 
   // var filteredShopListData = filtering(searhc, shopListData);
 
