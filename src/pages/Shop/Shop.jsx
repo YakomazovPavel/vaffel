@@ -302,6 +302,25 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   const [counterKey, setCounterKey] = useState(0);
 
+  var [isCheckbox, setIsCheckbox] = useState(false);
+  var [isDescription, setIsDescription] = useState(false);
+
+  var onChange = () => {
+    if (isCheckbox) {
+      // Закрываем
+      setIsDescription(false);
+      setTimeout(() => {
+        setIsCheckbox(false);
+      }, 300);
+    } else {
+      // Открываем
+      setIsDescription(true);
+      setTimeout(() => {
+        setIsCheckbox(true);
+      }, 100);
+    }
+  };
+
   return (
     <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
@@ -310,6 +329,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           type="checkbox"
           name={`category_${dish.category_id}_dish_${dish?.id}`}
           value="value"
+          checked={isCheckbox}
+          onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
@@ -350,64 +371,66 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           </button>
         </div>
       </div>
-      <div className="description">
-        <div className="description_header">
-          <div className="name_wrap">
-            <h1>{dish?.name}</h1>
-            {!!dish?.count && (
-              <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-                {dish?.count}
-              </p>
-            )}
-          </div>
+      {isDescription && (
+        <div className="description">
+          <div className="description_header">
+            <div className="name_wrap">
+              <h1>{dish?.name}</h1>
+              {!!dish?.count && (
+                <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
+                  {dish?.count}
+                </p>
+              )}
+            </div>
 
-          <div className="description_header_control">
-            {dish?.count > 0 && (
+            <div className="description_header_control">
+              {dish?.count > 0 && (
+                <button
+                  onClick={() => {
+                    removeDishHandler(dish.category_id, dish.id);
+                    setCounterKey((prev) => ++prev);
+                  }}
+                >
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+                    <use xlinkHref="#circle_minus"></use>
+                  </svg>
+                </button>
+              )}
+
               <button
                 onClick={() => {
-                  removeDishHandler(dish.category_id, dish.id);
+                  addDishHandler(dish.category_id, dish.id);
                   setCounterKey((prev) => ++prev);
                 }}
               >
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                  <use xlinkHref="#circle_minus"></use>
+                  <use xlinkHref="#circle_plus"></use>
                 </svg>
               </button>
-            )}
+            </div>
+          </div>
+          <p>{dish?.description}</p>
 
-            <button
-              onClick={() => {
-                addDishHandler(dish.category_id, dish.id);
-                setCounterKey((prev) => ++prev);
-              }}
-            >
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                <use xlinkHref="#circle_plus"></use>
-              </svg>
-            </button>
+          <div className="description_header_components">
+            <div>
+              <h3>В 100 г</h3>
+              <p>{dish?.calories} ккал</p>
+            </div>
+            <div>
+              <h3>Белки</h3>
+              <p>{dish?.proteins} г</p>
+            </div>
+            <div>
+              <h3>Жиры</h3>
+              <p>{dish?.fats} г</p>
+            </div>
+            <div>
+              <h3>Углеводы</h3>
+              <p>{dish?.carbs} г</p>
+            </div>
           </div>
         </div>
-        <p>{dish?.description}</p>
-
-        <div className="description_header_components">
-          <div>
-            <h3>В 100 г</h3>
-            <p>{dish?.calories} ккал</p>
-          </div>
-          <div>
-            <h3>Белки</h3>
-            <p>{dish?.proteins} г</p>
-          </div>
-          <div>
-            <h3>Жиры</h3>
-            <p>{dish?.fats} г</p>
-          </div>
-          <div>
-            <h3>Углеводы</h3>
-            <p>{dish?.carbs} г</p>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
