@@ -90,33 +90,38 @@ var useGetData = (basketId) => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
   var [basketDishes, setBasketDishes] = useState([]);
-  // var dishesBuff, categoties1
+  var dishesBuff, categotiesBuff, basketDishesBuff;
   useEffect(() => {
-    Backend.getDishes()
-      .then((response) => response.json())
-      .then((data) => {
-        setDishes(data);
-      });
-    Backend.getCategories()
-      .then((response) => response.json())
-      .then((data) => {
-        setCategoties(data);
-      });
-    Backend.getBasketDishes({ basketId })
-      .then((response) => response.json())
-      .then((data) => {
-        setBasketDishes(data);
-      });
+    Promise.all([
+      Backend.getDishes()
+        .then((response) => response.json())
+        .then((data) => {
+          dishesBuff = data;
+        }),
+      Backend.getCategories()
+        .then((response) => response.json())
+        .then((data) => {
+          categotiesBuff = data;
+        }),
+      Backend.getBasketDishes({ basketId })
+        .then((response) => response.json())
+        .then((data) => {
+          basketDishesBuff = data;
+        }),
+    ]).then(() => {
+      setDishes(dishesBuff);
+      setCategoties(categotiesBuff);
+      setBasketDishes(basketDishesBuff);
+    });
   }, []);
   return [dishes, categoties, basketDishes];
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
   console.log("groupByCategory");
-  // console.log("useGetData");
-  // console.log("useGetData dishes", dishes);
-  // console.log("useGetData categories", categories);
-  // console.log("useGetData basketDishes", basketDishes);
+  console.log("useGetData dishes", dishes);
+  console.log("useGetData categories", categories);
+  console.log("useGetData basketDishes", basketDishes);
 
   var result = structuredClone(categories);
   var unCategories = [];
@@ -156,10 +161,6 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
-  console.log("dishes", dishes);
-  // console.log("categoties", categoties);
-  // console.log("basketDishes", basketDishes);
-
   var [shopListData, setShopListData] = useState(groupByCategory(dishes, categoties, basketDishes));
   console.log("shopListData", shopListData);
 
