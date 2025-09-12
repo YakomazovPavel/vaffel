@@ -255,15 +255,20 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
   var [isOpen, setIsOpen] = useState(false);
   var [fakeIsOpen, setFakeIsOpen] = useState(isOpen);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setFakeIsOpen(isOpen), 3000;
-    });
-  }, [isOpen]);
-
   var onChange = () => {
-    setIsOpen((prev) => !prev);
+    if (isOpen) {
+      setFakeIsOpen(false);
+      setTimeout(() => {
+        setIsOpen(false), 1000;
+      });
+    } else {
+      setIsOpen(true);
+      setTimeout(() => {
+        setFakeIsOpen(true), 1000;
+      });
+    }
   };
+
   return (
     <div className="basket_shop_section" key={`category_${category.id}`}>
       <input
