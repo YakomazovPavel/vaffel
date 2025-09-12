@@ -126,7 +126,7 @@ var filtering = (searhc, shopListData) => {
       })
       .filter((category) => !!category);
   } else {
-    shopListData;
+    return shopListData;
   }
 
   // return !!searhc
