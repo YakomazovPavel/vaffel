@@ -116,18 +116,22 @@ var useGetData = (basketId) => {
 };
 
 var filtering = (searhc, shopListData) => {
-  console.log("filtering", filtering);
+  if (!!searhc) {
+    return shopListData
+      .map((category) => {
+        category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc));
+        if (!!category?.dishes?.length) {
+          return category;
+        }
+      })
+      .filter((category) => !!category);
+  } else {
+    shopListData;
+  }
 
-  return !!searhc
-    ? shopListData
-        .map((category) => {
-          category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc));
-          if (!!category?.dishes?.length) {
-            return category;
-          }
-        })
-        .filter((category) => !!category)
-    : shopListData;
+  // return !!searhc
+  //   ?
+  //   : shopListData;
 };
 
 function Shop() {
