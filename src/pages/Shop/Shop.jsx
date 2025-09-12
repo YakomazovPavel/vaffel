@@ -42,7 +42,7 @@ var imageCache = new (function () {
           imageLoadEvent(e);
         }
         numLoaded++;
-        if (numLoaded == arrayLength) {
+        if (numLoaded == arrayLength && imagesLoadEvent) {
           setTimeout(function () {
             imagesLoadEvent(e);
           }, 1);
