@@ -158,7 +158,7 @@ var useGetData = (basketId) => {
           unCategories.push(dish);
         }
       }
-      var imageUrls = dishes.map((dish) => dish.photo_url);
+      var imageUrls = dishes.map((dish) => dish.photo_url).filter((item) => !!item);
       console.log("imageUrls", imageUrls);
       imageCache.pushArray(imageUrls);
       setShopListData(categories);
