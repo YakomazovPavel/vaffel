@@ -121,7 +121,7 @@ var filtering = (searhc, shopListData) => {
   if (!!searhc) {
     return structuredClone(shopListData)
       .map((category) => {
-        category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc));
+        category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc.toLowerCase()));
         if (!!category?.dishes?.length) {
           return category;
         }
