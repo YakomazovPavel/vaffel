@@ -257,11 +257,13 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 
   var onChange = () => {
     if (isOpen) {
-      setFakeIsOpen(false);
+      // Закрываем
+      setIsOpen(false);
       setTimeout(() => {
-        setIsOpen(false), 3000;
+        setFakeIsOpen(false), 3000;
       });
     } else {
+      // Открываем
       setIsOpen(true);
       setTimeout(() => {
         setFakeIsOpen(true), 3000;
