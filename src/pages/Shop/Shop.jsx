@@ -160,6 +160,8 @@ function Shop() {
 
   var filteredShopListData = filtering(searhc, shopListData);
 
+  console.log("filteredShopListData", filteredShopListData);
+
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
   };
@@ -242,7 +244,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {!!filteredShopListData.length ? (
+        {!!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
               <div className="basket_shop_section" key={`category_${category.id}`}>
