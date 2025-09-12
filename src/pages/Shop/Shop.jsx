@@ -111,6 +111,8 @@ var useGetData = ({ basketId }) => {
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
+  console.log("groupByCategory");
+
   var [resultCategories, setResultCategories] = useState();
   // console.log("useGetData");
   // console.log("useGetData dishes", dishes);
@@ -139,6 +141,8 @@ var groupByCategory = (dishes, categories, basketDishes) => {
 };
 
 var filtering = (searhc, shopListData) => {
+  console.log("filtering", filtering);
+
   return !!searhc
     ? shopListData
         .map((category) => {
@@ -160,9 +164,9 @@ function Shop() {
 
   var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
 
-  var filteredShopListData = filtering(searhc, shopListData);
+  // var filteredShopListData = filtering(searhc, shopListData);
 
-  console.log("filteredShopListData", filteredShopListData);
+  // console.log("filteredShopListData", filteredShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
@@ -246,7 +250,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {!!filteredShopListData?.length ? (
+        {false ? (
           <>
             {filteredShopListData.map((category) => (
               <div className="basket_shop_section" key={`category_${category.id}`}>
