@@ -259,12 +259,12 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
     if (isOpen) {
       setFakeIsOpen(false);
       setTimeout(() => {
-        setIsOpen(false), 1000;
+        setIsOpen(false), 3000;
       });
     } else {
       setIsOpen(true);
       setTimeout(() => {
-        setFakeIsOpen(true), 1000;
+        setFakeIsOpen(true), 3000;
       });
     }
   };
