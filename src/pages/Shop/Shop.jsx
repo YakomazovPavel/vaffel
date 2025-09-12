@@ -161,7 +161,9 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
-  var [shopListData, setShopListData] = useState(groupByCategory(dishes, categoties, basketDishes));
+
+  // var [shopListData, setShopListData] = useState();
+  var shopListData = groupByCategory(dishes, categoties, basketDishes);
   console.log("shopListData", shopListData);
 
   // var filteredShopListData = filtering(searhc, shopListData);
