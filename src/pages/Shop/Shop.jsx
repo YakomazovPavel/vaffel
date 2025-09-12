@@ -253,7 +253,7 @@ function Shop() {
 
 var Category = ({ category, addDishHandler, removeDishHandler }) => {
   var [isOpen, setIsOpen] = useState(false);
-  var [fakeIsOpen, setFakeIsOpen] = useState(isOpen);
+  var [fakeIsOpen, setFakeIsOpen] = useState(false);
 
   var onChange = () => {
     if (isOpen) {
