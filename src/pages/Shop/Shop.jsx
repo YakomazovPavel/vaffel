@@ -279,7 +279,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
-          <h2>{dish?.weight} г</h2>
+          <h2>{dish?.price} ₽</h2>
         </div>
         <div className="control">
           {dish?.count > 0 && (
