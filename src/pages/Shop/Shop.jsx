@@ -52,91 +52,9 @@ var imageCache = new (function () {
   };
 })();
 
-// Эта структура данных строится из иформации о том какие блюда есть и о том, что уже есть в корзине
-var mockShopListData = [
-  {
-    id: "1",
-    name: "Сырные вафли",
-    count: 1,
-    dishes: [
-      {
-        id: "1",
-        category_id: "1",
-        name: "Барбекю",
-        description:
-          "Котлета из говядины, жареный бекон, сыр чеддер, айсберг, маринованные огурец и красный лук, соус барбекю, соус сладкая аджика, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи",
-        price: "540",
-        calories: "206.6",
-        proteins: "6.6",
-        fats: "13.1",
-        carbs: "15.6",
-        weight: "350",
-        photo_url:
-          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561134/56c41996237e9cc6ef75fcb48d671352.webp",
-        count: 1,
-      },
-      {
-        id: "2",
-        category_id: "1",
-        name: "Индиана Джонс",
-        description:
-          "Запеченное куриное филе, сыр чеддер, яблоко, руккола, домашний майонез, соус брусничный, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи)",
-        price: "510",
-        calories: "191",
-        proteins: "7.1",
-        fats: "12",
-        carbs: "13.5",
-        weight: "380",
-        photo_url:
-          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561136/6d384469f83aa62fc707807d122aaa9d.webp",
-        count: 0,
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Картофельные вафли",
-    count: 0,
-    dishes: [
-      {
-        id: "3",
-        category_id: "2",
-        name: "Барбекю",
-        description:
-          "Котлета из говядины, жареный бекон, сыр чеддер, айсберг, маринованные огурец и красный лук, соус барбекю, соус сладкая аджика, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи",
-        price: "540",
-        calories: "206.6",
-        proteins: "6.6",
-        fats: "13.1",
-        carbs: "15.6",
-        weight: "350",
-        photo_url:
-          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561134/56c41996237e9cc6ef75fcb48d671352.webp",
-        count: 0,
-      },
-      {
-        id: "4",
-        category_id: "2",
-        name: "Индиана Джонс",
-        description:
-          "Запеченное куриное филе, сыр чеддер, яблоко, руккола, домашний майонез, соус брусничный, картофельное тесто (мука пшеничная, картофель, лук репчатый, яйцо куриное, молоко,, соль, специи)",
-        price: "510",
-        calories: "191",
-        proteins: "7.1",
-        fats: "12",
-        carbs: "13.5",
-        weight: "380",
-        photo_url:
-          "https://53a7276f-d68f-462e-a2bf-df223e005be4.selstorage.ru/uploads/media/photo/3561136/6d384469f83aa62fc707807d122aaa9d.webp",
-        count: 0,
-      },
-    ],
-  },
-];
-
 var useGetData = (basketId) => {
   var [shopListData, setShopListData] = useState([]);
-  var [loading, setLoading] = useState(true);
+  var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     Promise.all([
       Backend.getDishes().then((response) => response.json()),
@@ -159,13 +77,12 @@ var useGetData = (basketId) => {
         }
       }
       var imageUrls = dishes.map((dish) => dish.photo_url).filter((item) => !!item);
-      console.log("imageUrls", imageUrls);
       imageCache.pushArray(imageUrls);
       setShopListData(categories);
-      setLoading(false);
+      setIsLoading(false);
     });
   }, []);
-  return [shopListData, setShopListData, loading];
+  return [shopListData, setShopListData, isLoading];
 };
 
 var filtering = (searhc, shopListData) => {
@@ -191,13 +108,9 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var [shopListData, setShopListData, loading] = useGetData(currentBasketId);
-  console.log("loading", loading);
+  var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
 
   var filteredShopListData = filtering(searhc, shopListData);
-  console.log("filteredShopListData", filteredShopListData);
-
-  // console.log("filteredShopListData", filteredShopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
@@ -212,26 +125,6 @@ function Shop() {
   var close = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
   };
-
-  // var filteredListData = () => {
-  //   var value = searhc.trim().toLowerCase();
-  //   if (value) {
-  //     var copyShopListData = structuredClone(shopListData)
-  //       .map((category) => {
-  //         category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(value));
-  //         if (!!category?.dishes?.length) {
-  //           return category;
-  //         }
-  //       })
-  //       .filter((category) => !!category);
-
-  //     return copyShopListData;
-  //   } else {
-  //     return shopListData;
-  //   }
-  // };
-
-  // var searchShopListData = filteredListData();
 
   var addDishHandler = (categoryId, dishId) => {
     var copy = structuredClone(shopListData);
@@ -282,7 +175,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {loading ? (
+        {isLoading ? (
           <div>Загрузка...</div>
         ) : !!filteredShopListData?.length ? (
           <>
