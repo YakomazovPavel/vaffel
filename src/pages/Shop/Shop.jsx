@@ -113,8 +113,6 @@ var useGetData = (basketId) => {
 
 var groupByCategory = (dishes, categories, basketDishes) => {
   console.log("groupByCategory");
-
-  var [resultCategories, setResultCategories] = useState([]);
   // console.log("useGetData");
   // console.log("useGetData dishes", dishes);
   // console.log("useGetData categories", categories);
@@ -127,7 +125,6 @@ var groupByCategory = (dishes, categories, basketDishes) => {
     category.dishes = [];
   }
   for (let dish of dishes) {
-    // var copyDish = structuredClone(dish);
     dish.count = basketDishes?.filter((basketDish) => basketDish?.dish?.id == dish?.id)?.length || 0;
     var category = result.filter((resultCategory) => resultCategory?.id == dish?.category?.id)?.at(0);
     if (category) {
@@ -136,9 +133,7 @@ var groupByCategory = (dishes, categories, basketDishes) => {
       unCategories.push(dish);
     }
   }
-  // console.log("result", result, "unCategories", unCategories);
-  setResultCategories(result);
-  return [resultCategories, setResultCategories];
+  return result;
 };
 
 var filtering = (searhc, shopListData) => {
@@ -165,7 +160,8 @@ function Shop() {
   // console.log("categoties", categoties);
   // console.log("basketDishes", basketDishes);
 
-  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
+  var [shopListData, setShopListData] = useState(groupByCategory(dishes, categoties, basketDishes));
+  console.log("shopListData", shopListData);
 
   // var filteredShopListData = filtering(searhc, shopListData);
 
