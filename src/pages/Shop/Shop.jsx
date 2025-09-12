@@ -118,6 +118,7 @@ var useGetData = (basketId) => {
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
+  var [a, b] = useState([]);
   console.log("groupByCategory");
   console.log("useGetData dishes", dishes);
   console.log("useGetData categories", categories);
@@ -138,7 +139,8 @@ var groupByCategory = (dishes, categories, basketDishes) => {
       unCategories.push(dish);
     }
   }
-  return result;
+  // return result;
+  return [a, b];
 };
 
 var filtering = (searhc, shopListData) => {
@@ -162,8 +164,8 @@ function Shop() {
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
 
-  // var [shopListData, setShopListData] = useState();
-  var shopListData = groupByCategory(dishes, categoties, basketDishes);
+  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
+  // var shopListData = groupByCategory(dishes, categoties, basketDishes);
   console.log("shopListData", shopListData);
 
   // var filteredShopListData = filtering(searhc, shopListData);
