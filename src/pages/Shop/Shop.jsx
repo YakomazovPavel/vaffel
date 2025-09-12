@@ -90,6 +90,7 @@ var useGetData = (basketId) => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
   var [basketDishes, setBasketDishes] = useState([]);
+  // var dishesBuff, categoties1
   useEffect(() => {
     Backend.getDishes()
       .then((response) => response.json())
@@ -164,7 +165,7 @@ function Shop() {
   // console.log("categoties", categoties);
   // console.log("basketDishes", basketDishes);
 
-  // var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
+  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
 
   // var filteredShopListData = filtering(searhc, shopListData);
 
