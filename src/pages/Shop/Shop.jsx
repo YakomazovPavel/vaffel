@@ -86,9 +86,10 @@ var mockShopListData = [
   },
 ];
 
-var useGetData = () => {
+var useGetData = ({ basketId }) => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
+  var [basketDishes, setSasketDishes] = useState([]);
   useEffect(() => {
     Backend.getDishes()
       .then((response) => response.json())
@@ -100,15 +101,21 @@ var useGetData = () => {
       .then((data) => {
         setCategoties(data);
       });
+    Backend.getBasketDishes({ basketId })
+      .then((response) => response.json())
+      .then((data) => {
+        setSasketDishes(data);
+      });
   }, []);
-  return [dishes, categoties];
+  return [dishes, categoties, basketDishes];
 };
 
 var groupByCategory = (dishes, categories, basketDishes) => {
-  console.log("useGetData");
-  console.log("useGetData dishes", dishes);
-  console.log("useGetData categories", categories);
-  console.log("useGetData basketDishes", basketDishes);
+  var [resultCategories, setResultCategories] = useState();
+  // console.log("useGetData");
+  // console.log("useGetData dishes", dishes);
+  // console.log("useGetData categories", categories);
+  // console.log("useGetData basketDishes", basketDishes);
 
   var result = structuredClone(categories);
   var unCategories = [];
@@ -126,19 +133,25 @@ var groupByCategory = (dishes, categories, basketDishes) => {
       unCategories.push(dish);
     }
   }
-  console.log("result", result, "unCategories", unCategories);
-  return [result, unCategories];
+  // console.log("result", result, "unCategories", unCategories);
+  setResultCategories(result);
+  return [resultCategories, setResultCategories];
+};
+
+var filtering = (searhc, shopListData) => {
+  return !!searhc
+    ? shopListData.filter((categories) => categories?.dishes?.some((dish) => dish?.name.toLowerCase().includes(searhc)))
+    : shopListData;
 };
 
 function Shop() {
   var dispatch = useDispatch();
-  var basketDishes = useSelector((state) => state.appSlice.basketDishes);
   var [searhc, setSearhc] = useState("");
-  var [dishes, categoties] = useGetData();
-  var [initialShopListData, unCategoriesShopListData] = groupByCategory(dishes, categoties, basketDishes);
-  // var filteredShopListData =
-  var [s, setShopListData] = useState([]);
-  // var shopListData = initialShopListData;
+  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  var [dishes, categoties, basketDishes] = useGetData({ basketId: currentBasketId });
+  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
+
+  var filteredShopListData = filtering(searhc, shopListData);
 
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.BasketDetail));
@@ -224,9 +237,9 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {!!searchShopListData.length ? (
+        {!!filteredShopListData.length ? (
           <>
-            {searchShopListData.map((category) => (
+            {filteredShopListData.map((category) => (
               <div className="basket_shop_section" key={`category_${category.id}`}>
                 <input className="hide" type="checkbox" name="my_basket" value="value" id={`category_${category.id}`} />
                 <label htmlFor={`category_${category.id}`}>
