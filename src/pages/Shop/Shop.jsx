@@ -88,6 +88,7 @@ var mockShopListData = [
 
 var useGetData = (basketId) => {
   var [shopListData, setShopListData] = useState([]);
+  var [loading, setLoading] = useState(true);
   useEffect(() => {
     Promise.all([
       Backend.getDishes().then((response) => response.json()),
@@ -110,9 +111,10 @@ var useGetData = (basketId) => {
         }
       }
       setShopListData(categories);
+      setLoading(false);
     });
   }, []);
-  return [shopListData, setShopListData];
+  return [shopListData, setShopListData, loading];
 };
 
 var filtering = (searhc, shopListData) => {
@@ -138,7 +140,9 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var [shopListData, setShopListData] = useGetData(currentBasketId);
+  var [shopListData, setShopListData, loading] = useGetData(currentBasketId);
+  console.log("loading", loading);
+
   var filteredShopListData = filtering(searhc, shopListData);
   console.log("filteredShopListData", filteredShopListData);
 
