@@ -140,7 +140,14 @@ var groupByCategory = (dishes, categories, basketDishes) => {
 
 var filtering = (searhc, shopListData) => {
   return !!searhc
-    ? shopListData.filter((categories) => categories?.dishes?.some((dish) => dish?.name.toLowerCase().includes(searhc)))
+    ? shopListData
+        .map((category) => {
+          category.dishes = category.dishes.filter((dish) => dish?.name.toLowerCase().includes(searhc));
+          if (!!category?.dishes?.length) {
+            return category;
+          }
+        })
+        .filter((category) => !!category)
     : shopListData;
 };
 
@@ -186,8 +193,6 @@ function Shop() {
   // };
 
   // var searchShopListData = filteredListData();
-
-  var searchShopListData = initialShopListData;
 
   var addDishHandler = (categoryId, dishId) => {
     var copy = structuredClone(shopListData);
