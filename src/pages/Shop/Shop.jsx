@@ -89,7 +89,7 @@ var mockShopListData = [
 var useGetData = (basketId) => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
-  var [basketDishes, setSasketDishes] = useState([]);
+  var [basketDishes, setBasketDishes] = useState([]);
   useEffect(() => {
     Backend.getDishes()
       .then((response) => response.json())
@@ -104,7 +104,7 @@ var useGetData = (basketId) => {
     Backend.getBasketDishes({ basketId })
       .then((response) => response.json())
       .then((data) => {
-        setSasketDishes(data);
+        setBasketDishes(data);
       });
   }, []);
   return [dishes, categoties, basketDishes];
@@ -160,9 +160,11 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
-  console.log("basketDishes", basketDishes);
+  console.log("dishes", dishes);
+  // console.log("categoties", categoties);
+  // console.log("basketDishes", basketDishes);
 
-  var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
+  // var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
 
   // var filteredShopListData = filtering(searhc, shopListData);
 
@@ -232,6 +234,7 @@ function Shop() {
     open();
     return close;
   }, []);
+
   return (
     <div id="page_basket_shop">
       <div className="settings_wrap">
