@@ -257,7 +257,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setFakeIsOpen(isOpen), 1000;
+      setFakeIsOpen(isOpen), 3000;
     });
   }, [isOpen]);
 
