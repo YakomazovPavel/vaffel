@@ -140,6 +140,7 @@ var groupByCategory = (dishes, categories, basketDishes) => {
     }
   }
   // return result;
+  b(result);
   return [a, b];
 };
 
