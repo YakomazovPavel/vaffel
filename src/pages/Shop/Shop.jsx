@@ -308,9 +308,9 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var onChange = () => {
     if (isCheckbox) {
       // Закрываем
-      setIsDescription(false);
+      setIsCheckbox(false);
       setTimeout(() => {
-        setIsCheckbox(false);
+        setIsDescription(false);
       }, 300);
     } else {
       // Открываем
