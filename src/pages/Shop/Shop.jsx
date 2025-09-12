@@ -86,7 +86,7 @@ var mockShopListData = [
   },
 ];
 
-var useGetData = ({ basketId }) => {
+var useGetData = (basketId) => {
   var [dishes, setDishes] = useState([]);
   var [categoties, setCategoties] = useState([]);
   var [basketDishes, setSasketDishes] = useState([]);
@@ -159,7 +159,7 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var [dishes, categoties, basketDishes] = useGetData({ basketId: currentBasketId });
+  var [dishes, categoties, basketDishes] = useGetData(currentBasketId);
   console.log("basketDishes", basketDishes);
 
   var [shopListData, setShopListData] = groupByCategory(dishes, categoties, basketDishes);
