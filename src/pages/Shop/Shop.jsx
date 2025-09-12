@@ -253,6 +253,14 @@ function Shop() {
 
 var Category = ({ category, addDishHandler, removeDishHandler }) => {
   var [isOpen, setIsOpen] = useState(false);
+  var [fakeIsOpen, setFakeIsOpen] = useState(isOpen);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFakeIsOpen(isOpen), 1000;
+    });
+  }, [isOpen]);
+
   var onChange = () => {
     setIsOpen((prev) => !prev);
   };
@@ -264,7 +272,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
         // name="my_basket"
         // value="value"
         id={`category_${category.id}`}
-        checked={isOpen}
+        checked={fakeIsOpen}
         onChange={onChange}
       />
       <label htmlFor={`category_${category.id}`}>
