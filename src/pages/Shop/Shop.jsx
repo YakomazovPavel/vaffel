@@ -243,13 +243,13 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var plusButtonHandler = () => {
     console.log("plusButtonHandler");
 
-    addDishHandler({ categoryId: dish?.categoryId, dishId: dish?.id });
+    addDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
     setCounterKey((prev) => ++prev);
   };
 
   var minusButtonHandler = () => {
     if ((dish?.count || 0) > 0) {
-      removeDishHandler({ categoryId: dish?.categoryId, dishId: dish?.id });
+      removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
       setCounterKey((prev) => ++prev);
     }
   };
