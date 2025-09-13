@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
-var computingDishes = (basketDishes) => {
+var computingDishes = ({ basketDishes }) => {
+  console.log({ basketDishes });
   if (!!basketDishes?.length) {
     var groupDishes = basketDishes.reduce(function (accum, item) {
       (accum[item?.dish?.id] ??= []).push(item);
@@ -20,24 +21,23 @@ var computingDishes = (basketDishes) => {
 };
 
 var useGetData = (basketId) => {
+  var [isLoading, setIsLoading] = useState(true);
+
   var [basket, setBasket] = useState();
-  var [dishes, setDishes] = useState([]);
-  var dispatch = useDispatch();
+  var [dishesListData, setDishesListData] = useState([]);
   useEffect(() => {
-    Backend.getBasketDetail({ basketId })
-      .then((response) => response.json())
-      .then((data) => {
-        setBasket(data);
-      });
-    Backend.getBasketDishes({ basketId })
-      .then((response) => response.json())
-      .then((data) => {
-        setDishes(data);
-        dispatch(setBasketDish(data));
-      });
+    Promise.all([
+      Backend.getBasketDetail({ basketId }).then((response) => response.json()),
+      Backend.getBasketDishes({ basketId }).then((response) => response.json()),
+    ]).then(([basket, basketDishes]) => {
+      setIsLoading(false);
+      setBasket(basket);
+      // Сгруппировать basketDishes по dishId
+      setDishesListData(computingDishes({ basketDishes }));
+    });
   }, []);
 
-  return [basket, setBasket, dishes, setDishes];
+  return [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading];
 };
 
 function BasketDetail() {
@@ -48,10 +48,7 @@ function BasketDetail() {
   console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
-  var [basket, setBasket, dishes, setDishes] = useGetData(currentBasketId);
-  console.log({ basket, dishes });
-
-  var basketDishes = computingDishes(dishes);
+  var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData(currentBasketId);
 
   var orderBasketHandler = () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
@@ -101,6 +98,35 @@ function BasketDetail() {
     dispatch(setCurrentPage(PAGE.Shop));
   };
 
+  var addDishHandler = async ({ dishId }) => {
+    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
+
+    var copy = structuredClone(shopListData);
+    var category = copy.filter((category) => category.id === categoryId)?.at(0);
+    if (category) {
+      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+      dish.count++;
+      category.count++;
+      setShopListData(copy);
+    }
+  };
+
+  var removeDishHandler = async ({ categoryId, dishId }) => {
+    Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
+    var copy = structuredClone(shopListData);
+    var category = copy.filter((category) => category.id === categoryId)?.at(0);
+    if (category) {
+      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+      if (dish && dish.count > 0) {
+        dish.count--;
+        if (category.count > 0) {
+          category.count--;
+        }
+        setShopListData(copy);
+      }
+    }
+  };
+
   return (
     <div id="page_basket_detail">
       <div class="settings_wrap">
@@ -124,7 +150,7 @@ function BasketDetail() {
             </div>
           </div>
 
-          {!!basketDishes?.length && basketDishes.map((item) => <Dish item={item} />)}
+          {!!dishesListData?.length && dishesListData.map((item) => <Dish item={item} />)}
 
           {!basket?.is_locked && (
             <div class="basket_detail_item basket_add_item">
