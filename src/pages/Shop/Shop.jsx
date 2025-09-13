@@ -136,7 +136,7 @@ function Shop() {
     }
   };
 
-  var removeDishHandler = (categoryId, dishId) => {
+  var removeDishHandler = ({ categoryId, dishId }) => {
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
     if (category) {
