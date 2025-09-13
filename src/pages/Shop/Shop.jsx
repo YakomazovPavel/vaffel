@@ -171,7 +171,7 @@ function Shop() {
             value={searhc}
           />
         </div>
-        {isLoading ? (
+        {true ? (
           <Loader />
         ) : !!filteredShopListData?.length ? (
           <>
