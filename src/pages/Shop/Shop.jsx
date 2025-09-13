@@ -239,7 +239,7 @@ var Category = ({ category }) => {
 var Dish = ({ dish }) => {
   const [counterKey, setCounterKey] = useState(0);
 
-  var [count, setCount] = useState(dish?.count);
+  var [count, setCount] = useState(dish?.count || 0);
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
 
@@ -321,15 +321,15 @@ var Dish = ({ dish }) => {
           <div className="description_header">
             <div className="name_wrap">
               <h1>{dish?.name}</h1>
-              {!!dish?.count && (
+              {!!count && (
                 <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-                  {dish?.count}
+                  {count}
                 </p>
               )}
             </div>
 
             <div className="description_header_control">
-              {dish?.count > 0 && (
+              {count > 0 && (
                 <button onClick={removeDishHandler}>
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                     <use xlinkHref="#circle_minus"></use>
