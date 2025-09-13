@@ -231,10 +231,7 @@ var Category = ({ category }) => {
           <use xlinkHref="#arrow"></use>
         </svg>
       </label>
-      {isOpen &&
-        category.dishes.map((dish) => (
-          <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
-        ))}
+      {isOpen && category.dishes.map((dish) => <Dish dish={dish} />)}
     </div>
   );
 };
