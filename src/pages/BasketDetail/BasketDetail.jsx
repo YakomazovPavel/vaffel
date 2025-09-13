@@ -64,7 +64,7 @@ function BasketDetail() {
   };
 
   var open = () => {
-    if (basket?.author_id === userId) {
+    if (basket?.author_id == userId) {
       window.Telegram.WebApp.MainButton.text = "Заказать";
       window.Telegram.WebApp.MainButton.hasShineEffect = true;
       window.Telegram.WebApp.MainButton.show();
@@ -83,7 +83,7 @@ function BasketDetail() {
   useEffect(() => {
     open();
     return close;
-  }, []);
+  }, [basket, userId]);
 
   var copyLinkHandler = async () => {
     Telegram.WebApp.showAlert("Ссылка скопирована");
