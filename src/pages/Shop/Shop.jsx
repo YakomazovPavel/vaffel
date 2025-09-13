@@ -244,15 +244,18 @@ var Dish = ({ dish }) => {
   var [isDescription, setIsDescription] = useState(false);
 
   var addDishHandler = () => {
+    console.log("addDishHandler count", count);
+
     // fetch
-    setCount((prev) => prev++);
+    setCount((prev) => ++prev);
     setCounterKey((prev) => ++prev);
   };
 
   var removeDishHandler = () => {
+    console.log("removeDishHandler count", count);
     // fetch
     if (count > 0) {
-      setCount((prev) => prev--);
+      setCount((prev) => --prev);
       setCounterKey((prev) => ++prev);
     }
   };
