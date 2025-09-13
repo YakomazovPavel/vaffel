@@ -21,6 +21,16 @@ class Backend {
       body: JSON.stringify({ first_name, last_name, photo_url, telegram_id, username }),
     });
   };
+  createBasketDish = ({ user_id, basket_id, dish_id }) => {
+    return fetch(this.BASE_URL + `baskets/${basket_id}/dishes/${dish_id}/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id }),
+    });
+  };
   getBasketDetail = ({ basketId }) => {
     return fetch(this.BASE_URL + `baskets/${basketId}/`);
   };

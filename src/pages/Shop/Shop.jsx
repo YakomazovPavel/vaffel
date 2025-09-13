@@ -104,6 +104,7 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  var userId = useSelector((state) => state.appSlice.userId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
   console.log("shopListData", shopListData);
 
@@ -125,6 +126,8 @@ function Shop() {
 
   var addDishHandler = ({ categoryId, dishId }) => {
     console.log("addDishHandler categoryId", categoryId, "dishId", dishId);
+
+    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId }).then(console.log);
 
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
