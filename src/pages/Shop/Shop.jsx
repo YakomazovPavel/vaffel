@@ -122,7 +122,7 @@ function Shop() {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
   };
 
-  var addDishHandler = (categoryId, dishId) => {
+  var addDishHandler = ({ categoryId, dishId }) => {
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
     if (category) {
@@ -176,7 +176,7 @@ function Shop() {
         ) : !!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
-              <Category category={category} />
+              <Category category={category} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
             ))}
           </>
         ) : (
@@ -191,7 +191,7 @@ function Shop() {
   );
 }
 
-var Category = ({ category }) => {
+var Category = ({ category, addDishHandler, removeDishHandler }) => {
   var [isOpen, setIsOpen] = useState(false);
   var [fakeIsOpen, setFakeIsOpen] = useState(false);
 
@@ -231,30 +231,30 @@ var Category = ({ category }) => {
           <use xlinkHref="#arrow"></use>
         </svg>
       </label>
-      {isOpen && category.dishes.map((dish) => <Dish dish={dish} />)}
+      {isOpen &&
+        category.dishes.map((dish) => (
+          <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
+        ))}
     </div>
   );
 };
 
-var Dish = ({ dish }) => {
+var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   const [counterKey, setCounterKey] = useState(0);
 
   var [count, setCount] = useState(dish?.count || 0);
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
 
-  var addDishHandler = () => {
-    console.log("addDishHandler count", count);
-
-    // fetch
+  var plusButtonHandler = () => {
+    addDishHandler({ categoryId: dish?.category_id, dishId: dish?.id });
     setCount((prev) => ++prev);
     setCounterKey((prev) => ++prev);
   };
 
-  var removeDishHandler = () => {
-    console.log("removeDishHandler count", count);
-    // fetch
-    if (count > 0) {
+  var minusButtonHandler = () => {
+    if ((dish?.count || 0) > 0) {
+      removeDishHandler({ categoryId: dish?.category_id, dishId: dish?.id });
       setCount((prev) => --prev);
       setCounterKey((prev) => ++prev);
     }
@@ -290,9 +290,9 @@ var Dish = ({ dish }) => {
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
-          {!!count && (
+          {!!dish?.count && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-              {count}
+              {dish?.count}
             </p>
           )}
         </label>
@@ -301,15 +301,15 @@ var Dish = ({ dish }) => {
           <h2>{dish?.price} ₽</h2>
         </div>
         <div className="control">
-          {count > 0 && (
-            <button onClick={removeDishHandler}>
+          {dish?.count > 0 && (
+            <button onClick={minusButtonHandler}>
               <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                 <use xlinkHref="#circle_minus"></use>
               </svg>
             </button>
           )}
 
-          <button onClick={addDishHandler}>
+          <button onClick={plusButtonHandler}>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
               <use xlinkHref="#circle_plus"></use>
             </svg>
@@ -321,23 +321,23 @@ var Dish = ({ dish }) => {
           <div className="description_header">
             <div className="name_wrap">
               <h1>{dish?.name}</h1>
-              {!!count && (
+              {!!dish?.count && (
                 <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-                  {count}
+                  {dish?.count}
                 </p>
               )}
             </div>
 
             <div className="description_header_control">
-              {count > 0 && (
-                <button onClick={removeDishHandler}>
+              {dish?.count > 0 && (
+                <button onClick={minusButtonHandler}>
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                     <use xlinkHref="#circle_minus"></use>
                   </svg>
                 </button>
               )}
 
-              <button onClick={addDishHandler}>
+              <button onClick={plusButtonHandler}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                   <use xlinkHref="#circle_plus"></use>
                 </svg>
