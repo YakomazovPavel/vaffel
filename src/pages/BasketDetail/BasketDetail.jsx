@@ -83,7 +83,7 @@ function BasketDetail() {
   useEffect(() => {
     open();
     return close;
-  }, [basket, userId]);
+  }, [basket?.author_id, userId]);
 
   var copyLinkHandler = async () => {
     Telegram.WebApp.showAlert("Ссылка скопирована");
