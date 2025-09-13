@@ -172,7 +172,7 @@ function Shop() {
           />
         </div>
         {isLoading ? (
-          <div>Загрузка...</div>
+          <Loader />
         ) : !!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
@@ -376,3 +376,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
 };
 
 export default Shop;
+
+var Loader = () => {
+  return <div className="loader"></div>;
+};
