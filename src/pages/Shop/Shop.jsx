@@ -241,14 +241,14 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var [isDescription, setIsDescription] = useState(false);
 
   var plusButtonHandler = () => {
-    console.log("plusButtonHandler");
-
     addDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
     setCounterKey((prev) => ++prev);
   };
 
   var minusButtonHandler = () => {
+    console.log("minusButtonHandler dish?.count", dish?.count);
     if ((dish?.count || 0) > 0) {
+      console.log("if ((dish?.count || 0) > 0) {");
       removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
       setCounterKey((prev) => ++prev);
     }
