@@ -123,6 +123,8 @@ function Shop() {
   };
 
   var addDishHandler = ({ categoryId, dishId }) => {
+    console.log("addDishHandler categoryId", categoryId, "dishId", dishId);
+
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
     if (category) {
@@ -238,6 +240,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var [isDescription, setIsDescription] = useState(false);
 
   var plusButtonHandler = () => {
+    console.log("plusButtonHandler");
+
     addDishHandler({ categoryId: dish?.category_id, dishId: dish?.id });
     setCounterKey((prev) => ++prev);
   };
