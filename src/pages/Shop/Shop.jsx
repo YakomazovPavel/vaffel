@@ -123,8 +123,8 @@ function Shop() {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
   };
 
-  var addDishHandler = ({ categoryId, dishId }) => {
-    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId }).then(console.log);
+  var addDishHandler = async ({ categoryId, dishId }) => {
+    await Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
 
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
@@ -136,7 +136,8 @@ function Shop() {
     }
   };
 
-  var removeDishHandler = ({ categoryId, dishId }) => {
+  var removeDishHandler = async ({ categoryId, dishId }) => {
+    await Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
     if (category) {

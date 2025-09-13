@@ -31,6 +31,17 @@ class Backend {
       body: JSON.stringify({ user_id }),
     });
   };
+  deleteBasketDish = ({ user_id, basket_id, dish_id }) => {
+    return fetch(this.BASE_URL + `baskets/${basket_id}/dishes/${dish_id}/`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: user_id,
+      },
+      // body: JSON.stringify({ user_id }),
+    });
+  };
   getBasketDetail = ({ basketId }) => {
     return fetch(this.BASE_URL + `baskets/${basketId}/`);
   };
