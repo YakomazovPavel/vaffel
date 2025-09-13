@@ -105,6 +105,7 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
+  console.log("shopListData", shopListData);
 
   var filteredShopListData = filtering(searhc, shopListData);
 
