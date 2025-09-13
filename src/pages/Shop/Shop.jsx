@@ -191,7 +191,7 @@ function Shop() {
   );
 }
 
-var Category = ({ category, addDishHandler, removeDishHandler }) => {
+var Category = ({ category }) => {
   var [isOpen, setIsOpen] = useState(false);
   var [fakeIsOpen, setFakeIsOpen] = useState(false);
 
@@ -242,8 +242,21 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   const [counterKey, setCounterKey] = useState(0);
 
+  var [count, setCount] = useState(dish?.count);
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
+
+  var addDishHandler = () => {
+    // fetch
+    setCount((prev) => prev++);
+  };
+
+  var removeDishHandler = () => {
+    // fetch
+    if (count > 0) {
+      setCount((prev) => prev--);
+    }
+  };
 
   var onChange = () => {
     if (isCheckbox) {
@@ -275,9 +288,9 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
           <img src={dish?.photo_url} />
-          {!!dish?.count && (
+          {!!count && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-              {dish?.count}
+              {count}
             </p>
           )}
         </label>
@@ -286,7 +299,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           <h2>{dish?.price} ₽</h2>
         </div>
         <div className="control">
-          {dish?.count > 0 && (
+          {count > 0 && (
             <button
               onClick={() => {
                 removeDishHandler(dish.category_id, dish.id);
