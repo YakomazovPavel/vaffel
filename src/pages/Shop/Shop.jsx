@@ -213,15 +213,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 
   return (
     <div className="basket_shop_section" key={`category_${category.id}`}>
-      <input
-        className="hide"
-        type="checkbox"
-        // name="my_basket"
-        // value="value"
-        id={`category_${category.id}`}
-        checked={fakeIsOpen}
-        onChange={onChange}
-      />
+      <input className="hide" type="checkbox" id={`category_${category.id}`} checked={fakeIsOpen} onChange={onChange} />
       <label htmlFor={`category_${category.id}`}>
         <div>
           <p>{category.name}</p>
@@ -242,20 +234,17 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   const [counterKey, setCounterKey] = useState(0);
 
-  var [count, setCount] = useState(dish?.count || 0);
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
 
   var plusButtonHandler = () => {
     addDishHandler({ categoryId: dish?.category_id, dishId: dish?.id });
-    setCount((prev) => ++prev);
     setCounterKey((prev) => ++prev);
   };
 
   var minusButtonHandler = () => {
     if ((dish?.count || 0) > 0) {
       removeDishHandler({ categoryId: dish?.category_id, dishId: dish?.id });
-      setCount((prev) => --prev);
       setCounterKey((prev) => ++prev);
     }
   };
