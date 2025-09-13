@@ -43,11 +43,11 @@ var useGetData = (basketId) => {
 function BasketDetail() {
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
-  print("BasketDetail userId", userId);
+  console.log("BasketDetail userId", userId);
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
   var [basket, dishes] = useGetData(currentBasketId);
-  print("BasketDetail basket", basket);
+  console.log("BasketDetail basket", basket);
 
   var basketDishes = computingDishes(dishes);
 
