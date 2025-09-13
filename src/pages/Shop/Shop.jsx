@@ -106,7 +106,6 @@ function Shop() {
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var userId = useSelector((state) => state.appSlice.userId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
-  console.log("shopListData", shopListData);
 
   var filteredShopListData = filtering(searhc, shopListData);
 
@@ -125,8 +124,6 @@ function Shop() {
   };
 
   var addDishHandler = ({ categoryId, dishId }) => {
-    console.log("addDishHandler categoryId", categoryId, "dishId", dishId);
-
     Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId }).then(console.log);
 
     var copy = structuredClone(shopListData);
@@ -249,9 +246,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var minusButtonHandler = () => {
-    console.log("minusButtonHandler dish?.count", dish?.count);
     if ((dish?.count || 0) > 0) {
-      console.log("if ((dish?.count || 0) > 0) {");
       removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
       setCounterKey((prev) => ++prev);
     }
