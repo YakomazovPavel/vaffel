@@ -176,7 +176,7 @@ function Shop() {
         ) : !!filteredShopListData?.length ? (
           <>
             {filteredShopListData.map((category) => (
-              <Category category={category} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
+              <Category category={category} />
             ))}
           </>
         ) : (
@@ -239,7 +239,7 @@ var Category = ({ category }) => {
   );
 };
 
-var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
+var Dish = ({ dish }) => {
   const [counterKey, setCounterKey] = useState(0);
 
   var [count, setCount] = useState(dish?.count);
@@ -249,12 +249,14 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var addDishHandler = () => {
     // fetch
     setCount((prev) => prev++);
+    setCounterKey((prev) => ++prev);
   };
 
   var removeDishHandler = () => {
     // fetch
     if (count > 0) {
       setCount((prev) => prev--);
+      setCounterKey((prev) => ++prev);
     }
   };
 
@@ -300,24 +302,14 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         </div>
         <div className="control">
           {count > 0 && (
-            <button
-              onClick={() => {
-                removeDishHandler(dish.category_id, dish.id);
-                setCounterKey((prev) => ++prev);
-              }}
-            >
+            <button onClick={removeDishHandler}>
               <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                 <use xlinkHref="#circle_minus"></use>
               </svg>
             </button>
           )}
 
-          <button
-            onClick={() => {
-              addDishHandler(dish.category_id, dish.id);
-              setCounterKey((prev) => ++prev);
-            }}
-          >
+          <button onClick={addDishHandler}>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
               <use xlinkHref="#circle_plus"></use>
             </svg>
@@ -338,24 +330,14 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
 
             <div className="description_header_control">
               {dish?.count > 0 && (
-                <button
-                  onClick={() => {
-                    removeDishHandler(dish.category_id, dish.id);
-                    setCounterKey((prev) => ++prev);
-                  }}
-                >
+                <button onClick={removeDishHandler}>
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                     <use xlinkHref="#circle_minus"></use>
                   </svg>
                 </button>
               )}
 
-              <button
-                onClick={() => {
-                  addDishHandler(dish.category_id, dish.id);
-                  setCounterKey((prev) => ++prev);
-                }}
-              >
+              <button onClick={addDishHandler}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
                   <use xlinkHref="#circle_plus"></use>
                 </svg>
