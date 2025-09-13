@@ -49,7 +49,7 @@ function BasketDetail() {
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
   var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData(currentBasketId);
-  console.log(basket, dishesListData, isLoading);
+  console.log({ basket, dishesListData, isLoading });
 
   var orderBasketHandler = () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
