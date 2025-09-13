@@ -51,7 +51,6 @@ function CreateBasket() {
   };
 
   useEffect(() => {
-    // setStartApp(window?.Telegram?.WebApp?.initDataUnsafe?.start_param);
     open();
     return close;
   }, []);

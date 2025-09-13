@@ -124,7 +124,7 @@ function Shop() {
   };
 
   var addDishHandler = async ({ categoryId, dishId }) => {
-    await Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
+    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
 
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
@@ -137,7 +137,7 @@ function Shop() {
   };
 
   var removeDishHandler = async ({ categoryId, dishId }) => {
-    await Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
+    Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
     var copy = structuredClone(shopListData);
     var category = copy.filter((category) => category.id === categoryId)?.at(0);
     if (category) {

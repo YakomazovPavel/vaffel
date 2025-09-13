@@ -37,17 +37,19 @@ var useGetData = (basketId) => {
       });
   }, []);
 
-  return [basket, dishes];
+  return [basket, setBasket, dishes, setDishes];
 };
 
 function BasketDetail() {
+  console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
+
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
-  console.log("BasketDetail userId", userId);
+  console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
-  var [basket, dishes] = useGetData(currentBasketId);
-  console.log("BasketDetail basket", basket);
+  var [basket, setBasket, dishes, setDishes] = useGetData(currentBasketId);
+  console.log({ basket, dishes });
 
   var basketDishes = computingDishes(dishes);
 
@@ -122,30 +124,7 @@ function BasketDetail() {
             </div>
           </div>
 
-          {!!basketDishes?.length &&
-            basketDishes.map((item) => (
-              <div class="basket_detail_item">
-                <div className="photo">
-                  <img src={item?.dish?.photo_url} />
-                  <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p>
-                </div>
-
-                <p class="name">{item?.dish?.name}</p>
-                {/* <p class="count">x{item?.count}</p> */}
-                <div class="control">
-                  <button>
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                      <use xlinkHref="#circle_minus"></use>
-                    </svg>
-                  </button>
-                  <button>
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                      <use xlinkHref="#circle_plus"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))}
+          {!!basketDishes?.length && basketDishes.map((item) => <Dish item={item} />)}
 
           {!basket?.is_locked && (
             <div class="basket_detail_item basket_add_item">
@@ -162,5 +141,31 @@ function BasketDetail() {
     </div>
   );
 }
+
+var Dish = ({ item }) => {
+  return (
+    <div class="basket_detail_item">
+      <div className="photo">
+        <img src={item?.dish?.photo_url} />
+        <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p>
+      </div>
+
+      <p class="name">{item?.dish?.name}</p>
+      {/* <p class="count">x{item?.count}</p> */}
+      <div class="control">
+        <button>
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+            <use xlinkHref="#circle_minus"></use>
+          </svg>
+        </button>
+        <button>
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+            <use xlinkHref="#circle_plus"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default BasketDetail;
