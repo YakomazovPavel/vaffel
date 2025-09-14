@@ -142,17 +142,41 @@ function BasketDetail() {
     Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
     var copy = structuredClone(dishesListData);
     var dish = copy.filter((dish) => dish.id === dishId)?.at(0);
+
     if (dish) {
-      dish.count--;
-      var user = dish.users.filter((user) => user.id === userId)?.at(0);
-      if (user) {
-        user.count--;
+      if (dish.count == 1) {
+        window.Telegram.WebApp.showPopup(
+          {
+            title: "Удалить товар из корзины?",
+            message: "message",
+            buttons: [
+              { id: "1", type: "destructive", text: "Удалить" },
+              { id: "2", type: "ok", text: "Отменить" },
+            ],
+          },
+          (id) => {
+            if (id == "1") {
+              dish.count--;
+              var user = dish.users.filter((user) => user.id === userId)?.at(0);
+              if (user) {
+                user.count--;
+              }
+              if (dish.count == 0) {
+                // Удалить товар из корзины
+                copy = copy.filter((dish) => dish.id !== dishId);
+              }
+              setDishesListData(copy);
+            }
+          }
+        );
+      } else {
+        dish.count--;
+        var user = dish.users.filter((user) => user.id === userId)?.at(0);
+        if (user) {
+          user.count--;
+        }
+        setDishesListData(copy);
       }
-      if (dish.count == 0) {
-        // Удалить товар из корзины
-        copy = copy.filter((dish) => dish.id !== dishId);
-      }
-      setDishesListData(copy);
     }
   };
 
