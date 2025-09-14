@@ -151,7 +151,9 @@ function BasketDetail() {
   };
 
   var onTouchEndHandler = (e) => {
-    console.log("onTouchEndHandler", e);
+    if (e.touches[0].clientX - e.touches.at(-1).clientX > 120) {
+      dispatch(setCurrentPage(PAGE.BasketList));
+    }
   };
 
   return (
