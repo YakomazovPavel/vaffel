@@ -150,8 +150,12 @@ function BasketDetail() {
     }
   };
 
+  var onTouchEndHandler = (e) => {
+    console.log("onTouchEndHandler", e);
+  };
+
   return (
-    <div id="page_basket_detail">
+    <div id="page_basket_detail" onTouchEnd={onTouchEndHandler}>
       <div class="settings_wrap">
         <div class="basket_detail">
           <div class="basket_detail_heared">
