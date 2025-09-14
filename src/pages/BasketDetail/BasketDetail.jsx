@@ -238,15 +238,16 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
 
   var plusButtonHandler = () => {
     addDishHandler({ dishId: dish?.id });
-    if (dish?.count != 1) {
-      setCounterKey((prev) => ++prev);
-    }
+    setCounterKey((prev) => ++prev);
   };
 
   var minusButtonHandler = () => {
     if ((dish?.count || 0) > 0) {
       removeDishHandler({ dishId: dish?.id });
-      setCounterKey((prev) => ++prev);
+
+      if (dish?.count != 1) {
+        setCounterKey((prev) => ++prev);
+      }
     }
   };
 
