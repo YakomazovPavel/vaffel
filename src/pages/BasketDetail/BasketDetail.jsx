@@ -170,22 +170,41 @@ function BasketDetail() {
 }
 
 var Dish = ({ item }) => {
+  const [counterKey, setCounterKey] = useState(0);
+
+  var plusButtonHandler = () => {
+    // addDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
+    setCounterKey((prev) => ++prev);
+  };
+
+  var minusButtonHandler = () => {
+    if ((item?.dish?.count || 0) > 0) {
+      // removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
+      setCounterKey((prev) => ++prev);
+    }
+  };
+
   return (
     <div class="basket_detail_item">
       <div className="photo">
         <img src={item?.dish?.photo_url} />
-        <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p>
+        {/* <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p> */}
+        {!!item?.dish?.count && (
+          <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
+            {item?.dish?.count}
+          </p>
+        )}
       </div>
 
       <p class="name">{item?.dish?.name}</p>
       {/* <p class="count">x{item?.count}</p> */}
       <div class="control">
-        <button>
+        <button onClick={plusButtonHandler}>
           <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#circle_minus"></use>
           </svg>
         </button>
-        <button>
+        <button onClick={minusButtonHandler}>
           <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#circle_plus"></use>
           </svg>
