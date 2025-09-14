@@ -51,8 +51,9 @@ var useGetData = (basketId) => {
       setIsLoading(false);
       setBasket(basket);
       // Сгруппировать basketDishes по dishId
+      console.log({ basketDishes });
       var computedDishes = computingDishes({ basketDishes });
-      console.log({ basketDishes, computedDishes });
+      console.log({ computedDishes });
       setDishesListData(computedDishes);
     });
   }, []);
