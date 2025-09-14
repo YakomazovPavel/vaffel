@@ -5,10 +5,28 @@ import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
 var computingDishes = ({ basketDishes }) => {
-  console.log({ basketDishes });
   if (!!basketDishes?.length) {
     var groupDishes = basketDishes.reduce(function (accum, item) {
-      (accum[item?.dish?.id] ??= []).push(item);
+      var dish = accum[item?.dish?.id];
+      if (dish) {
+        dish.count++;
+
+        // Проверить есть у этого блюда пользователь, если такой есть добавить счетчик, если нет, добавить пользователя
+        user = dish.users.filter((user) => user.id == item.dish.user.id)?.at(0);
+        if (user) {
+          user.count++;
+        } else {
+          dish.users.push(item.dish.user);
+        }
+      } else {
+        // Добавить новое блюдо
+        item.dish.count = 1;
+        item.dish.user.count = 1;
+        item.dish.users = [item.dish.user];
+        delete item.dish.user;
+        accum[item?.dish?.id] = item.dish;
+      }
+      // (accum[item?.dish?.id] ??= []).push(item);
       return accum;
     }, {});
 
@@ -33,7 +51,9 @@ var useGetData = (basketId) => {
       setIsLoading(false);
       setBasket(basket);
       // Сгруппировать basketDishes по dishId
-      setDishesListData(computingDishes({ basketDishes }));
+      var computedDishes = computingDishes({ basketDishes });
+      console.log({ basketDishes, computedDishes });
+      setDishesListData(computedDishes);
     });
   }, []);
 
@@ -41,15 +61,15 @@ var useGetData = (basketId) => {
 };
 
 function BasketDetail() {
-  console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
+  // console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
 
   const dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
-  console.log({ userId });
+  // console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
   var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData(currentBasketId);
-  console.log({ basket, dishesListData, isLoading });
+  // console.log({ basket, dishesListData, isLoading });
 
   var orderBasketHandler = () => {
     window.Telegram.WebApp.MainButton.showProgress(false);
