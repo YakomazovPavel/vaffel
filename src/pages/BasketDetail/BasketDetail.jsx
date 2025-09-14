@@ -11,7 +11,7 @@ var computingDishes = ({ basketDishes }) => {
       if (dish) {
         dish.count++;
         // Проверить есть у этого блюда пользователь, если такой есть добавить счетчик, если нет, добавить пользователя
-        user = dish?.users?.filter((user) => user.id == item.user.id)?.at(0);
+        var user = dish?.users?.filter((user) => user.id == item.user.id)?.at(0);
         if (user) {
           user.count++;
         } else {
