@@ -148,6 +148,10 @@ function BasketDetail() {
       if (user) {
         user.count--;
       }
+      if (dish.count == 0) {
+        // Удалить товар из корзины
+        copy = copy.filter((dish) => dish.id !== dishId);
+      }
       setDishesListData(copy);
     }
   };
