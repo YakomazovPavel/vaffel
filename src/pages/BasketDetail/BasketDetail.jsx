@@ -139,7 +139,6 @@ function BasketDetail() {
   };
 
   var removeDishHandler = async ({ categoryId, dishId }) => {
-    Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
     var copy = structuredClone(dishesListData);
     var dish = copy.filter((dish) => dish.id === dishId)?.at(0);
 
@@ -158,6 +157,7 @@ function BasketDetail() {
             console.log("!id", id);
 
             if (id == "1") {
+              Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
               dish.count--;
               var user = dish.users.filter((user) => user.id === userId)?.at(0);
               if (user) {
@@ -172,6 +172,7 @@ function BasketDetail() {
           }
         );
       } else {
+        Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
         dish.count--;
         var user = dish.users.filter((user) => user.id === userId)?.at(0);
         if (user) {
