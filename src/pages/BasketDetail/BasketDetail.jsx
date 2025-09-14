@@ -147,7 +147,7 @@ function BasketDetail() {
         if (category.count > 0) {
           category.count--;
         }
-        setShopListData(copy);
+        // setShopListData(copy);
       }
     }
   };
@@ -181,7 +181,8 @@ function BasketDetail() {
             </div>
           </div>
 
-          {!!dishesListData?.length && dishesListData.map((dish) => <Dish dish={dish} />)}
+          {!!dishesListData?.length &&
+            dishesListData.map((dish) => <Dish dish={dish} addDishHandler={addDishHandler} />)}
 
           {!basket?.is_locked && (
             <div class="basket_detail_item basket_add_item">
@@ -199,13 +200,13 @@ function BasketDetail() {
   );
 }
 
-var Dish = ({ dish }) => {
+var Dish = ({ dish, addDishHandler }) => {
   // addDishHandler, removeDishHandler
   console.log({ dish });
   const [counterKey, setCounterKey] = useState(0);
 
   var plusButtonHandler = () => {
-    // addDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
+    addDishHandler({ dishId: dish?.id });
     setCounterKey((prev) => ++prev);
   };
 
