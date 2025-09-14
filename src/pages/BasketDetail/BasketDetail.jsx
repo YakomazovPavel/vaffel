@@ -32,7 +32,7 @@ var computingDishes = ({ basketDishes }) => {
     }, {});
 
     return Object.keys(groupDishes).map((key) => {
-      return { ...groupDishes[key]?.at(0), count: groupDishes[key]?.length };
+      return groupDishes[key];
     });
   } else {
     return [];
