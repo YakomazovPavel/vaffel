@@ -171,7 +171,7 @@ function BasketDetail() {
             </div>
           </div>
 
-          {!!dishesListData?.length && dishesListData.map((item) => <Dish item={item} />)}
+          {!!dishesListData?.length && dishesListData.map((dish) => <Dish dish={dish} />)}
 
           {!basket?.is_locked && (
             <div class="basket_detail_item basket_add_item">
@@ -189,9 +189,9 @@ function BasketDetail() {
   );
 }
 
-var Dish = ({ item }) => {
+var Dish = ({ dish }) => {
   // addDishHandler, removeDishHandler
-  console.count("Dish");
+  console.log({ dish });
   const [counterKey, setCounterKey] = useState(0);
 
   var plusButtonHandler = () => {
@@ -200,7 +200,7 @@ var Dish = ({ item }) => {
   };
 
   var minusButtonHandler = () => {
-    if ((item?.dish?.count || 0) > 0) {
+    if ((dish?.count || 0) > 0) {
       // removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
       setCounterKey((prev) => ++prev);
     }
@@ -209,16 +209,16 @@ var Dish = ({ item }) => {
   return (
     <div class="basket_detail_item">
       <div className="photo">
-        <img src={item?.dish?.photo_url} />
+        <img src={dish?.photo_url} />
         {/* <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p> */}
-        {!!item?.dish?.count && (
+        {!!dish?.count && (
           <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-            {item?.dish?.count}
+            {dish?.count}
           </p>
         )}
       </div>
 
-      <p class="name">{item?.dish?.name}</p>
+      <p class="name">{dish?.name}</p>
       {/* <p class="count">x{item?.count}</p> */}
       <div class="control">
         <button onClick={plusButtonHandler}>
