@@ -222,7 +222,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
       <div className="photo">
         <img src={dish?.photo_url} />
         {/* <p style={{ animation: "change 0.7s forwards" }}>{item?.count}</p> */}
-        {!!dish?.count && (
+        {dish.count > 0 && (
           <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
             {dish?.count}
           </p>
@@ -232,11 +232,13 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
       <p class="name">{dish?.name}</p>
       {/* <p class="count">x{item?.count}</p> */}
       <div class="control">
-        <button onClick={minusButtonHandler}>
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-            <use xlinkHref="#circle_minus"></use>
-          </svg>
-        </button>
+        {dish.count > 0 && (
+          <button onClick={minusButtonHandler}>
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+              <use xlinkHref="#circle_minus"></use>
+            </svg>
+          </button>
+        )}
         <button onClick={plusButtonHandler}>
           <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#circle_plus"></use>
