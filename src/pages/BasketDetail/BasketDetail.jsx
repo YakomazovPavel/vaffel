@@ -170,6 +170,8 @@ function BasketDetail() {
 }
 
 var Dish = ({ item }) => {
+  // addDishHandler, removeDishHandler
+  console.count("Dish");
   const [counterKey, setCounterKey] = useState(0);
 
   var plusButtonHandler = () => {
