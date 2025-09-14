@@ -7,11 +7,11 @@ import Backend from "../../api/backend.js";
 var computingDishes = ({ basketDishes }) => {
   if (!!basketDishes?.length) {
     var groupDishes = basketDishes.reduce(function (accum, item) {
-      var dish = accum[item?.dish?.id];
+      var dish = accum[item.dish.id];
       if (dish) {
         dish.count++;
         // Проверить есть у этого блюда пользователь, если такой есть добавить счетчик, если нет, добавить пользователя
-        user = dish?.users?.filter((user) => user?.id == item?.user?.id)?.at(0);
+        user = dish?.users?.filter((user) => user.id == item.user.id)?.at(0);
         if (user) {
           user.count++;
         } else {
@@ -21,7 +21,7 @@ var computingDishes = ({ basketDishes }) => {
         // Добавить новое блюдо
         item.dish.count = 1;
         item.user.count = 1;
-        item.dish.users = [item.dish.user];
+        item.dish.users = [item.user];
         delete item.dish.user;
         console.log("item.dish", item.dish);
 
