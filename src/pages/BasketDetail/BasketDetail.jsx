@@ -155,6 +155,8 @@ function BasketDetail() {
             ],
           },
           (id) => {
+            console.log("!id", id);
+
             if (id == "1") {
               dish.count--;
               var user = dish.users.filter((user) => user.id === userId)?.at(0);
