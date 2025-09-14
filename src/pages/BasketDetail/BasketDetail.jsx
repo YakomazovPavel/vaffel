@@ -124,13 +124,15 @@ function BasketDetail() {
   var addDishHandler = async ({ dishId }) => {
     Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
 
-    var copy = structuredClone(shopListData);
-    var category = copy.filter((category) => category.id === categoryId)?.at(0);
-    if (category) {
-      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
+    var copy = structuredClone(dishesListData);
+    var dish = dishesListData.filter((dish) => dish.id === dishId)?.at(0);
+    if (dish) {
       dish.count++;
-      category.count++;
-      setShopListData(copy);
+      var user = dish.users.filter((user) => user.id === userId)?.at(0);
+      if (user) {
+        user.count++;
+      }
+      setDishesListData(copy);
     }
   };
 
