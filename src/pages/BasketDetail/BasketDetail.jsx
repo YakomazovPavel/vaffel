@@ -138,17 +138,15 @@ function BasketDetail() {
 
   var removeDishHandler = async ({ categoryId, dishId }) => {
     Backend.deleteBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
-    var copy = structuredClone(shopListData);
-    var category = copy.filter((category) => category.id === categoryId)?.at(0);
-    if (category) {
-      var dish = category.dishes.filter((dish) => dish.id === dishId)?.at(0);
-      if (dish && dish.count > 0) {
-        dish.count--;
-        if (category.count > 0) {
-          category.count--;
-        }
-        // setShopListData(copy);
+    var copy = structuredClone(dishesListData);
+    var dish = dishesListData.filter((dish) => dish.id === dishId)?.at(0);
+    if (dish) {
+      dish.count--;
+      var user = dish.users.filter((user) => user.id === userId)?.at(0);
+      if (user) {
+        user.count--;
       }
+      setDishesListData(copy);
     }
   };
 
@@ -182,7 +180,9 @@ function BasketDetail() {
           </div>
 
           {!!dishesListData?.length &&
-            dishesListData.map((dish) => <Dish dish={dish} addDishHandler={addDishHandler} />)}
+            dishesListData.map((dish) => (
+              <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
+            ))}
 
           {!basket?.is_locked && (
             <div class="basket_detail_item basket_add_item">
@@ -200,7 +200,7 @@ function BasketDetail() {
   );
 }
 
-var Dish = ({ dish, addDishHandler }) => {
+var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   // addDishHandler, removeDishHandler
   console.log({ dish });
   const [counterKey, setCounterKey] = useState(0);
@@ -212,7 +212,7 @@ var Dish = ({ dish, addDishHandler }) => {
 
   var minusButtonHandler = () => {
     if ((dish?.count || 0) > 0) {
-      // removeDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
+      removeDishHandler({ dishId: dish?.id });
       setCounterKey((prev) => ++prev);
     }
   };
