@@ -23,7 +23,6 @@ var computingDishes = ({ basketDishes }) => {
         item.user.count = 1;
         item.dish.users = [item.user];
         delete item.dish.user;
-        console.log("item.dish", item.dish);
 
         accum[item?.dish?.id] = item.dish;
       }
@@ -122,18 +121,21 @@ function BasketDetail() {
   };
 
   var addDishHandler = async ({ dishId }) => {
+    console.log("addDishHandler dishId", dishId);
+
     Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
 
     var copy = structuredClone(dishesListData);
     var dish = dishesListData.filter((dish) => dish.id === dishId)?.at(0);
     if (dish) {
-      dish.count++;
+      ++dish.count;
       var user = dish.users.filter((user) => user.id === userId)?.at(0);
       if (user) {
-        user.count++;
+        ++user.count;
       }
       setDishesListData(copy);
     }
+    console.log("addDishHandler dish", dish);
   };
 
   var removeDishHandler = async ({ categoryId, dishId }) => {
@@ -201,8 +203,6 @@ function BasketDetail() {
 }
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
-  // addDishHandler, removeDishHandler
-  console.log({ dish });
   const [counterKey, setCounterKey] = useState(0);
 
   var plusButtonHandler = () => {
@@ -232,12 +232,12 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
       <p class="name">{dish?.name}</p>
       {/* <p class="count">x{item?.count}</p> */}
       <div class="control">
-        <button onClick={plusButtonHandler}>
+        <button onClick={minusButtonHandler}>
           <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#circle_minus"></use>
           </svg>
         </button>
-        <button onClick={minusButtonHandler}>
+        <button onClick={plusButtonHandler}>
           <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#circle_plus"></use>
           </svg>
