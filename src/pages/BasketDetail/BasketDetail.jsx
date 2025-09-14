@@ -10,9 +10,8 @@ var computingDishes = ({ basketDishes }) => {
       var dish = accum[item?.dish?.id];
       if (dish) {
         dish.count++;
-
         // Проверить есть у этого блюда пользователь, если такой есть добавить счетчик, если нет, добавить пользователя
-        user = dish.users.filter((user) => user.id == item.user.id)?.at(0);
+        user = dish?.users?.filter((user) => user.id == item.user.id)?.at(0);
         if (user) {
           user.count++;
         } else {
@@ -24,6 +23,8 @@ var computingDishes = ({ basketDishes }) => {
         item.user.count = 1;
         item.dish.users = [item.dish.user];
         delete item.dish.user;
+        console.log("item.dish", item.dish);
+
         accum[item?.dish?.id] = item.dish;
       }
       // (accum[item?.dish?.id] ??= []).push(item);
