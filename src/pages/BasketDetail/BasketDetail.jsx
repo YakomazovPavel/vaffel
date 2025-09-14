@@ -128,10 +128,10 @@ function BasketDetail() {
     var copy = structuredClone(dishesListData);
     var dish = dishesListData.filter((dish) => dish.id === dishId)?.at(0);
     if (dish) {
-      ++dish.count;
+      dish.count = dish.count + 1;
       var user = dish.users.filter((user) => user.id === userId)?.at(0);
       if (user) {
-        ++user.count;
+        user.count = user.count + 1;
       }
       setDishesListData(copy);
     }
