@@ -148,10 +148,10 @@ function BasketDetail() {
         window.Telegram.WebApp.showPopup(
           {
             title: "Удалить товар из корзины?",
-            message: "message",
+            message: `Вы уверены, что хотите удалить "${dish?.name}" из корзины?`,
             buttons: [
               { id: "1", type: "destructive", text: "Удалить" },
-              { id: "2", type: "ok", text: "Отменить" },
+              { id: "2", type: "default", text: "Отменить" },
             ],
           },
           (id) => {
