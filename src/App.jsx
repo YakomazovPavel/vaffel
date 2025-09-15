@@ -37,13 +37,13 @@ function App() {
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/vaffel/dist">
       <Routes>
-        <Route path="/vaffel/dist/" element={<CreateBasket />} />
-        <Route path="baskets/" element={<BasketList />} />
-        <Route path="baskets/:basketId/" element={<BasketDetail />} />
-        <Route path="baskets/:basketId/menu/" element={<BasketDetail />} />
-        <Route path="dish/:dishId/" element={<BasketDetail />} />
+        <Route path="/" element={<CreateBasket />} />
+        <Route path="/baskets/" element={<BasketList />} />
+        <Route path="/baskets/:basketId/" element={<BasketDetail />} />
+        <Route path="/baskets/:basketId/menu/" element={<BasketDetail />} />
+        <Route path="/dish/:dishId/" element={<BasketDetail />} />
       </Routes>
     </BrowserRouter>
     // <>
