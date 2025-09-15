@@ -45,7 +45,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        <Route path="*" element={<Main />}></Route>
       </Routes>
     </BrowserRouter>
 
