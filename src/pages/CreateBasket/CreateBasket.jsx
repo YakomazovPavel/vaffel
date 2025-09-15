@@ -87,7 +87,8 @@ function CreateBasket() {
   };
 
   var toBasketHandler = (e) => {
-    dispatch(setCurrentPage(PAGE.BasketList));
+    // dispatch(setCurrentPage(PAGE.BasketList));
+    navigate(`baskets/`, { replace: false });
   };
 
   return (
