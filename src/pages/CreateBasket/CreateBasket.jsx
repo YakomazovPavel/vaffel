@@ -50,7 +50,7 @@ function CreateBasket() {
     console.log({ basketId });
 
     if (basketId) {
-      navigate(`baskets/${basketId}/`);
+      navigate(`baskets/${basketId}/`, { replace: false });
     }
 
     window.Telegram.WebApp.BackButton.hide();
