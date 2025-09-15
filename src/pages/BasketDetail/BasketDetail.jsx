@@ -107,7 +107,7 @@ function BasketDetail() {
     // const currentUrl = new URL(window.location.href);
     // currentUrl.search = ""; // Remove the query string
     // window.history.replaceState({}, document.title, currentUrl.toString());
-    navigate("/vaffel/dist/", { replace: false });
+    navigate("", { replace: false });
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 
