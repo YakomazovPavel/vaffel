@@ -28,14 +28,11 @@ var useInizialize = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setCurrentUserId(data?.id));
-        var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
-        console.log("!href", window.location.href);
-        console.log("!search", window.location.search);
+        var start_param = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
         // https://yakomazovpavel.github.io/vaffel/dist/?tgWebAppStartParam=1#
-        var wbasketId = new URLSearchParams(window.location.search)?.get("tgWebAppStartParam");
-        console.log({ start_param: basketId, wbasketId: wbasketId });
+        var basketId = new URLSearchParams(window.location.search)?.get("tgWebAppStartParam");
+        console.log({ start_param, basketId });
 
-        console.log({ basketId });
         if (basketId) {
           dispatch(setCurrentBasketId(basketId));
           dispatch(setCurrentPage(PAGE.BasketDetail));
