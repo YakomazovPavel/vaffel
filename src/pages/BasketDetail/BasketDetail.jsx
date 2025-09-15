@@ -83,6 +83,7 @@ function BasketDetail() {
   var backButtonHandler = () => {
     console.log("backButtonHandler");
     history.pushState(null, null, "https://yakomazovpavel.github.io/vaffel/dist/index.html");
+    window.location.href = "https://yakomazovpavel.github.io/vaffel/dist/index.html";
 
     // let url = new URL(window.location.href);
     // let params = url.searchParams;
