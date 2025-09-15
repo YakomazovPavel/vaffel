@@ -31,7 +31,7 @@ var useInizialize = () => {
         var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
         console.log("location", window.location);
         // https://yakomazovpavel.github.io/vaffel/dist/?tgWebAppStartParam=1#
-        var wbasketId = new URLSearchParams(window.location)?.get("tgWebAppStartParam");
+        var wbasketId = new URLSearchParams(window.location.href)?.get("tgWebAppStartParam");
         console.log({ start_param: basketId, wbasketId });
 
         console.log({ basketId });
