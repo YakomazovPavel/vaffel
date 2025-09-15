@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // var useCreateUserBasket = ({ basketId }) => {
 //   useEffect(() => {}, []);
@@ -67,6 +67,7 @@ var useGetData = ({ basketId, userId }) => {
 };
 
 function BasketDetail() {
+  const [searchParams, setSearchParams] = useSearchParams();
   var navigate = useNavigate();
   // console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
 
@@ -90,23 +91,7 @@ function BasketDetail() {
   };
 
   var backButtonHandler = () => {
-    console.log("backButtonHandler");
-    // history.pushState(null, null, "https://yakomazovpavel.github.io/vaffel/dist/index.html");
-    // window.location.href = "https://yakomazovpavel.github.io/vaffel/dist/index.html";
-
-    // let url = new URL(window.location.href);
-    // let params = url.searchParams;
-
-    // if (params.has("ref")) {
-    //   // Check if the parameter exists before attempting to delete
-    //   params.delete("ref");
-    //   console.log("url.toString()", url.toString());
-
-    //   window.history.replaceState({}, "", url.toString());
-    // }
-    // const currentUrl = new URL(window.location.href);
-    // currentUrl.search = ""; // Remove the query string
-    // window.history.replaceState({}, document.title, currentUrl.toString());
+    setSearchParams({});
     navigate("", { replace: false });
     dispatch(setCurrentPage(PAGE.BasketList));
   };
