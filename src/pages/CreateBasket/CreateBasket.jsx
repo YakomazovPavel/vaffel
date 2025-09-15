@@ -47,9 +47,11 @@ function CreateBasket() {
 
   var open = () => {
     var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
-    if (basketId) {
-      navigate(`baskets/${basketId}/`, { replace: false });
-    }
+    console.log({ basketId });
+
+    // if (basketId) {
+    //   navigate(`baskets/${basketId}/`, { replace: false });
+    // }
 
     window.Telegram.WebApp.BackButton.hide();
     window.Telegram.WebApp.BackButton.isVisible = false;
