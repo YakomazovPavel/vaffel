@@ -33,12 +33,6 @@ var useFirstLoadData = () => {
 };
 
 function App() {
-  window.addEventListener("unload", () => {
-    // window.location.replace("https://yakomazovpavel.github.io/vaffel/dist/index.html");
-    window.location.href = "https://yakomazovpavel.github.io/vaffel/dist/index.html";
-    // localStorage.setItem("store", JSON.stringify(store.getState()));
-    // window?.Telegram?.WebApp?.DeviceStorage?.
-  });
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
