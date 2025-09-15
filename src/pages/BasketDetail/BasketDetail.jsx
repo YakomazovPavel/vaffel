@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
+import { useNavigate } from "react-router-dom";
 
 // var useCreateUserBasket = ({ basketId }) => {
 //   useEffect(() => {}, []);
@@ -66,9 +67,10 @@ var useGetData = ({ basketId, userId }) => {
 };
 
 function BasketDetail() {
+  var navigate = useNavigate();
   // console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
 
-  const dispatch = useDispatch();
+  var dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   // console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
@@ -102,9 +104,10 @@ function BasketDetail() {
 
     //   window.history.replaceState({}, "", url.toString());
     // }
-    const currentUrl = new URL(window.location.href);
-    currentUrl.search = ""; // Remove the query string
-    window.history.replaceState({}, document.title, currentUrl.toString());
+    // const currentUrl = new URL(window.location.href);
+    // currentUrl.search = ""; // Remove the query string
+    // window.history.replaceState({}, document.title, currentUrl.toString());
+    navigate("/", { replace: false });
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 

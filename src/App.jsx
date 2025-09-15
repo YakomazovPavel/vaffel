@@ -9,6 +9,7 @@ import Shop from "./pages/Shop/Shop.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import Backend from "./api/backend.js";
 import { setCurrentUserId, setCurrentBasketId, setCurrentPage, PAGE } from "./slices/appSlice.js";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 import Loader from "./components/Loader.jsx";
 
@@ -45,18 +46,22 @@ function App() {
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
   return (
-    <>
-      {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)" }} />
-      ) : (
-        <>
-          {currentPage === PAGE.CreateBasket && <CreateBasket />}
-          {currentPage === PAGE.BasketList && <BasketList />}
-          {currentPage === PAGE.BasketDetail && <BasketDetail />}
-          {currentPage === PAGE.Shop && <Shop />}
-        </>
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CreateBasket />}>
+          {isLoading ? (
+            <Loader style={{ left: "calc(50% - 20px)" }} />
+          ) : (
+            <>
+              {currentPage === PAGE.CreateBasket && <CreateBasket />}
+              {currentPage === PAGE.BasketList && <BasketList />}
+              {currentPage === PAGE.BasketDetail && <BasketDetail />}
+              {currentPage === PAGE.Shop && <Shop />}
+            </>
+          )}
+        </Route>
+      </Routes>
+    </BrowserRouter>
 
     // <Shop></Shop>
     // <CreateBasket></CreateBasket>
