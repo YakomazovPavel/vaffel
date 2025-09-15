@@ -45,7 +45,7 @@ function App() {
   return (
     <>
       {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)", top: "calc(50%)" }} />
+        <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <>
           {currentPage === PAGE.CreateBasket && <CreateBasket />}
