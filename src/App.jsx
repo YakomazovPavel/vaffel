@@ -47,6 +47,7 @@ function App() {
   return (
     <BrowserRouter basename="/vaffel/dist">
       <Routes>
+        <Route path="/" element={<CreateBasket />} />
         <Route path="/index.html" element={<CreateBasket />} />
         <Route path="/baskets/" element={<BasketList />} />
         <Route path="/baskets/:basketId/" element={<BasketDetail />} />
