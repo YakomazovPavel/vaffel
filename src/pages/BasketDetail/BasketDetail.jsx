@@ -4,6 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
+// var useCreateUserBasket = ({ basketId }) => {
+//   useEffect(() => {}, []);
+// };
+
 var computingDishes = ({ basketDishes }) => {
   if (!!basketDishes?.length) {
     var groupDishes = basketDishes.reduce(function (accum, item) {
@@ -38,14 +42,14 @@ var computingDishes = ({ basketDishes }) => {
   }
 };
 
-var useGetData = (basketId) => {
+var useGetData = ({ basketId, userId }) => {
   var [isLoading, setIsLoading] = useState(true);
 
   var [basket, setBasket] = useState();
   var [dishesListData, setDishesListData] = useState([]);
   useEffect(() => {
     Promise.all([
-      Backend.getBasketDetail({ basketId }).then((response) => response.json()),
+      Backend.getBasketDetail({ basketId, userId }).then((response) => response.json()),
       Backend.getBasketDishes({ basketId }).then((response) => response.json()),
     ]).then(([basket, basketDishes]) => {
       setIsLoading(false);
@@ -69,7 +73,16 @@ function BasketDetail() {
   // console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
-  var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData(currentBasketId);
+  useEffect(() => {
+    if (currentBasketId) {
+      Backend.createUserBasket();
+    }
+  }, [currentBasketId]);
+
+  var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData({
+    basketId: currentBasketId,
+    userId,
+  });
   console.log({ dishesListData });
 
   var orderBasketHandler = () => {
@@ -82,8 +95,8 @@ function BasketDetail() {
 
   var backButtonHandler = () => {
     console.log("backButtonHandler");
-    history.pushState(null, null, "https://yakomazovpavel.github.io/vaffel/dist/index.html");
-    window.location.href = "https://yakomazovpavel.github.io/vaffel/dist/index.html";
+    // history.pushState(null, null, "https://yakomazovpavel.github.io/vaffel/dist/index.html");
+    // window.location.href = "https://yakomazovpavel.github.io/vaffel/dist/index.html";
 
     // let url = new URL(window.location.href);
     // let params = url.searchParams;
@@ -95,6 +108,9 @@ function BasketDetail() {
 
     //   window.history.replaceState({}, "", url.toString());
     // }
+    const currentUrl = new URL(window.location.href);
+    currentUrl.search = ""; // Remove the query string
+    window.history.replaceState({}, document.title, currentUrl.toString());
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 

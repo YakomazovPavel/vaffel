@@ -42,8 +42,13 @@ class Backend {
       // body: JSON.stringify({ user_id }),
     });
   };
-  getBasketDetail = ({ basketId }) => {
-    return fetch(this.BASE_URL + `baskets/${basketId}/`);
+  getBasketDetail = ({ basketId, userId }) => {
+    return fetch(this.BASE_URL + `baskets/${basketId}/`, {
+      method: "GET",
+      headers: {
+        Authorization: userId,
+      },
+    });
   };
   getBasketDishes = ({ basketId }) => {
     return fetch(this.BASE_URL + `baskets/${basketId}/dishes/`);
