@@ -48,19 +48,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CreateBasket />}>
-          {isLoading ? (
-            <Loader style={{ left: "calc(50% - 20px)" }} />
-          ) : (
-            <>
-              {currentPage === PAGE.CreateBasket && <CreateBasket />}
-              {currentPage === PAGE.BasketList && <BasketList />}
-              {currentPage === PAGE.BasketDetail && <BasketDetail />}
-              {currentPage === PAGE.Shop && <Shop />}
-            </>
-          )}
-        </Route>
+        <Route path="/" element={<CreateBasket />}></Route>
       </Routes>
+      {isLoading ? (
+        <Loader style={{ left: "calc(50% - 20px)" }} />
+      ) : (
+        <>
+          {currentPage === PAGE.CreateBasket && <CreateBasket />}
+          {currentPage === PAGE.BasketList && <BasketList />}
+          {currentPage === PAGE.BasketDetail && <BasketDetail />}
+          {currentPage === PAGE.Shop && <Shop />}
+        </>
+      )}
     </BrowserRouter>
 
     // <Shop></Shop>
