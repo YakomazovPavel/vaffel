@@ -4,16 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 function CreateBasket() {
   const navigate = useNavigate();
+
+  const location = useLocation();
   var userId = useSelector((state) => state.appSlice.userId);
   var refUserId = useRef(userId);
 
   useEffect(() => {
     refUserId.current = userId;
   }, [userId]);
+
+  useEffect(() => {
+    console.log("!Current location is ", location);
+  }, [location]);
 
   var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
 
