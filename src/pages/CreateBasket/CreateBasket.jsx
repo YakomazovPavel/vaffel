@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router";
 function CreateBasket() {
   const navigate = useNavigate();
 
-  const location = useLocation();
+  var location = useLocation();
   var userId = useSelector((state) => state.appSlice.userId);
   var refUserId = useRef(userId);
 

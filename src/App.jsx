@@ -39,7 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CreateBasket />} />
+        <Route path="/vaffel/dist/" element={<CreateBasket />} />
         <Route path="baskets/" element={<BasketList />} />
         <Route path="baskets/:basketId/" element={<BasketDetail />} />
         <Route path="baskets/:basketId/menu/" element={<BasketDetail />} />
