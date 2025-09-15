@@ -87,6 +87,8 @@ function BasketDetail() {
     if (params.has("ref")) {
       // Check if the parameter exists before attempting to delete
       params.delete("ref");
+      console.log("url.toString()", url.toString());
+
       window.history.replaceState({}, "", url.toString());
     }
     dispatch(setCurrentPage(PAGE.BasketList));
