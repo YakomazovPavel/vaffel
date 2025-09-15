@@ -7,10 +7,8 @@ import BasketList from "./pages/BasketList/BasketList.jsx";
 import BasketDetail from "./pages/BasketDetail/BasketDetail.jsx";
 import Shop from "./pages/Shop/Shop.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { PAGE } from "./slices/appSlice.js";
 import Backend from "./api/backend.js";
-import { setCurrentUserId } from "./slices/appSlice.js";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { setCurrentUserId, setCurrentBasketId, setCurrentPage, PAGE } from "./slices/appSlice.js";
 
 var useFirstLoadData = () => {
   var dispatch = useDispatch();
@@ -27,8 +25,6 @@ var useFirstLoadData = () => {
       .then((data) => {
         dispatch(setCurrentUserId(data?.id));
       });
-
-    console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
   }, []);
 };
 
@@ -36,31 +32,23 @@ function App() {
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
-  // useEffect(() => {
-  //   window.addEventListener("unload", () => {
-  //     window.location.replace("https://yakomazovpavel.github.io/vaffel/dist/index.html");
-  //     // localStorage.setItem("store", JSON.stringify(store.getState()));
-  //     // window?.Telegram?.WebApp?.DeviceStorage?.
-  //   });
-  // }, []);
+  useEffect(() => {
+    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
+    console.log({ basketId });
+
+    if (basketId) {
+      dispatch(setCurrentBasketId(basketId));
+      dispatch(setCurrentPage(PAGE.BasketDetail));
+    }
+  }, []);
 
   return (
-    <BrowserRouter basename="/vaffel/dist">
-      <Routes>
-        <Route path="/" element={<CreateBasket />} />
-        <Route path="/index.html" element={<CreateBasket />} />
-        <Route path="/baskets/" element={<BasketList />} />
-        <Route path="/baskets/:basketId/" element={<BasketDetail />} />
-        <Route path="/baskets/:basketId/menu/" element={<BasketDetail />} />
-        <Route path="/dish/:dishId/" element={<BasketDetail />} />
-      </Routes>
-    </BrowserRouter>
-    // <>
-    //   {currentPage === PAGE.CreateBasket && <CreateBasket />}
-    //   {currentPage === PAGE.BasketList && <BasketList />}
-    //   {currentPage === PAGE.BasketDetail && <BasketDetail />}
-    //   {currentPage === PAGE.Shop && <Shop />}
-    // </>
+    <>
+      {currentPage === PAGE.CreateBasket && <CreateBasket />}
+      {currentPage === PAGE.BasketList && <BasketList />}
+      {currentPage === PAGE.BasketDetail && <BasketDetail />}
+      {currentPage === PAGE.Shop && <Shop />}
+    </>
 
     // <Shop></Shop>
     // <CreateBasket></CreateBasket>

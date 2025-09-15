@@ -4,22 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
-import { useNavigate, useLocation } from "react-router";
-
 function CreateBasket() {
-  const navigate = useNavigate();
-
-  var location = useLocation();
   var userId = useSelector((state) => state.appSlice.userId);
   var refUserId = useRef(userId);
 
   useEffect(() => {
     refUserId.current = userId;
   }, [userId]);
-
-  useEffect(() => {
-    console.log("!Current location is ", location);
-  }, [location]);
 
   var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
 
@@ -46,13 +37,6 @@ function CreateBasket() {
   };
 
   var open = () => {
-    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
-    console.log({ basketId });
-
-    if (basketId) {
-      navigate(`baskets/${basketId}/`, { replace: false });
-    }
-
     window.Telegram.WebApp.BackButton.hide();
     window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
@@ -87,8 +71,7 @@ function CreateBasket() {
   };
 
   var toBasketHandler = (e) => {
-    // dispatch(setCurrentPage(PAGE.BasketList));
-    navigate(`baskets/`, { replace: false });
+    dispatch(setCurrentPage(PAGE.BasketList));
   };
 
   return (
