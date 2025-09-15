@@ -73,12 +73,6 @@ function BasketDetail() {
   // console.log({ userId });
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
 
-  useEffect(() => {
-    if (currentBasketId) {
-      Backend.createUserBasket();
-    }
-  }, [currentBasketId]);
-
   var [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading] = useGetData({
     basketId: currentBasketId,
     userId,
