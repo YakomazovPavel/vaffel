@@ -29,6 +29,7 @@ var useFirstLoadData = () => {
 };
 
 function App() {
+  const dispatch = useDispatch();
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
