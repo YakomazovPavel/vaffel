@@ -43,7 +43,7 @@ var useInizialize = () => {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/vaffel/dist">
       <Routes>
         <Route path="*" element={<Main />}></Route>
       </Routes>
