@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -10,8 +10,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Backend from "./api/backend.js";
 import { setCurrentUserId, setCurrentBasketId, setCurrentPage, PAGE } from "./slices/appSlice.js";
 
+import Loader from "./components/Loader.jsx";
+
 var useFirstLoadData = () => {
   var dispatch = useDispatch();
+  var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     var user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
     Backend.createUser({
@@ -32,18 +35,25 @@ var useFirstLoadData = () => {
         }
       });
   }, []);
+  return isLoading;
 };
 
 function App() {
-  useFirstLoadData();
+  var isLoading = useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
   return (
     <>
-      {currentPage === PAGE.CreateBasket && <CreateBasket />}
-      {currentPage === PAGE.BasketList && <BasketList />}
-      {currentPage === PAGE.BasketDetail && <BasketDetail />}
-      {currentPage === PAGE.Shop && <Shop />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {currentPage === PAGE.CreateBasket && <CreateBasket />}
+          {currentPage === PAGE.BasketList && <BasketList />}
+          {currentPage === PAGE.BasketDetail && <BasketDetail />}
+          {currentPage === PAGE.Shop && <Shop />}
+        </>
+      )}
     </>
 
     // <Shop></Shop>

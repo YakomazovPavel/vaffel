@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
+import Loader from "../../components/Loader.jsx";
 
 var imageCache = new (function () {
   var me = this;
@@ -363,7 +364,3 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
 };
 
 export default Shop;
-
-var Loader = () => {
-  return <div className="loader"></div>;
-};
