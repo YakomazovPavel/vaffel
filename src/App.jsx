@@ -42,24 +42,11 @@ var useInizialize = () => {
 };
 
 function App() {
-  var isLoading = useInizialize();
-  var currentPage = useSelector((state) => state.appSlice.currentPage);
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CreateBasket />}></Route>
+        <Route path="/" element={<Main />}></Route>
       </Routes>
-      {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)" }} />
-      ) : (
-        <>
-          {currentPage === PAGE.CreateBasket && <CreateBasket />}
-          {currentPage === PAGE.BasketList && <BasketList />}
-          {currentPage === PAGE.BasketDetail && <BasketDetail />}
-          {currentPage === PAGE.Shop && <Shop />}
-        </>
-      )}
     </BrowserRouter>
 
     // <Shop></Shop>
@@ -87,3 +74,22 @@ function App() {
 }
 
 export default App;
+
+var Main = ({ isLoading, currentPage }) => {
+  var isLoading = useInizialize();
+  var currentPage = useSelector((state) => state.appSlice.currentPage);
+  return (
+    <>
+      {isLoading ? (
+        <Loader style={{ left: "calc(50% - 20px)" }} />
+      ) : (
+        <>
+          {currentPage === PAGE.CreateBasket && <CreateBasket />}
+          {currentPage === PAGE.BasketList && <BasketList />}
+          {currentPage === PAGE.BasketDetail && <BasketDetail />}
+          {currentPage === PAGE.Shop && <Shop />}
+        </>
+      )}
+    </>
+  );
+};
