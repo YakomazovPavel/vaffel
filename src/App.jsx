@@ -10,8 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 import Backend from "./api/backend.js";
 import { setCurrentUserId } from "./slices/appSlice.js";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
 
 var useFirstLoadData = () => {
+  const navigate = useNavigate();
   var dispatch = useDispatch();
   useEffect(() => {
     var user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -26,6 +28,12 @@ var useFirstLoadData = () => {
       .then((data) => {
         dispatch(setCurrentUserId(data?.id));
       });
+
+    console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
+    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
+    if (basketId) {
+      navigate(`baskets/${basketId}/`, { replace: false });
+    }
   }, []);
 };
 
@@ -34,12 +42,21 @@ function App() {
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
   return (
-    <>
-      {currentPage === PAGE.CreateBasket && <CreateBasket />}
-      {currentPage === PAGE.BasketList && <BasketList />}
-      {currentPage === PAGE.BasketDetail && <BasketDetail />}
-      {currentPage === PAGE.Shop && <Shop />}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CreateBasket />} />
+        <Route path="baskets/" element={<BasketList />} />
+        <Route path="baskets/:basketId/" element={<BasketDetail />} />
+        <Route path="baskets/:basketId/menu/" element={<BasketDetail />} />
+        <Route path="dish/:dishId/" element={<BasketDetail />} />
+      </Routes>
+    </BrowserRouter>
+    // <>
+    //   {currentPage === PAGE.CreateBasket && <CreateBasket />}
+    //   {currentPage === PAGE.BasketList && <BasketList />}
+    //   {currentPage === PAGE.BasketDetail && <BasketDetail />}
+    //   {currentPage === PAGE.Shop && <Shop />}
+    // </>
 
     // <Shop></Shop>
     // <CreateBasket></CreateBasket>
