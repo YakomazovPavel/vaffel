@@ -81,6 +81,8 @@ function BasketDetail() {
   };
 
   var backButtonHandler = () => {
+    console.log("backButtonHandler");
+
     let url = new URL(window.location.href);
     let params = url.searchParams;
 
