@@ -12,7 +12,7 @@ import { setCurrentUserId, setCurrentBasketId, setCurrentPage, PAGE } from "./sl
 
 import Loader from "./components/Loader.jsx";
 
-var useFirstLoadData = () => {
+var useInizialize = () => {
   var dispatch = useDispatch();
   var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -41,7 +41,7 @@ var useFirstLoadData = () => {
 };
 
 function App() {
-  var isLoading = useFirstLoadData();
+  var isLoading = useInizialize();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
   return (
