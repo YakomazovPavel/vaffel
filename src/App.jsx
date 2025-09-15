@@ -33,6 +33,8 @@ var useFirstLoadData = () => {
           dispatch(setCurrentBasketId(basketId));
           dispatch(setCurrentPage(PAGE.BasketDetail));
         }
+        // setTimeout(()=>{})
+        setIsLoading(false);
       });
   }, []);
   return isLoading;
