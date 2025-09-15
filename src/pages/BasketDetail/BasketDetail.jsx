@@ -81,6 +81,14 @@ function BasketDetail() {
   };
 
   var backButtonHandler = () => {
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+
+    if (params.has("ref")) {
+      // Check if the parameter exists before attempting to delete
+      params.delete("ref");
+      window.history.replaceState({}, "", url.toString());
+    }
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 
