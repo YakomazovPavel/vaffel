@@ -33,16 +33,21 @@ var useFirstLoadData = () => {
 };
 
 function App() {
+  window.addEventListener("unload", () => {
+    window.location.replace("https://yakomazovpavel.github.io/vaffel/dist/index.html");
+    // localStorage.setItem("store", JSON.stringify(store.getState()));
+    // window?.Telegram?.WebApp?.DeviceStorage?.
+  });
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
 
-  useEffect(() => {
-    window.addEventListener("unload", () => {
-      window.location.replace("https://yakomazovpavel.github.io/vaffel/dist/index.html");
-      // localStorage.setItem("store", JSON.stringify(store.getState()));
-      // window?.Telegram?.WebApp?.DeviceStorage?.
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("unload", () => {
+  //     window.location.replace("https://yakomazovpavel.github.io/vaffel/dist/index.html");
+  //     // localStorage.setItem("store", JSON.stringify(store.getState()));
+  //     // window?.Telegram?.WebApp?.DeviceStorage?.
+  //   });
+  // }, []);
 
   return (
     <BrowserRouter basename="/vaffel/dist">
