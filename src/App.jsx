@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "/vite.svg";
 import "./App.css";
 import CreateBasket from "./pages/CreateBasket/CreateBasket.jsx";
 import BasketList from "./pages/BasketList/BasketList.jsx";
@@ -45,7 +45,7 @@ function App() {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <>
           {currentPage === PAGE.CreateBasket && <CreateBasket />}
