@@ -24,24 +24,19 @@ var useFirstLoadData = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setCurrentUserId(data?.id));
+        var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
+        console.log({ basketId });
+        if (basketId) {
+          dispatch(setCurrentBasketId(basketId));
+          dispatch(setCurrentPage(PAGE.BasketDetail));
+        }
       });
   }, []);
 };
 
 function App() {
-  const dispatch = useDispatch();
   useFirstLoadData();
   var currentPage = useSelector((state) => state.appSlice.currentPage);
-
-  useEffect(() => {
-    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
-    console.log({ basketId });
-
-    if (basketId) {
-      dispatch(setCurrentBasketId(basketId));
-      dispatch(setCurrentPage(PAGE.BasketDetail));
-    }
-  }, []);
 
   return (
     <>
