@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 
+import { useNavigate } from "react-router";
+
 function CreateBasket() {
+  const navigate = useNavigate();
   var userId = useSelector((state) => state.appSlice.userId);
   var refUserId = useRef(userId);
 
@@ -37,6 +40,11 @@ function CreateBasket() {
   };
 
   var open = () => {
+    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
+    if (basketId) {
+      navigate(`baskets/${basketId}/`, { replace: false });
+    }
+
     window.Telegram.WebApp.BackButton.hide();
     window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.text = "Создать корзину";

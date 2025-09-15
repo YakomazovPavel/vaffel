@@ -10,10 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { PAGE } from "./slices/appSlice.js";
 import Backend from "./api/backend.js";
 import { setCurrentUserId } from "./slices/appSlice.js";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 var useFirstLoadData = () => {
-  const navigate = useNavigate();
   var dispatch = useDispatch();
   useEffect(() => {
     var user = window?.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -30,10 +29,6 @@ var useFirstLoadData = () => {
       });
 
     console.log({ start_param: window?.Telegram?.WebApp?.initDataUnsafe?.start_param });
-    var basketId = window?.Telegram?.WebApp?.initDataUnsafe?.start_param;
-    if (basketId) {
-      navigate(`baskets/${basketId}/`, { replace: false });
-    }
   }, []);
 };
 
