@@ -82,17 +82,18 @@ function BasketDetail() {
 
   var backButtonHandler = () => {
     console.log("backButtonHandler");
+    history.pushState(null, null, "https://yakomazovpavel.github.io/vaffel/dist/index.html");
 
-    let url = new URL(window.location.href);
-    let params = url.searchParams;
+    // let url = new URL(window.location.href);
+    // let params = url.searchParams;
 
-    if (params.has("ref")) {
-      // Check if the parameter exists before attempting to delete
-      params.delete("ref");
-      console.log("url.toString()", url.toString());
+    // if (params.has("ref")) {
+    //   // Check if the parameter exists before attempting to delete
+    //   params.delete("ref");
+    //   console.log("url.toString()", url.toString());
 
-      window.history.replaceState({}, "", url.toString());
-    }
+    //   window.history.replaceState({}, "", url.toString());
+    // }
     dispatch(setCurrentPage(PAGE.BasketList));
   };
 
