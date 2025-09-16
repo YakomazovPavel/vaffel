@@ -119,12 +119,15 @@ function BasketDetail() {
   }, [basket?.author_id, userId, dishesListData?.length]);
 
   var copyLinkHandler = async () => {
-    Telegram.WebApp.showAlert("Ссылка скопирована");
+    window.Telegram.WebApp.shareMessage("2na9RSrZGRMKnBtd", (success) => {
+      console.log("!success", success);
+    });
+    // Telegram.WebApp.showAlert("Ссылка скопирована");
     // window.Telegram.WebApp.shareMessage(1);
     // if (navigator?.clipboard?.writeText) {
     // Это работает на телефоне =/
     // await navigator.clipboard.writeText("Рандомный текст в буфере обмена");
-    Telegram.WebApp.showAlert("Ссылка скопирована");
+    // Telegram.WebApp.showAlert("Ссылка скопирована");
     // }
   };
 
