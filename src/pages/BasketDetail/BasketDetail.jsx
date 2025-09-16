@@ -119,7 +119,7 @@ function BasketDetail() {
   }, [basket?.author_id, userId, dishesListData?.length]);
 
   var copyLinkHandler = async () => {
-    window.Telegram.WebApp.shareMessage("2na9RSrZGRMKnBtd", (success) => {
+    window.Telegram.WebApp.shareMessage("CwnidLhBerPYyC7G", (success) => {
       console.log("!success", success);
     });
     // Telegram.WebApp.showAlert("Ссылка скопирована");
