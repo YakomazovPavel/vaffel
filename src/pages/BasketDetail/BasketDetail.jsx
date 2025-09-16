@@ -119,7 +119,10 @@ function BasketDetail() {
   }, [basket?.author_id, userId, dishesListData?.length]);
 
   var copyLinkHandler = async () => {
-    window.Telegram.WebApp.shareMessage("nfg5LLc1II9qVfw4", (success) => {
+    var response = await Backend.shareBasket({ basketId: currentBasketId, userId });
+    console.log("!data", response.data);
+
+    window.Telegram.WebApp.shareMessage(response.data, (success) => {
       console.log("!success", success);
     });
     // Telegram.WebApp.showAlert("Ссылка скопирована");

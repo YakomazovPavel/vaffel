@@ -50,6 +50,14 @@ class Backend {
       },
     });
   };
+  shareBasket = ({ basketId, userId }) => {
+    return fetch(this.BASE_URL + `baskets/${basketId}/share/`, {
+      method: "GET",
+      headers: {
+        Authorization: userId,
+      },
+    });
+  };
   getBasketDishes = ({ basketId }) => {
     return fetch(this.BASE_URL + `baskets/${basketId}/dishes/`);
   };
