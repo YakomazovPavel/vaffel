@@ -120,9 +120,10 @@ function BasketDetail() {
 
   var copyLinkHandler = async () => {
     var response = await Backend.shareBasket({ basketId: currentBasketId, userId });
+    var data = response.json();
     console.log("!data", response.data);
 
-    window.Telegram.WebApp.shareMessage(response.data, (success) => {
+    window.Telegram.WebApp.shareMessage(data.id, (success) => {
       console.log("!success", success);
     });
     // Telegram.WebApp.showAlert("Ссылка скопирована");
