@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Loader from "../../components/Loader.jsx";
 
 // var useCreateUserBasket = ({ basketId }) => {
 //   useEffect(() => {}, []);
@@ -52,15 +53,17 @@ var useGetData = ({ basketId, userId }) => {
     Promise.all([
       Backend.getBasketDetail({ basketId, userId }).then((response) => response.json()),
       Backend.getBasketDishes({ basketId }).then((response) => response.json()),
-    ]).then(([basket, basketDishes]) => {
-      setIsLoading(false);
-      setBasket(basket);
-      // Сгруппировать basketDishes по dishId
-      console.log({ basketDishes });
-      var computedDishes = computingDishes({ basketDishes });
-      console.log({ computedDishes });
-      setDishesListData(computedDishes);
-    });
+    ])
+      .then(([basket, basketDishes]) => {
+        setBasket(basket);
+        // Сгруппировать basketDishes по dishId
+        var computedDishes = computingDishes({ basketDishes });
+        console.log({ computedDishes });
+        setDishesListData(computedDishes);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return [basket, setBasket, dishesListData, setDishesListData, isLoading, setIsLoading];
@@ -209,46 +212,52 @@ function BasketDetail() {
   };
 
   return (
-    <div id="page_basket_detail" onTouchEnd={onTouchEndHandler}>
-      <div class="settings_wrap">
-        <div class="basket_detail">
-          <div class="basket_detail_heared">
-            <img src={basket?.photo_url} />
-            <div>
-              <h1>{basket?.name}</h1>
-              {/* <h2>#1</h2> */}
-              {/* {!basket?.is_locked && <button onClick={copyLinkHandler}></button>} */}
-              {/* <button>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div id="page_basket_detail" onTouchEnd={onTouchEndHandler}>
+          <div class="settings_wrap">
+            <div class="basket_detail">
+              <div class="basket_detail_heared">
+                <img src={basket?.photo_url} onLoad={console.log("Картинка корзины загружена!")} />
+                <div>
+                  <h1>{basket?.name}</h1>
+                  {/* <h2>#1</h2> */}
+                  {/* {!basket?.is_locked && <button onClick={copyLinkHandler}></button>} */}
+                  {/* <button>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <use xlinkHref="#share"></use>
                 </svg>
               </button> */}
-              <button onClick={copyLinkHandler}>
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <use xlinkHref="#share2"></use>
-                </svg>
-              </button>
+                  <button onClick={copyLinkHandler}>
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use xlinkHref="#share2"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {!!dishesListData?.length &&
+                dishesListData.map((dish) => (
+                  <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
+                ))}
+
+              {!basket?.is_locked && (
+                <div class="basket_detail_item basket_add_item">
+                  <button onClick={addItemHandler}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                      <use xlinkHref="#plus"></use>
+                    </svg>
+                  </button>
+                  <p class="name">Добавить</p>
+                </div>
+              )}
             </div>
           </div>
-
-          {!!dishesListData?.length &&
-            dishesListData.map((dish) => (
-              <Dish dish={dish} addDishHandler={addDishHandler} removeDishHandler={removeDishHandler} />
-            ))}
-
-          {!basket?.is_locked && (
-            <div class="basket_detail_item basket_add_item">
-              <button onClick={addItemHandler}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                  <use xlinkHref="#plus"></use>
-                </svg>
-              </button>
-              <p class="name">Добавить</p>
-            </div>
-          )}
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
