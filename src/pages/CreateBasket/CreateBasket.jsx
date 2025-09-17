@@ -114,10 +114,10 @@ function CreateBasket() {
           </button>
         </div>
       </div>
-      {/* <div className="author">
+      <div className="author">
         <p>made by</p>
-        <a href="https://web.telegram.org/k/#@Hope_Push">@pavel_yakomazov</a>
-      </div> */}
+        <a href="https://t.me/pavel_yakomazov">@pavel_yakomazov</a>
+      </div>
     </>
   );
 }
