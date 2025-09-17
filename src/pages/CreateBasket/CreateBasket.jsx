@@ -5,6 +5,8 @@ import { setCurrentPage, PAGE, addBasket, setCurrentBasketId } from "../../slice
 import Backend from "../../api/backend.js";
 
 function CreateBasket() {
+  var dispatch = useDispatch();
+
   var userId = useSelector((state) => state.appSlice.userId);
   var refUserId = useRef(userId);
 
@@ -12,9 +14,21 @@ function CreateBasket() {
     refUserId.current = userId;
   }, [userId]);
 
-  var dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
   var refBasketName = useRef(null);
+
+  useEffect(() => {
+    refBasketName.current = basketName.trim();
+    if (value) {
+      window.Telegram.WebApp.MainButton.show();
+      // window.Telegram.WebApp.MainButton.isVisible = true;
+      // window.Telegram.WebApp.MainButton.isActive = true;
+    } else {
+      window.Telegram.WebApp.MainButton.hide();
+      // window.Telegram.WebApp.MainButton.isVisible = false;
+      // window.Telegram.WebApp.MainButton.isActive = false;
+    }
+  }, [basketName]);
 
   var [toBasketsDisable, setToBasketsDisable] = useState(false);
 
@@ -36,11 +50,11 @@ function CreateBasket() {
 
   var open = () => {
     window.Telegram.WebApp.BackButton.hide();
-    // window.Telegram.WebApp.BackButton.isVisible = false;
+    window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
     window.Telegram.WebApp.MainButton.hide();
-    // window.Telegram.WebApp.MainButton.isVisible = false;
-    // window.Telegram.WebApp.MainButton.isActive = false;
+    window.Telegram.WebApp.MainButton.isVisible = false;
+    window.Telegram.WebApp.MainButton.isActive = false;
     window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
   var close = () => {
@@ -56,15 +70,6 @@ function CreateBasket() {
   var onChangeBasketName = (e) => {
     setBasketName(e.target.value);
     refBasketName.current = e.target.value.trim();
-    if (value) {
-      window.Telegram.WebApp.MainButton.show();
-      window.Telegram.WebApp.MainButton.isVisible = true;
-      window.Telegram.WebApp.MainButton.isActive = true;
-    } else {
-      window.Telegram.WebApp.MainButton.hide();
-      window.Telegram.WebApp.MainButton.isVisible = false;
-      window.Telegram.WebApp.MainButton.isActive = false;
-    }
   };
 
   var toBasketHandler = (e) => {
