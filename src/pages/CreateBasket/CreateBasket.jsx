@@ -12,9 +12,7 @@ function CreateBasket() {
     refUserId.current = userId;
   }, [userId]);
 
-  var basketsCount = useSelector((state) => state.appSlice.baskets)?.length || 0;
-
-  const dispatch = useDispatch();
+  var dispatch = useDispatch();
   var [basketName, setBasketName] = useState("");
   var refBasketName = useRef(null);
 
@@ -37,11 +35,11 @@ function CreateBasket() {
   };
 
   var open = () => {
-    window.Telegram.WebApp.BackButton.hide();
-    // window.Telegram.WebApp.BackButton.isVisible = false;
+    // window.Telegram.WebApp.BackButton.hide();
+    window.Telegram.WebApp.BackButton.isVisible = false;
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
-    window.Telegram.WebApp.MainButton.hide();
-    // window.Telegram.WebApp.MainButton.isVisible = false;
+    // window.Telegram.WebApp.MainButton.hide();
+    window.Telegram.WebApp.MainButton.isVisible = false;
     // window.Telegram.WebApp.MainButton.isActive = false;
     window.Telegram.WebApp.MainButton.onClick(onClickCreateBasketHandler);
   };
