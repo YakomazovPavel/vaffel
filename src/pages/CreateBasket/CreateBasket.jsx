@@ -19,7 +19,7 @@ function CreateBasket() {
 
   useEffect(() => {
     refBasketName.current = basketName.trim();
-    if (value) {
+    if (refBasketName.current) {
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.isVisible = true;
       window.Telegram.WebApp.MainButton.isActive = true;
