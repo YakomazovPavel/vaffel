@@ -21,12 +21,12 @@ function CreateBasket() {
     refBasketName.current = basketName.trim();
     if (value) {
       window.Telegram.WebApp.MainButton.show();
-      // window.Telegram.WebApp.MainButton.isVisible = true;
-      // window.Telegram.WebApp.MainButton.isActive = true;
+      window.Telegram.WebApp.MainButton.isVisible = true;
+      window.Telegram.WebApp.MainButton.isActive = true;
     } else {
       window.Telegram.WebApp.MainButton.hide();
-      // window.Telegram.WebApp.MainButton.isVisible = false;
-      // window.Telegram.WebApp.MainButton.isActive = false;
+      window.Telegram.WebApp.MainButton.isVisible = false;
+      window.Telegram.WebApp.MainButton.isActive = false;
     }
   }, [basketName]);
 
