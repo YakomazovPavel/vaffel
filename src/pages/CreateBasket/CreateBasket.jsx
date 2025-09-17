@@ -56,9 +56,8 @@ function CreateBasket() {
   }, []);
 
   var onChangeBasketName = (e) => {
-    var value = e.target.value.trim();
-    setBasketName(value);
-    refBasketName.current = value;
+    setBasketName(e.target.value);
+    refBasketName.current = e.target.value.trim();
     if (value) {
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.isVisible = true;
