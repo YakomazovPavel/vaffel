@@ -14,7 +14,9 @@ var useGetBasketList = (userId) => {
         .then((response) => response.json())
         .then((data) => {
           setBasketList(data);
-          setIsLoading(false);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 2000);
         });
     }
   }, []);
