@@ -43,6 +43,8 @@ var filteringBaskets = (basketListData, search) => {
 };
 
 function BasketList() {
+  console.count("BasketList");
+
   var dispatch = useDispatch();
   var userId = useSelector((state) => state.appSlice.userId);
   var [basketList, isLoading] = useGetBasketList(userId);
