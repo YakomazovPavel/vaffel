@@ -274,6 +274,10 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     }
   };
 
+  var onClickHandler = (e) => {
+    console.log("onClickHandler", e);
+  };
+
   return (
     <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
       <div className="header">
@@ -285,7 +289,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
-        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
+        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler}>
           <img src={dish?.photo_url} />
           {!!dish?.count && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
