@@ -290,7 +290,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           className="hide"
           type="checkbox"
           name={`category_${dish.category_id}_dish_${dish?.id}`}
-          checked={isCheckbox}
+          checked={false} //
           onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
