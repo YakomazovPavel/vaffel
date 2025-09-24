@@ -281,6 +281,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     var rec = labelRef.current.getBoundingClientRect();
     // var
     labelRef.current.style.setProperty("padding", "0");
+    labelRef.current.style.setProperty("border-radius", "0");
     labelRef.current.style.setProperty("transform", `translate(${-rec.x}px, ${-rec.y}px)`);
   };
 
