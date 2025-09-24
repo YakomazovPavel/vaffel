@@ -297,7 +297,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           name={`category_${dish.category.id}_dish_${dish?.id}`}
           checked={false} //
           // onChange={onChange}
-          id={`category_${dish.category_id}_dish_${dish?.id}`}
+          id={`category_${dish.category.id}_dish_${dish?.id}`}
         />
         <label htmlFor={`category_${dish.category.id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
           {/* <div className="useMe" > */}
