@@ -243,6 +243,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var labelRef = useRef(null);
   var [counterKey, setCounterKey] = useState(0);
+  var [isOpen, setIsOpen] = useState(false);
 
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
@@ -284,20 +285,21 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     labelRef.current.style.setProperty("padding", "0");
     labelRef.current.style.setProperty("border-radius", "0");
     labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
+    setIsOpen((prev) => !prev);
   };
 
   return (
-    <div className="basket_shop_item" key={`category_${dish.category_id}_dish_${dish?.id}`}>
+    <div className="basket_shop_item" key={`category_${dish.category.id}_dish_${dish?.id}`}>
       <div className="header">
         <input
           className="hide"
           type="checkbox"
-          name={`category_${dish.category_id}_dish_${dish?.id}`}
+          name={`category_${dish.category.id}_dish_${dish?.id}`}
           checked={false} //
           // onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
-        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
+        <label htmlFor={`category_${dish.category.id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
           {/* <div className="useMe" > */}
           <img src={dish?.photo_url} />
           {!!dish?.count && (
@@ -306,6 +308,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
             </p>
           )}
           {/* </div> */}
+          {isOpen && <div className="newDishDescription">123</div>}
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
@@ -327,7 +330,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           </button>
         </div>
       </div>
-      {isDescription && (
+      {/* {isDescription && (
         <div className="description">
           <div className="description_header">
             <div className="name_wrap">
@@ -376,7 +379,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
