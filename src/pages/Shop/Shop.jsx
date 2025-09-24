@@ -243,6 +243,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var labelRef = useRef(null);
+  var imageRef = useRef(null);
   var [counterKey, setCounterKey] = useState(0);
   var [isOpen, setIsOpen] = useState(false);
 
@@ -287,8 +288,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     labelRef.current.style.setProperty("border-radius", "0");
     labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
     labelRef.current.style.setProperty("min-width", "100dvw");
-    // labelRef.current.style.setProperty("display", "flex");
-    // labelRef.current.style.setProperty("flex-direction", "column");
+    labelRef.current.style.setProperty("display", "block");
     labelRef.current.style.setProperty("background-color", "var(--tg-theme-secondary-bg-color)");
 
     setIsOpen((prev) => !prev);
@@ -307,7 +307,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
         />
         <label htmlFor={`category_${dish.category.id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
           {/* <div className="useMe" > */}
-          <img src={dish?.photo_url} />
+          <img src={dish?.photo_url} ref={imageRef} />
           {!!dish?.count && !isOpen && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
               {dish?.count}
