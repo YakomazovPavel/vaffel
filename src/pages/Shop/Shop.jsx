@@ -289,8 +289,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
-        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`}>
-          {/* <div className="useMe" onClick={onClickHandler}> */}
+        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler}>
+          {/* <div className="useMe" > */}
           <img src={dish?.photo_url} />
           {!!dish?.count && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
