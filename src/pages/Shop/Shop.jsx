@@ -276,7 +276,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = (e) => {
-    console.log("onClickHandler", e.target);
+    // console.log("onClickHandler", e.target);
     console.log("labelRef.current", labelRef.current);
     // var
     labelRef.current.style.setProperty("padding", "0");
