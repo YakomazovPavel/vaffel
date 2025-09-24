@@ -289,7 +289,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     labelRef.current.style.setProperty("min-width", "100dvw");
     // labelRef.current.style.setProperty("display", "flex");
     // labelRef.current.style.setProperty("flex-direction", "column");
-    labelRef.current.style.setProperty("background-color", "var(--tg-theme-bg-color)");
+    labelRef.current.style.setProperty("background-color", "var(--tg-theme-secondary-bg-color)");
 
     setIsOpen((prev) => !prev);
   };
