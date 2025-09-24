@@ -276,6 +276,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = (e) => {
+    console.log("dish", dish);
     // console.log("onClickHandler", e.target);
     console.log("labelRef.current", labelRef.current);
     var rec = labelRef.current.getBoundingClientRect();
@@ -293,7 +294,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           type="checkbox"
           name={`category_${dish.category_id}_dish_${dish?.id}`}
           checked={false} //
-          onChange={onChange}
+          // onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
         <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
