@@ -278,12 +278,12 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   var onClickHandler = (e) => {
     console.log("dish", dish);
     // console.log("onClickHandler", e.target);
-    console.log("labelRef.current", labelRef.current);
+    // console.log("labelRef.current", labelRef.current);
     var rec = labelRef.current.getBoundingClientRect();
     // var
     labelRef.current.style.setProperty("padding", "0");
     labelRef.current.style.setProperty("border-radius", "0");
-    labelRef.current.style.setProperty("transform", `translate(${-rec.x}px, ${-rec.y}px)`);
+    labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
   };
 
   return (
