@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
@@ -241,7 +241,8 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 };
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
-  const [counterKey, setCounterKey] = useState(0);
+  var labelRef = useRef(null);
+  var [counterKey, setCounterKey] = useState(0);
 
   var [isCheckbox, setIsCheckbox] = useState(false);
   var [isDescription, setIsDescription] = useState(false);
@@ -275,8 +276,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = (e) => {
-    e.preventDefault();
     console.log("onClickHandler", e.target);
+    console.log("labelRef.current", labelRef.current);
   };
 
   return (
@@ -290,7 +291,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
           onChange={onChange}
           id={`category_${dish.category_id}_dish_${dish?.id}`}
         />
-        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler}>
+        <label htmlFor={`category_${dish.category_id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
           {/* <div className="useMe" > */}
           <img src={dish?.photo_url} />
           {!!dish?.count && (
