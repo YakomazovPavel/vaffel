@@ -285,6 +285,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     labelRef.current.style.setProperty("padding", "0");
     labelRef.current.style.setProperty("border-radius", "0");
     labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
+    labelRef.current.style.setProperty("min-width", "100dvw");
+    labelRef.current.style.setProperty("display", "block");
     setIsOpen((prev) => !prev);
   };
 
