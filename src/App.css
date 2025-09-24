@@ -737,7 +737,7 @@ input:checked ~ .basket_list_item:not(:last-child) {
   color: var(--tg-theme-subtitle-text-color);
   font: 16px sans-serif;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   height: max-content;
   transition: height 0.25s ease 0.1s;
 
@@ -753,6 +753,8 @@ input:checked ~ .basket_list_item:not(:last-child) {
   height: 46px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+  /* transform: translate(-23px, -111px); */
 }
 
 .basket_shop_section > label > div {
