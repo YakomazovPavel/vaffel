@@ -275,7 +275,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = (e) => {
-    console.log("onClickHandler", e);
+    e.preventDefault();
+    console.log("onClickHandler", e.target);
   };
 
   return (
