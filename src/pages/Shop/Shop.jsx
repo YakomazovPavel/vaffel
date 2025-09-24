@@ -4,6 +4,7 @@ import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 import Loader from "../../components/Loader.jsx";
+import "./Shop.scss";
 
 var imageCache = new (function () {
   var me = this;
@@ -288,6 +289,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     labelRef.current.style.setProperty("min-width", "100dvw");
     labelRef.current.style.setProperty("display", "flex");
     labelRef.current.style.setProperty("flex-direction", "column");
+    labelRef.current.style.setProperty("background-color", "var(--tg-theme-bg-color)");
 
     setIsOpen((prev) => !prev);
   };
@@ -312,7 +314,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
             </p>
           )}
           {/* </div> */}
-          {isOpen && <div className="newDishDescription">123</div>}
+          {isOpen && <div className="new_dish_description">123</div>}
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
