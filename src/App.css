@@ -959,7 +959,7 @@ input:checked ~ .basket_list_item:not(:last-child) {
   align-items: center;
   justify-content: center;
   width: max-content;
-  transition: padding 0.3s linear 0s;
+  transition: padding 0.3s linear 0s, transform 0.5s ease-in-out;
   cursor: pointer;
 }
 
