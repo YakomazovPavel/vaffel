@@ -950,14 +950,14 @@ input:checked ~ .basket_list_item:not(:last-child) {
 }
 
 .basket_shop_item > .header > label {
-  display: flex;
+  /* display: flex; */
   position: relative;
   height: 100%;
   box-sizing: border-box;
   padding: 5px;
   padding-left: 0;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   width: max-content;
   transition: padding 0.3s linear 0s, transform 0.5s ease-in-out;
   cursor: pointer;
