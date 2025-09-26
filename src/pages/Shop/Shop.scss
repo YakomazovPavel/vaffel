@@ -168,4 +168,5 @@ input:checked ~ .basket_shop_item:not(:last-child) {
   & img {
     border-radius: 0;
   }
+  overscroll-behavior: none;
 }
