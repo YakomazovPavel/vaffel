@@ -163,4 +163,7 @@ input:checked ~ .basket_shop_item:not(:last-child) {
 .basket_shop_item > .header > label.dish_open {
   padding: 0;
   display: block;
+  & img {
+    border-radius: 0;
+  }
 }
