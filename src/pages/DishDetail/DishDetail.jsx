@@ -2,11 +2,31 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Loader from "../../components/Loader.jsx";
+import Backend from "../../api/backend.js";
 import "./DishDetail.scss";
 
-var DishDetail = ({ dishId }) => {
+var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
+  var [dish, setDish] = useState(true);
+  useEffect(() => {
+    Backend.getDishDetail({ dishId })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log({ data });
+
+        setDish(data);
+      })
+      .then(() => {
+        setIsLoading(true);
+      });
+  }, []);
+  return [isLoading, dish];
+};
+
+var DishDetail = ({ dishId }) => {
   console.log({ dishId });
+  var [isLoading, dish] = useGetDishDetail({ dishId });
+  console.log({ isLoading, dish });
 
   var dispatch = useDispatch();
   var backButtonHandler = () => {

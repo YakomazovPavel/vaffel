@@ -70,6 +70,9 @@ class Backend {
   getCategories = () => {
     return fetch(this.BASE_URL + `categories/`);
   };
+  getDishDetail = ({ dishId }) => {
+    return fetch(this.BASE_URL + `dishes/${dishId}/`);
+  };
 }
 
 export default new Backend();
