@@ -11,7 +11,7 @@ export var PAGE = {
 const initialState = {
   currentPage: PAGE.Shop,
   currentBasketId: "1",
-  currentDishId: "1",
+  currentDishId: null,
   userId: null,
   baskets: [
     {
