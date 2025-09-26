@@ -17,7 +17,7 @@ var useGetDishDetail = ({ dishId }) => {
         setDish(data);
       })
       .then(() => {
-        setIsLoading(true);
+        setIsLoading(false);
       });
   }, []);
   return [isLoading, dish];
