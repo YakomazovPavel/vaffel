@@ -306,23 +306,13 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   return (
     <div className="basket_shop_item" key={`category_${dish.category.id}_dish_${dish?.id}`}>
       <div className="header">
-        <input
-          className="hide"
-          type="checkbox"
-          name={`category_${dish.category.id}_dish_${dish?.id}`}
-          checked={false} //
-          // onChange={onChange}
-          id={`category_${dish.category.id}_dish_${dish?.id}`}
-        />
-        <label htmlFor={`category_${dish.category.id}_dish_${dish?.id}`} onClick={onClickHandler} ref={labelRef}>
-          {/* <div className="useMe" > */}
+        <label onClick={onClickHandler} ref={labelRef}>
           <img src={dish?.photo_url} ref={imageRef} />
           {!!dish?.count && !isOpen && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
               {dish?.count}
             </p>
           )}
-          {/* </div> */}
           {isOpen && <div className="new_dish_description">123</div>}
         </label>
         <div className="short_description">
