@@ -316,7 +316,6 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
 
   var onClickHandler = (e) => {
     console.log("onClickHandler");
-
     setIsOpen((prev) => !prev);
     e.preventDefault();
     e.stopPropagation();
@@ -325,8 +324,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
   return (
     <div className="basket_shop_item" key={`category_${dish.category.id}_dish_${dish?.id}`}>
       <div className="header">
-        <label onClick={onClickHandler} ref={labelRef}>
-          <img src={dish?.photo_url} ref={imageRef} />
+        <label ref={labelRef}>
+          <img src={dish?.photo_url} ref={imageRef} onClick={onClickHandler} />
           {!!dish?.count && !isOpen && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
               {dish?.count}
