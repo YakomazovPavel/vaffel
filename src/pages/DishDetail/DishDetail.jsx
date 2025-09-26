@@ -1,9 +1,11 @@
 import React from "react";
+import Loader from "../../components/Loader.jsx";
 
 var DishDetail = ({ dishId }) => {
   return (
     <div>
-      {dishId}
+      <Loader />
+      {/* {dishId} */}
 
       {/* {isDescription && (
         <div className="description">

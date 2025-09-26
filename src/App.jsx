@@ -6,6 +6,7 @@ import CreateBasket from "./pages/CreateBasket/CreateBasket.jsx";
 import BasketList from "./pages/BasketList/BasketList.jsx";
 import BasketDetail from "./pages/BasketDetail/BasketDetail.jsx";
 import Shop from "./pages/Shop/Shop.jsx";
+import DishDetail from "./pages/DishDetail/DishDetail.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import Backend from "./api/backend.js";
 import { setCurrentUserId, setCurrentBasketId, setCurrentPage, PAGE } from "./slices/appSlice.js";
