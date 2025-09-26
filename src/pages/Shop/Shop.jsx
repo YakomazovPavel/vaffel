@@ -294,8 +294,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
       window.Telegram.WebApp.BackButton.onClick(() => {
         setIsOpen(false);
       });
-    } else if (!!dataRef.current) {
-      labelRef.current.style.setProperty("transform", `translate(${dataRef.current.x}px, ${dataRef.current.y}px)`);
+    } else {
+      labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
       labelRef.current.classList.remove("dish_open");
       window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
     }
