@@ -278,19 +278,18 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     }
   };
 
-  var onClickHandler = (e) => {
-    console.log("dish", dish);
-    // console.log("onClickHandler", e.target);
-    // console.log("labelRef.current", labelRef.current);
+  useEffect(() => {
     var rec = labelRef.current.getBoundingClientRect();
-    // var
-    labelRef.current.style.setProperty("padding", "0");
-    labelRef.current.style.setProperty("border-radius", "0");
-    labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
-    labelRef.current.style.setProperty("min-width", "100dvw");
-    labelRef.current.style.setProperty("display", "block");
-    labelRef.current.style.setProperty("background-color", "var(--tg-theme-secondary-bg-color)");
+    if (isOpen) {
+      labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
+      labelRef.current.classList.add("dish_open");
+    } else {
+      labelRef.current.style.setProperty("transform", `translate(${rec.x}px, ${rec.y}px)`);
+      labelRef.current.classList.remove("dish_open");
+    }
+  }, [isOpen]);
 
+  var onClickHandler = (e) => {
     setIsOpen((prev) => !prev);
   };
 
