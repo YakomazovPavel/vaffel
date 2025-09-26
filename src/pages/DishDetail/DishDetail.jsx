@@ -28,7 +28,9 @@ var DishDetail = ({ dishId }) => {
     return close;
   }, []);
   return (
-    <>{isLoading && <Loader style={{ left: "calc(50% - 20px)" }} />}</>
+    <>
+      {isLoading ? <Loader style={{ left: "calc(50% - 20px)" }} /> : <div className="page_dish_detail">{dishId}</div>}
+    </>
     // <div className="page_dish_detail">
     //   <Loader />
     //   {/* {dishId} */}
