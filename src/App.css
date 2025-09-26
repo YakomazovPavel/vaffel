@@ -1191,3 +1191,11 @@ button:active {
     transform: rotate(1turn);
   }
 }
+
+.dish_open {
+  padding: 0;
+  border-radius: 0;
+  min-width: 100dvw;
+  display: block;
+  background-color: var(--tg-theme-secondary-bg-color);
+}
