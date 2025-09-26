@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Loader from "../../components/Loader.jsx";
@@ -28,10 +28,7 @@ var DishDetail = ({ dishId }) => {
     return close;
   }, []);
   return (
-    <>
-      {isLoading && <Loader />}
-      {/* style={{ left: "calc(50% - 20px)" }} */}
-    </>
+    <>{isLoading && <Loader style={{ left: "calc(50% - 20px)" }} />}</>
     // <div className="page_dish_detail">
     //   <Loader />
     //   {/* {dishId} */}
