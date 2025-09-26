@@ -146,3 +146,16 @@
   min-width: 28px;
   min-height: 28px;
 }
+
+input:checked ~ .basket_shop_item {
+  opacity: 1;
+  height: 70px;
+  transition: opacity 0.2s ease-out 0.2s, height 0.2s ease-out 0.1s, margin-bottom 0.25s ease-out 0.1s,
+    border 0.2s ease-out 0.1s;
+}
+
+input:checked ~ .basket_shop_item:not(:last-child) {
+  border-bottom: solid 1px;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
+}
