@@ -301,6 +301,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
 
   var onClickHandler = (e) => {
     setIsOpen((prev) => !prev);
+    e.preventDefault();
+    e.stopPropagation();
   };
 
   return (
