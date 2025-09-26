@@ -297,6 +297,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
 
   useEffect(() => {
     if (isOpen) {
+      settingsWrapRef.current.style.overflow = "hidden";
+      settingsWrapRef.current.style.height = "var(--tg-viewport-height)";
       var rec = labelRef.current.getBoundingClientRect();
       dataRef.current = { x: rec.x, y: rec.y };
 
@@ -306,8 +308,6 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
         setIsOpen(false);
       });
       imageRef.current.style.height = `${settingsWrapRef.current.offsetWidth}px`;
-      settingsWrapRef.current.style.overflow = "hidden";
-      settingsWrapRef.current.style.height = "var(--tg-viewport-height)";
     } else {
       settingsWrapRef.current.style.overflow = "unset";
       settingsWrapRef.current.style.height = "unset";
