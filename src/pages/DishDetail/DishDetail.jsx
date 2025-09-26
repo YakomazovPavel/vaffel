@@ -7,7 +7,7 @@ import "./DishDetail.scss";
 
 var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
-  var [dish, setDish] = useState(true);
+  var [dish, setDish] = useState();
   useEffect(() => {
     Backend.getDishDetail({ dishId })
       .then((response) => response.json())
