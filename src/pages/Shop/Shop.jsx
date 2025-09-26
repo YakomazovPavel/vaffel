@@ -258,7 +258,10 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = () => {
+    console.log("onClickHandler", dish.id);
+
     dispatch(setCurrentDishId(dish.id));
+
     dispatch(setCurrentPage(PAGE.DishDetail));
   };
 
