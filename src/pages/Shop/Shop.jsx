@@ -299,6 +299,8 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   }, [isOpen]);
 
   var onClickHandler = (e) => {
+    console.log("onClickHandler");
+
     setIsOpen((prev) => !prev);
     e.preventDefault();
     e.stopPropagation();
