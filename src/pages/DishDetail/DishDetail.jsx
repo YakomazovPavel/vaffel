@@ -27,7 +27,7 @@ var DishDetail = ({ dishId }) => {
     return close;
   }, []);
   return (
-    <div>
+    <div className="page_dish_detail">
       <Loader />
       {/* {dishId} */}
 
