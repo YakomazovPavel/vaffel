@@ -164,7 +164,8 @@ input:checked ~ .basket_shop_item:not(:last-child) {
 
 .basket_shop_item > .header > label.dish_open {
   z-index: 1;
-  background-color: red;
+  background-color: var(--tg-theme-bg-color);
+  height: var(--tg-viewport-height);
 
   padding: 0;
   display: block;
