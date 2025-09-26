@@ -306,7 +306,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
         setIsOpen(false);
       });
       console.log("settingsWrapRef", settingsWrapRef.current);
-      console.log("settingsWrapRef", settingsWrapRef.current?.width);
+      console.log("settingsWrapRef.offsetWidth", settingsWrapRef.current?.offsetWidth);
     } else {
       labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
       labelRef.current.classList.remove("dish_open");
