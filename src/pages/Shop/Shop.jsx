@@ -305,11 +305,12 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
       window.Telegram.WebApp.BackButton.onClick(() => {
         setIsOpen(false);
       });
-      imageRef.style.height = `${settingsWrapRef.current.offsetWidth}px`;
+      imageRef.current.style.height = `${settingsWrapRef.current.offsetWidth}px`;
     } else {
       labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
       labelRef.current.classList.remove("dish_open");
       window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+      imageRef.current.style.height = "59px";
     }
   }, [isOpen]);
 
