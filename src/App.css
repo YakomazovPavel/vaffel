@@ -661,8 +661,8 @@ input:checked ~ .basket_list_item:not(:last-child) {
 
 .searchline {
   display: flex;
-  min-height: 40px;
-  max-height: 40px;
+  min-height: 46px;
+  max-height: 46px;
   align-items: center;
   flex-direction: row;
   column-gap: 15px;
