@@ -254,14 +254,7 @@ var Category = ({ category, addDishHandler, removeDishHandler, settingsWrapRef }
 
 var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
   var dispatch = useDispatch();
-  var dataRef = useRef(null);
-  var labelRef = useRef(null);
-  var imageRef = useRef(null);
   var [counterKey, setCounterKey] = useState(0);
-  var [isOpen, setIsOpen] = useState(false);
-
-  var [isCheckbox, setIsCheckbox] = useState(false);
-  var [isDescription, setIsDescription] = useState(false);
 
   var plusButtonHandler = () => {
     addDishHandler({ categoryId: dish?.category?.id, dishId: dish?.id });
@@ -275,69 +268,20 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
     }
   };
 
-  var onChange = () => {
-    if (isCheckbox) {
-      // Закрываем
-      setIsCheckbox(false);
-      setTimeout(() => {
-        setIsDescription(false);
-      }, 300);
-    } else {
-      // Открываем
-      setIsDescription(true);
-      setTimeout(() => {
-        setIsCheckbox(true);
-      }, 100);
-    }
-  };
-
-  var backButtonHandler = () => {
-    dispatch(setCurrentPage(PAGE.BasketDetail));
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      // settingsWrapRef.current.style.overflow = "hidden";
-      // settingsWrapRef.current.style.height = "var(--tg-viewport-height)";
-      var rec = labelRef.current.getBoundingClientRect();
-      dataRef.current = { x: rec.x, y: rec.y };
-
-      labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
-      labelRef.current.classList.add("dish_open");
-      window.Telegram.WebApp.BackButton.onClick(() => {
-        setIsOpen(false);
-      });
-      imageRef.current.style.height = `${settingsWrapRef.current.offsetWidth}px`;
-    } else {
-      document.body.style.overflow = "unset";
-      // settingsWrapRef.current.style.overflow = "unset";
-      // settingsWrapRef.current.style.height = "unset";
-      labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
-      labelRef.current.classList.remove("dish_open");
-      window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
-      imageRef.current.style.height = "59px";
-    }
-  }, [isOpen]);
-
-  var onClickHandler = (e) => {
-    console.log("onClickHandler");
-    setIsOpen((prev) => !prev);
-    e.preventDefault();
-    e.stopPropagation();
+  var onClickHandler = () => {
+    dispatch(setCurrentPage(PAGE.DishDetail));
   };
 
   return (
     <div className="basket_shop_item" key={`category_${dish.category.id}_dish_${dish?.id}`}>
       <div className="header">
-        <label ref={labelRef}>
-          <img src={dish?.photo_url} ref={imageRef} onClick={onClickHandler} />
-          {!!dish?.count && !isOpen && (
+        <label onClick={onClickHandler}>
+          <img src={dish?.photo_url} />
+          {!!dish?.count && (
             <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
               {dish?.count}
             </p>
           )}
-          {isOpen && <div className="new_dish_description">123</div>}
         </label>
         <div className="short_description">
           <h1>{dish?.name}</h1>
@@ -359,56 +303,6 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
           </button>
         </div>
       </div>
-      {/* {isDescription && (
-        <div className="description">
-          <div className="description_header">
-            <div className="name_wrap">
-              <h1>{dish?.name}</h1>
-              {!!dish?.count && (
-                <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
-                  {dish?.count}
-                </p>
-              )}
-            </div>
-
-            <div className="description_header_control">
-              {dish?.count > 0 && (
-                <button onClick={minusButtonHandler}>
-                  <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                    <use xlinkHref="#circle_minus"></use>
-                  </svg>
-                </button>
-              )}
-
-              <button onClick={plusButtonHandler}>
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
-                  <use xlinkHref="#circle_plus"></use>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <p>{dish?.description}</p>
-
-          <div className="description_header_components">
-            <div>
-              <h3>В 100 г</h3>
-              <p>{dish?.calories} ккал</p>
-            </div>
-            <div>
-              <h3>Белки</h3>
-              <p>{dish?.proteins} г</p>
-            </div>
-            <div>
-              <h3>Жиры</h3>
-              <p>{dish?.fats} г</p>
-            </div>
-            <div>
-              <h3>Углеводы</h3>
-              <p>{dish?.carbs} г</p>
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

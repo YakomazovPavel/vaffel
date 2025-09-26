@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export var PAGE = {
   CreateBasket: "CreateBasket",
   BasketDetail: "BasketDetail",
+  DishDetail: "DishDetail",
   BasketList: "BasketList",
   Shop: "Shop",
 };

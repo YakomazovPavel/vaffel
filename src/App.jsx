@@ -91,6 +91,7 @@ var Main = ({ isLoading, currentPage }) => {
           {currentPage === PAGE.BasketList && <BasketList />}
           {currentPage === PAGE.BasketDetail && <BasketDetail />}
           {currentPage === PAGE.Shop && <Shop />}
+          {currentPage === PAGE.DishDetail && <DishDetail />}
         </>
       )}
     </>
