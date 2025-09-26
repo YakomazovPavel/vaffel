@@ -47,6 +47,7 @@
 }
 
 .basket_shop_item > .header > label {
+  z-index: 1;
   /* display: flex; */
   position: relative;
   height: 100%;
@@ -163,7 +164,6 @@ input:checked ~ .basket_shop_item:not(:last-child) {
 }
 
 .basket_shop_item > .header > label.dish_open {
-  z-index: 1;
   background-color: var(--tg-theme-bg-color);
   height: var(--tg-viewport-height);
 
