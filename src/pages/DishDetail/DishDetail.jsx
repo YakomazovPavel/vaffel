@@ -1,8 +1,29 @@
 import React from "react";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Loader from "../../components/Loader.jsx";
 import "./DishDetail.scss";
 
 var DishDetail = ({ dishId }) => {
+  var dispatch = useDispatch();
+  var backButtonHandler = () => {
+    dispatch(setCurrentPage(PAGE.Shop));
+  };
+
+  var open = () => {
+    window.Telegram.WebApp.MainButton.hide();
+    window.Telegram.WebApp.BackButton.show();
+    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+  };
+
+  var close = () => {
+    window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
+  };
+
+  useEffect(() => {
+    open();
+    return close;
+  }, []);
   return (
     <div>
       <Loader />
