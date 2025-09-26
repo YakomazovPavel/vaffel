@@ -160,7 +160,7 @@ input:checked ~ .basket_shop_item:not(:last-child) {
   border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
 }
 
-.dish_open {
+.basket_shop_item > .header > label.dish_open {
   padding: 0;
   display: block;
 }
