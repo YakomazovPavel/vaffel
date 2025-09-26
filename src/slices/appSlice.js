@@ -11,6 +11,7 @@ export var PAGE = {
 const initialState = {
   currentPage: PAGE.Shop,
   currentBasketId: "1",
+  currentDishId: "1",
   userId: null,
   baskets: [
     {
@@ -165,8 +166,12 @@ const appSlice = createSlice({
     setBasketDish: (state, action) => {
       state.basketDishes = action.payload;
     },
+    setCurrentDishId: (state, action) => {
+      state.currentDishId = action.payload;
+    },
   },
 });
 
-export const { setCurrentPage, setCurrentBasketId, addBasket, setCurrentUserId, setBasketDish } = appSlice.actions;
+export const { setCurrentPage, setCurrentBasketId, addBasket, setCurrentUserId, setBasketDish, setCurrentDishId } =
+  appSlice.actions;
 export default appSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { useSelector, useDispatch, useStore } from "react-redux";
-import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
+import { setCurrentPage, setCurrentDishId, PAGE } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 import Loader from "../../components/Loader.jsx";
 import "./Shop.scss";
@@ -258,6 +258,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
   };
 
   var onClickHandler = () => {
+    dispatch(setCurrentDishId(dish.id));
     dispatch(setCurrentPage(PAGE.DishDetail));
   };
 

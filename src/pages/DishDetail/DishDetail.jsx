@@ -23,7 +23,8 @@ var useGetDishDetail = ({ dishId }) => {
   return [isLoading, dish];
 };
 
-var DishDetail = ({ dishId }) => {
+var DishDetail = () => {
+  var dishId = useSelector((state) => state.appSlice.currentBasketId);
   console.log({ dishId });
   var [isLoading, dish] = useGetDishDetail({ dishId });
   console.log({ isLoading, dish });
