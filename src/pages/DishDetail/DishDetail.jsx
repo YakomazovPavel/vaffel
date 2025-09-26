@@ -5,6 +5,8 @@ import Loader from "../../components/Loader.jsx";
 import "./DishDetail.scss";
 
 var DishDetail = ({ dishId }) => {
+  console.log({ dishId });
+
   var dispatch = useDispatch();
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.Shop));
