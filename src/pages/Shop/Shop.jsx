@@ -242,6 +242,7 @@ var Category = ({ category, addDishHandler, removeDishHandler }) => {
 };
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
+  var dispatch = useDispatch();
   var labelRef = useRef(null);
   var imageRef = useRef(null);
   var [counterKey, setCounterKey] = useState(0);
@@ -278,15 +279,24 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     }
   };
 
+  var backButtonHandler = () => {
+    dispatch(setCurrentPage(PAGE.BasketDetail));
+  };
+
   useEffect(() => {
     var rec = labelRef.current.getBoundingClientRect();
     if (isOpen) {
       labelRef.current.style.setProperty("transform", `translate(-${rec.x}px, -${rec.y}px)`);
       labelRef.current.classList.add("dish_open");
-    } else {
-      labelRef.current.style.setProperty("transform", `translate(${rec.x}px, ${rec.y}px)`);
-      labelRef.current.classList.remove("dish_open");
+      window.Telegram.WebApp.BackButton.onClick(() => {
+        setIsOpen(false);
+      });
     }
+    // else {
+    //   labelRef.current.style.setProperty("transform", `translate(${rec.x}px, ${rec.y}px)`);
+    //   labelRef.current.classList.remove("dish_open");
+    //   window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+    // }
   }, [isOpen]);
 
   var onClickHandler = (e) => {
