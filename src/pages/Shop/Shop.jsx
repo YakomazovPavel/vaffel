@@ -291,12 +291,11 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
       window.Telegram.WebApp.BackButton.onClick(() => {
         setIsOpen(false);
       });
+    } else {
+      labelRef.current.style.setProperty("transform", `translate(${rec.x}px, ${rec.y}px)`);
+      labelRef.current.classList.remove("dish_open");
+      window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
     }
-    // else {
-    //   labelRef.current.style.setProperty("transform", `translate(${rec.x}px, ${rec.y}px)`);
-    //   labelRef.current.classList.remove("dish_open");
-    //   window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
-    // }
   }, [isOpen]);
 
   var onClickHandler = (e) => {
