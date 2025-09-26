@@ -297,8 +297,9 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
 
   useEffect(() => {
     if (isOpen) {
-      settingsWrapRef.current.style.overflow = "hidden";
-      settingsWrapRef.current.style.height = "var(--tg-viewport-height)";
+      document.body.style.overflow = "hidden";
+      // settingsWrapRef.current.style.overflow = "hidden";
+      // settingsWrapRef.current.style.height = "var(--tg-viewport-height)";
       var rec = labelRef.current.getBoundingClientRect();
       dataRef.current = { x: rec.x, y: rec.y };
 
@@ -309,8 +310,9 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
       });
       imageRef.current.style.height = `${settingsWrapRef.current.offsetWidth}px`;
     } else {
-      settingsWrapRef.current.style.overflow = "unset";
-      settingsWrapRef.current.style.height = "unset";
+      document.body.style.overflow = "unset";
+      // settingsWrapRef.current.style.overflow = "unset";
+      // settingsWrapRef.current.style.height = "unset";
       labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
       labelRef.current.classList.remove("dish_open");
       window.Telegram.WebApp.BackButton.onClick(backButtonHandler);

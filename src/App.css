@@ -47,7 +47,6 @@ body {
   margin: 0;
   color: var(--tg-theme-text-color);
   background: var(--tg-theme-bg-color);
-  overflow: hidden;
   /* background: var(--tg-theme-secondary-bg-color); */
 }
 
