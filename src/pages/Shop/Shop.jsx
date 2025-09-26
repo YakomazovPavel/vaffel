@@ -305,8 +305,7 @@ var Dish = ({ dish, addDishHandler, removeDishHandler, settingsWrapRef }) => {
       window.Telegram.WebApp.BackButton.onClick(() => {
         setIsOpen(false);
       });
-      console.log("settingsWrapRef", settingsWrapRef.current);
-      console.log("settingsWrapRef.offsetWidth", settingsWrapRef.current?.offsetWidth);
+      imageRef.style.height = `${settingsWrapRef.current.offsetWidth}px`;
     } else {
       labelRef.current.style.setProperty("transform", `translate(0px, 0px)`);
       labelRef.current.classList.remove("dish_open");
