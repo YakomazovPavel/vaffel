@@ -159,3 +159,8 @@ input:checked ~ .basket_shop_item:not(:last-child) {
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, var(--tg-theme-secondary-bg-color), var(--tg-theme-bg-color));
 }
+
+.dish_open {
+  padding: 0;
+  display: block;
+}
