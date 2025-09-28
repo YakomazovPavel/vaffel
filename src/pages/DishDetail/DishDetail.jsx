@@ -19,12 +19,10 @@ var useGetDishDetail = ({ dishId }) => {
       .then((data) => {
         console.log({ data });
         setDish(data);
-      })
-      .then(() => {
         setImage(
           <img
             className="dish_photo"
-            src={dish?.photo_url}
+            src={data?.photo_url}
             alt="Фото блюда"
             onLoad={imageOnLoadHandler}
             onError={imageOnLoadHandler}
