@@ -3,19 +3,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5%;
-  row-gap: 10px;
+  padding: 3%;
+  row-gap: 3%;
   animation: open 0.7s forwards;
 }
 
 .dish_photo {
-  aspect-ratio: 1/1;
   width: 100%;
   border-radius: 10px;
+  aspect-ratio: 1/1;
   object-fit: cover;
 }
 
 .dish_body {
+  width: 100%;
+  border-radius: 10px;
   height: 200px;
   background-color: var(--tg-theme-secondary-bg-color);
 }
