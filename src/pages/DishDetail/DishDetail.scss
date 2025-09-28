@@ -2,6 +2,22 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  padding: 10px;
+  row-gap: 10px;
+}
+
+.dish_photo {
+  aspect-ratio: 1/1;
+  min-width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.dish_body {
+  height: 200px;
+  background-color: var(--tg-theme-secondary-bg-color);
+}
+
+.dish_control {
 }

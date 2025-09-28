@@ -13,7 +13,6 @@ var useGetDishDetail = ({ dishId }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log({ data });
-
         setDish(data);
       })
       .then(() => {
@@ -50,7 +49,14 @@ var DishDetail = () => {
   }, []);
   return (
     <>
-      {isLoading ? <Loader style={{ left: "calc(50% - 20px)" }} /> : <div className="page_dish_detail">{dishId}</div>}
+      {isLoading ? (
+        <Loader style={{ left: "calc(50% - 20px)" }} />
+      ) : (
+        <div className="page_dish_detail">
+          <img className="dish_photo" src={photo_url} alt="Фото блюда" />
+          <div className="dish_body"></div>
+        </div>
+      )}
     </>
     // <div className="page_dish_detail">
     //   <Loader />
