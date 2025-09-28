@@ -8,8 +8,10 @@ import "./DishDetail.scss";
 var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
-  var [image, setImage] = useState();
+  var [image, setImage] = useState(null);
   var imageOnLoadHandler = (e) => {
+    console.log("imageOnLoadHandler");
+
     setIsLoading(false);
   };
   useEffect(() => {
@@ -19,7 +21,7 @@ var useGetDishDetail = ({ dishId }) => {
         console.log({ data });
         setDish(data);
       })
-      .then(
+      .then(() => {
         setImage(
           <img
             className="dish_photo"
@@ -28,8 +30,8 @@ var useGetDishDetail = ({ dishId }) => {
             onLoad={imageOnLoadHandler}
             onError={imageOnLoadHandler}
           />
-        )
-      );
+        );
+      });
   }, []);
   return [isLoading, dish, image];
 };
