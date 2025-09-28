@@ -26,7 +26,6 @@ var DishDetail = () => {
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
   var [isLoading, dish] = useGetDishDetail({ dishId });
-  var [isLoadingImage, setIsLoadingImage] = useState(true);
   console.log({ isLoading, dish });
 
   var dispatch = useDispatch();
@@ -49,28 +48,13 @@ var DishDetail = () => {
     return close;
   }, []);
 
-  var imageOnLoadHandler = (e) => {
-    console.log("imageOnLoadHandler");
-
-    setIsLoadingImage(false);
-  };
-
-  var imageStyle = isLoadingImage ? { display: "none" } : {};
-
   return (
     <>
-      {isLoading && isLoadingImage ? (
+      {isLoading ? (
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
-          {/* {!isLoadingImage && <div className="image_placeholder"></div>} */}
-          <img
-            className="dish_photo"
-            src={dish?.photo_url}
-            style={imageStyle}
-            alt="Фото блюда"
-            onLoad={imageOnLoadHandler}
-          />
+          <img className="dish_photo" src={dish?.photo_url} />
           <div className="dish_body"></div>
         </div>
       )}
