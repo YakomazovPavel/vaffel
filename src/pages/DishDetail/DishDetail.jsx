@@ -53,7 +53,7 @@ var DishDetail = () => {
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
-          <img className="dish_photo" src={photo_url} alt="Фото блюда" />
+          <img className="dish_photo" src={dish?.photo_url} alt="Фото блюда" />
           <div className="dish_body"></div>
         </div>
       )}
