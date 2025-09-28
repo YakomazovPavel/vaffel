@@ -62,7 +62,7 @@ var DishDetail = () => {
 
   return (
     <>
-      {isLoading && isLoadingImage ? (
+      {isLoading ? (
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
