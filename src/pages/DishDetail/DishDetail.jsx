@@ -8,6 +8,10 @@ import "./DishDetail.scss";
 var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
+  var [image, setImage] = useState();
+  var imageOnLoadHandler = (e) => {
+    setIsLoading(false);
+  };
   useEffect(() => {
     Backend.getDishDetail({ dishId })
       .then((response) => response.json())
@@ -15,17 +19,17 @@ var useGetDishDetail = ({ dishId }) => {
         console.log({ data });
         setDish(data);
       })
-      .then(() => {
-        setIsLoading(false);
-      });
+      .then(
+        setImage(<img className="dish_photo" src={dish?.photo_url} alt="Фото блюда" onLoad={imageOnLoadHandler} />)
+      );
   }, []);
-  return [isLoading, dish];
+  return [isLoading, dish, image];
 };
 
 var DishDetail = () => {
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
-  var [isLoading, dish] = useGetDishDetail({ dishId });
+  var [isLoading, dish, image] = useGetDishDetail({ dishId });
   var [isLoadingImage, setIsLoadingImage] = useState(true);
   console.log({ isLoading, dish });
 
@@ -62,7 +66,7 @@ var DishDetail = () => {
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
-          <img className="dish_photo" src={dish?.photo_url} alt="Фото блюда" onLoad={imageOnLoadHandler} />
+          {image}
           <div className="dish_body"></div>
         </div>
       )}
