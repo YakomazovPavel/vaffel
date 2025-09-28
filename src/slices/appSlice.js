@@ -9,10 +9,10 @@ export var PAGE = {
 };
 
 const initialState = {
-  currentPage: PAGE.Shop,
+  currentPage: PAGE.DishDetail,
   currentBasketId: "1",
-  currentDishId: null,
-  userId: null,
+  currentDishId: "1378181",
+  userId: "1",
   baskets: [
     {
       id: "1",
