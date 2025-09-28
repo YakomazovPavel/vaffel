@@ -8,36 +8,26 @@ import "./DishDetail.scss";
 var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
-  var [image, setImage] = useState(null);
-  var imageOnLoadHandler = (e) => {
-    console.log("imageOnLoadHandler");
-    setIsLoading(false);
-  };
   useEffect(() => {
     Backend.getDishDetail({ dishId })
       .then((response) => response.json())
       .then((data) => {
         console.log({ data });
         setDish(data);
-        setImage(
-          <img
-            className="dish_photo"
-            src={data?.photo_url}
-            alt="Фото блюда"
-            onLoad={imageOnLoadHandler}
-            onError={imageOnLoadHandler}
-          />
-        );
+      })
+      .then(() => {
+        setIsLoading(false);
       });
   }, []);
-  return [isLoading, dish, image];
+  return [isLoading, dish];
 };
 
 var DishDetail = () => {
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
-  var [isLoading, dish, image] = useGetDishDetail({ dishId });
-  console.log({ isLoading, dish, image });
+  var [isLoading, dish] = useGetDishDetail({ dishId });
+  var [isLoadingImage, setIsLoadingImage] = useState(true);
+  console.log({ isLoading, dish });
 
   var dispatch = useDispatch();
   var backButtonHandler = () => {
@@ -59,13 +49,28 @@ var DishDetail = () => {
     return close;
   }, []);
 
+  var imageOnLoadHandler = (e) => {
+    console.log("imageOnLoadHandler");
+
+    setIsLoadingImage(false);
+  };
+
+  var imageStyle = !isLoadingImage ? { display: "none" } : {};
+
   return (
     <>
-      {isLoading ? (
+      {isLoading && isLoadingImage ? (
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
-          {image}
+          {/* {!isLoadingImage && <div className="image_placeholder"></div>} */}
+          <img
+            className="dish_photo"
+            src={dish?.photo_url}
+            style={imageStyle}
+            alt="Фото блюда"
+            onLoad={imageOnLoadHandler}
+          />
           <div className="dish_body"></div>
         </div>
       )}
