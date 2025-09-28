@@ -27,7 +27,12 @@
   border-radius: 10px;
   aspect-ratio: 1/1;
   background-size: 200% 200%;
-  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 0.5) 100%);
+  background: linear-gradient(
+    -45deg,
+    var(--tg-theme-secondary-bg-color) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    var(--tg-theme-secondary-bg-color) 100%
+  );
   animation: gradient 10s ease infinite;
 }
 
