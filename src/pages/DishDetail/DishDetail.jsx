@@ -11,7 +11,6 @@ var useGetDishDetail = ({ dishId }) => {
   var [image, setImage] = useState(null);
   var imageOnLoadHandler = (e) => {
     console.log("imageOnLoadHandler");
-
     setIsLoading(false);
   };
   useEffect(() => {
