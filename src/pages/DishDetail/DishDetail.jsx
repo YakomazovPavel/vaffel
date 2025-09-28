@@ -55,7 +55,7 @@ var DishDetail = () => {
     setIsLoadingImage(false);
   };
 
-  var imageStyle = !isLoadingImage ? { display: "none" } : {};
+  var imageStyle = isLoadingImage ? { display: "none" } : {};
 
   return (
     <>
