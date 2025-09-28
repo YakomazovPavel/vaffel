@@ -54,8 +54,7 @@ var DishDetail = () => {
 
     setIsLoadingImage(false);
   };
-
-  var imageStyle = !isLoadingImage ? { display: "none" } : {};
+  console.log({ isLoading, isLoadingImage });
 
   return (
     <>
@@ -63,14 +62,7 @@ var DishDetail = () => {
         <Loader style={{ left: "calc(50% - 20px)" }} />
       ) : (
         <div className="page_dish_detail">
-          {/* {!isLoadingImage && <div className="image_placeholder"></div>} */}
-          <img
-            className="dish_photo"
-            src={dish?.photo_url}
-            style={imageStyle}
-            alt="Фото блюда"
-            onLoad={imageOnLoadHandler}
-          />
+          <img className="dish_photo" src={dish?.photo_url} alt="Фото блюда" onLoad={imageOnLoadHandler} />
           <div className="dish_body"></div>
         </div>
       )}
