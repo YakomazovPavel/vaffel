@@ -20,7 +20,15 @@ var useGetDishDetail = ({ dishId }) => {
         setDish(data);
       })
       .then(
-        setImage(<img className="dish_photo" src={dish?.photo_url} alt="Фото блюда" onLoad={imageOnLoadHandler} />)
+        setImage(
+          <img
+            className="dish_photo"
+            src={dish?.photo_url}
+            alt="Фото блюда"
+            onLoad={imageOnLoadHandler}
+            onError={imageOnLoadHandler}
+          />
+        )
       );
   }, []);
   return [isLoading, dish, image];
