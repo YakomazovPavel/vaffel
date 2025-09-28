@@ -38,8 +38,7 @@ var DishDetail = () => {
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
   var [isLoading, dish, image] = useGetDishDetail({ dishId });
-  var [isLoadingImage, setIsLoadingImage] = useState(true);
-  console.log({ isLoading, dish });
+  console.log({ isLoading, dish, image });
 
   var dispatch = useDispatch();
   var backButtonHandler = () => {
@@ -60,13 +59,6 @@ var DishDetail = () => {
     open();
     return close;
   }, []);
-
-  var imageOnLoadHandler = (e) => {
-    console.log("imageOnLoadHandler");
-
-    setIsLoadingImage(false);
-  };
-  console.log({ isLoading, isLoadingImage });
 
   return (
     <>
