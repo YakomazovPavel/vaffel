@@ -23,6 +23,7 @@ var useGetDishDetail = ({ dishId }) => {
 };
 
 var DishDetail = () => {
+  var [counter, setCounter] = useState(0);
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
   var [isLoading, dish] = useGetDishDetail({ dishId });
@@ -35,7 +36,14 @@ var DishDetail = () => {
   };
 
   var open = () => {
-    window.Telegram.WebApp.MainButton.hide();
+    console.log("counter", counter);
+    if (counter === 0) {
+      window.Telegram.WebApp.MainButton.text = "Создать корзину";
+      window.Telegram.WebApp.MainButton.show();
+    } else {
+      window.Telegram.WebApp.MainButton.hide();
+    }
+
     window.Telegram.WebApp.BackButton.show();
     window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
   };
