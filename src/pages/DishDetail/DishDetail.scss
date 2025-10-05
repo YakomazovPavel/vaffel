@@ -25,10 +25,8 @@
   overflow: hidden;
   font: 16px sans-serif;
   color: var(--tg-theme-text-color);
-  & h1 {
-    margin: 0;
-  }
-  & p {
+  & h1,
+  p {
     margin: 0;
   }
   &_components {
