@@ -38,7 +38,7 @@ var DishDetail = () => {
   var open = () => {
     console.log("counter", counter);
     if (counter === 0) {
-      window.Telegram.WebApp.MainButton.text = "Создать корзину";
+      window.Telegram.WebApp.MainButton.text = "Добавить";
       window.Telegram.WebApp.MainButton.show();
     } else {
       window.Telegram.WebApp.MainButton.hide();
