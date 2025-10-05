@@ -51,8 +51,8 @@ var DishDetail = () => {
 
   var onLoadImageHandler = (e) => {
     console.log("onLoadImageHandler e", e);
-    console.log("onLoadImageHandler complete", e?.complete);
-    e?.complete && setIsImageLoad(false);
+    console.log("onLoadImageHandler complete", e?.target?.complete);
+    setIsImageLoad(false);
   };
 
   return (
@@ -67,7 +67,7 @@ var DishDetail = () => {
               className="dish_photo"
               src={dish?.photo_url}
               onLoad={onLoadImageHandler}
-              onCom
+              onLo
               onError={() => {
                 console.log("Не удалось загрузить картинку", dish?.photo_url);
               }}
