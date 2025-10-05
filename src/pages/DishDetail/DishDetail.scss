@@ -71,7 +71,6 @@
   &_avatars {
     // direction: rtl; /* Это для того, чтобы получить стек с левым верхом */
     text-align: left;
-    padding-left: 18px;
     display: flex;
     align-items: center;
     overflow-x: auto;
@@ -84,9 +83,12 @@
       border-radius: 50%;
       position: relative;
       left: -5px;
-      margin-left: -15px;
       z-index: 1;
       border: solid 5px var(--tg-theme-secondary-bg-color);
+    }
+
+    & img:not(:first-child) {
+      margin-left: -15px;
     }
   }
 }
