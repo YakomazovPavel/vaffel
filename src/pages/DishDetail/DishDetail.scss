@@ -25,3 +25,13 @@
 
 .dish_control {
 }
+
+.photo_with_loader_wrapper {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  & .loader {
+    top: unset;
+    left: unset;
+  }
+}

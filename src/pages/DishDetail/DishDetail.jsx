@@ -59,13 +59,16 @@ var DishDetail = () => {
         <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
         <div className="page_dish_detail">
-          {isImageLoad && <Loader style={{ left: "calc(50% - 25px)" }} />}
-          <img
-            className="dish_photo"
-            src={dish?.photo_url}
-            onLoad={onLoadImageHandler}
-            style={isLoading ? { opacity: 0 } : { opacity: 1 }}
-          />
+          <div className="photo_with_loader_wrapper">
+            {isImageLoad && <Loader style={{ left: "calc(50% - 25px)" }} />}
+            <img
+              className="dish_photo"
+              src={dish?.photo_url}
+              onLoad={onLoadImageHandler}
+              style={isLoading ? { opacity: 0 } : { opacity: 1 }}
+            />
+          </div>
+
           <div className="dish_body"></div>
         </div>
       )}
