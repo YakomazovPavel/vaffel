@@ -23,6 +23,42 @@
   background-color: var(--tg-theme-secondary-bg-color);
   padding: 10px;
   overflow: hidden;
+  font: 16px sans-serif;
+  & h1 {
+    color: var(--tg-theme-text-color);
+  }
+  &_components {
+    color: var(--tg-theme-subtitle-text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto 0px;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    & > div:not(:last-child) {
+      border-right: solid var(--tg-theme-bg-color) 1px;
+    }
+
+    & > div > h3 {
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      font-weight: 100;
+    }
+
+    & > div > p {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 }
 
 .dish_control {
