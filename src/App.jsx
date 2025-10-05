@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Loader from "./components/Loader.jsx";
 
 var useInizialize = () => {
+  window?.Telegram?.WebApp?.expand();
   var dispatch = useDispatch();
   var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
