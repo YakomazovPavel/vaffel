@@ -50,7 +50,7 @@ var DishDetail = () => {
   }, []);
 
   var onLoadImageHandler = (e) => {
-    // setIsImageLoad(false);
+    setIsImageLoad(false);
   };
 
   return (
