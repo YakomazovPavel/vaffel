@@ -65,6 +65,9 @@ var DishDetail = () => {
               className="dish_photo"
               src={dish?.photo_url}
               onLoad={onLoadImageHandler}
+              onError={() => {
+                console.log("Не удалось загрузить картинку", dish?.photo_url);
+              }}
               style={isLoading ? { opacity: 0 } : { opacity: 1 }}
             />
           </div>
