@@ -24,8 +24,12 @@
   padding: 10px;
   overflow: hidden;
   font: 16px sans-serif;
+  color: var(--tg-theme-text-color);
   & h1 {
-    color: var(--tg-theme-text-color);
+    margin: 0;
+  }
+  & p {
+    margin: 0;
   }
   &_components {
     color: var(--tg-theme-subtitle-text-color);
