@@ -94,6 +94,14 @@
       margin-left: -15px;
     }
   }
+  &_control {
+    color: var(--tg-theme-text-color);
+    flex-direction: row;
+    justify-content: space-between;
+    & button {
+      cursor: pointer;
+    }
+  }
 }
 
 .dish_control {

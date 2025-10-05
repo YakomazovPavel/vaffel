@@ -76,6 +76,14 @@ var DishDetail = () => {
     setIsImageLoad(false);
   };
 
+  var addDishHandler = () => {
+    setCounter((prev) => ++prev);
+  };
+
+  var removeDishHandler = () => {
+    setCounter((prev) => --prev);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -137,10 +145,10 @@ var DishDetail = () => {
             </div>
           </div>
           {counter > 0 && (
-            <div className="dish_body">
-              <button>-</button>
+            <div className="dish_body_control">
+              <button addDishHandler>-</button>
               <p>{}</p>
-              <button>+</button>
+              <button removeDishHandler>+</button>
             </div>
           )}
         </div>
