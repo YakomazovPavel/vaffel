@@ -75,7 +75,28 @@ var DishDetail = () => {
             />
           </div>
 
-          <div className="dish_body"></div>
+          <div className="dish_body">
+            <h1>{dish?.name}</h1>
+            <p>{dish?.description}</p>
+            <div className="dish_body_components">
+              <div>
+                <h3>В 100 г</h3>
+                <p>{dish?.calories} ккал</p>
+              </div>
+              <div>
+                <h3>Белки</h3>
+                <p>{dish?.proteins} г</p>
+              </div>
+              <div>
+                <h3>Жиры</h3>
+                <p>{dish?.fats} г</p>
+              </div>
+              <div>
+                <h3>Углеводы</h3>
+                <p>{dish?.carbs} г</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </>

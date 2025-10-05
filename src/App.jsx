@@ -85,7 +85,7 @@ var Main = ({ isLoading, currentPage }) => {
   return (
     <>
       {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)" }} />
+        <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
         <>
           {currentPage === PAGE.CreateBasket && <CreateBasket />}

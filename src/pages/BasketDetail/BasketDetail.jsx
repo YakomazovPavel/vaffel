@@ -214,7 +214,7 @@ function BasketDetail() {
   return (
     <>
       {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)" }} />
+        <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
         <div id="page_basket_detail" onTouchEnd={onTouchEndHandler}>
           <div class="settings_wrap">

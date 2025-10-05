@@ -103,7 +103,7 @@ function BasketList() {
   return (
     <>
       {isLoading ? (
-        <Loared style={{ left: "calc(50% - 20px)" }} />
+        <Loared style={{ left: "calc(50% - 25px)" }} />
       ) : (
         <div id="page_basket_list">
           <div className="settings_wrap">
