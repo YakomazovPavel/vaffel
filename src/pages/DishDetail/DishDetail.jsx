@@ -60,7 +60,7 @@ var DishDetail = () => {
       ) : (
         <div className="page_dish_detail">
           <div className="photo_with_loader_wrapper">
-            {isImageLoad && <Loader style={{ left: "calc(50% - 25px)" }} />}
+            {isImageLoad && <Loader />}
             <img
               className="dish_photo"
               src={dish?.photo_url}
