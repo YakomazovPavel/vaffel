@@ -30,6 +30,8 @@ var DishDetail = () => {
   var [isImageLoad, setIsImageLoad] = useState(true);
   console.log({ isLoading, dish });
 
+  var mainButtonHandler;
+
   var dispatch = useDispatch();
   var backButtonHandler = () => {
     dispatch(setCurrentPage(PAGE.Shop));
@@ -40,8 +42,10 @@ var DishDetail = () => {
     if (counter === 0) {
       window.Telegram.WebApp.MainButton.text = "Добавить";
       window.Telegram.WebApp.MainButton.show();
+      window.Telegram.WebApp.MainButton.hasShineEffect = true;
     } else {
       window.Telegram.WebApp.MainButton.hide();
+      window.Telegram.WebApp.MainButton.hasShineEffect = false;
     }
 
     window.Telegram.WebApp.BackButton.show();
