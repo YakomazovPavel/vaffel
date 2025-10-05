@@ -56,10 +56,10 @@ var DishDetail = () => {
   return (
     <>
       {isLoading ? (
-        <Loader style={{ left: "calc(50% - 20px)" }} />
+        <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
         <div className="page_dish_detail">
-          {isImageLoad && <Loader style={{ left: "calc(50% - 20px)" }} />}
+          {isImageLoad && <Loader style={{ left: "calc(50% - 25px)" }} />}
           <img className="dish_photo" src={dish?.photo_url} onLoad={onLoadImageHandler} />
           <div className="dish_body"></div>
         </div>
