@@ -97,7 +97,7 @@ var DishDetail = () => {
               </div>
             </div>
           </div>
-          <div className="dish_body">
+          <div className="dish_body" style={{ rowGap: "10px" }}>
             <p>В корзину добавили</p>
 
             <div className="dish_body_avatars">
