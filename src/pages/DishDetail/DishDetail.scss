@@ -27,9 +27,12 @@
 }
 
 .photo_with_loader_wrapper {
+  width: 100%;
+  aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   align-content: center;
+  justify-content: center;
   & .loader {
     top: unset;
     left: unset;
