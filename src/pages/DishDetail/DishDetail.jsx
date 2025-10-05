@@ -149,9 +149,9 @@ var DishDetail = () => {
           </div>
           {counter > 0 && (
             <div className="dish_body_control">
-              <button addDishHandler>-</button>
+              <button onClick={addDishHandler}>-</button>
               <p>{}</p>
-              <button removeDishHandler>+</button>
+              <button onClick={removeDishHandler}>+</button>
             </div>
           )}
         </div>
