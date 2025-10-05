@@ -74,9 +74,10 @@
     padding-left: 18px;
     display: flex;
     align-items: center;
+    overflow-x: auto;
     & img {
-      height: 50px;
-      width: 50px;
+      min-height: 50px;
+      min-width: 50px;
       border-radius: 50%;
       border-radius: 50%;
       position: relative;
