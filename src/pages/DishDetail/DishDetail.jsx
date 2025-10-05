@@ -50,7 +50,7 @@ var DishDetail = () => {
   }, []);
 
   var onLoadImageHandler = (e) => {
-    setIsImageLoad(false);
+    // setIsImageLoad(false);
   };
 
   return (
@@ -60,7 +60,12 @@ var DishDetail = () => {
       ) : (
         <div className="page_dish_detail">
           {isImageLoad && <Loader style={{ left: "calc(50% - 25px)" }} />}
-          <img className="dish_photo" src={dish?.photo_url} onLoad={onLoadImageHandler} />
+          <img
+            className="dish_photo"
+            src={dish?.photo_url}
+            onLoad={onLoadImageHandler}
+            style={isLoading ? { opacity: 0 } : { opacity: 1 }}
+          />
           <div className="dish_body"></div>
         </div>
       )}
