@@ -72,6 +72,8 @@
     // direction: rtl; /* Это для того, чтобы получить стек с левым верхом */
     text-align: left;
     padding-left: 18px;
+    display: flex;
+    align-items: center;
     & img {
       height: 50px;
       width: 50px;
