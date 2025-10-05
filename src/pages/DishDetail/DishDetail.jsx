@@ -66,9 +66,12 @@ var DishDetail = () => {
   };
 
   useEffect(() => {
-    open();
     return close;
-  }, [dish]);
+  }, []);
+
+  useEffect(() => {
+    open();
+  }, [counter]);
 
   var onLoadImageHandler = (e) => {
     console.log("onLoadImageHandler e", e);
