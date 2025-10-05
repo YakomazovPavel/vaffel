@@ -25,8 +25,15 @@
   overflow: hidden;
   font: 16px sans-serif;
   color: var(--tg-theme-text-color);
-  & h1,
-  p {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  & h1 {
+    font-size: 28px;
+    margin: 0;
+  }
+  & p {
     margin: 0;
   }
   &_components {
