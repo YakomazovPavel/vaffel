@@ -116,6 +116,8 @@
       background: unset;
       color: var(--tg-theme-button-text-color);
       font-size: 30px;
+      width: 50px;
+      box-sizing: border-box;
       max-width: 50px;
       min-width: 50px;
       min-height: 50px;
@@ -127,11 +129,15 @@
         border: unset;
         background: unset;
         border-radius: 50%;
+        min-height: 50px;
+        max-height: 50px;
       }
       &:focus-visible {
         outline: unset;
         border: unset;
         border-radius: 50%;
+        min-height: 50px;
+        max-height: 50px;
       }
       &:focus {
         outline: unset;
