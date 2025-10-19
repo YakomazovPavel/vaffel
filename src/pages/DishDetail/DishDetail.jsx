@@ -72,7 +72,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
     if (oldHeaderColorRef.current) {
-      window.Telegram.WebApp.setHeaderColor(oldHeaderColorRef.current);
+      window.Telegram.WebApp.setBackgroundColor(oldHeaderColorRef.current);
     }
   };
 
