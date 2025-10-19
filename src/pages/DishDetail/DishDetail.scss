@@ -118,12 +118,11 @@
       font-size: 30px;
       width: 50px;
       box-sizing: border-box;
-      max-width: 50px !important;
+      max-width: 50px;
       min-width: 50px;
       min-height: 50px;
       max-height: 50px;
       border-radius: 50%;
-      background-color: rgb(19, 170, 39);
       overflow: hidden;
       padding: 0;
       &:active {
