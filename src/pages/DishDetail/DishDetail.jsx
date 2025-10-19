@@ -90,6 +90,8 @@ var DishDetail = () => {
 
   useEffect(() => {
     if (counter == 0) {
+      console.log("counter == 0!!!!");
+
       setTimeout(() => {
         window.scrollTo({
           left: 0,
