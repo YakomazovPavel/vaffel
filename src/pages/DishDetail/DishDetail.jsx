@@ -88,6 +88,16 @@ var DishDetail = () => {
     setCounter((prev) => ++prev);
   };
 
+  useEffect(() => {
+    if (counter === 0) {
+      window.scrollTo({
+        left: 0,
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [counter]);
+
   var removeDishHandler = () => {
     setCounter((prev) => --prev);
   };
