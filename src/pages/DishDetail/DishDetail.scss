@@ -115,12 +115,14 @@
       background: unset;
       color: var(--tg-theme-button-text-color);
       font-size: 30px;
+      height: 100%;
       aspect-ratio: 1/1;
     }
   }
   &_price_control {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     & .price {
       display: flex;
       flex-direction: column;
