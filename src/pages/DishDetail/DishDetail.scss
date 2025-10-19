@@ -115,8 +115,10 @@
       background: unset;
       color: var(--tg-theme-button-text-color);
       font-size: 30px;
-      height: 100%;
-      aspect-ratio: 1/1;
+      max-width: 50px;
+      min-width: 50px;
+      min-height: 50px;
+      max-height: 50px;
     }
   }
   &_price_control {
