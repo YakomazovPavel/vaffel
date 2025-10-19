@@ -171,7 +171,7 @@ var DishDetail = () => {
             {counter > 0 && (
               <div className="dish_body_control">
                 <button onClick={removeDishHandler}>
-                  <p>-</p>
+                  <p style={{ marginBottom: "3px" }}>-</p>
                 </button>
                 <p style={{ fontSize: "26px", minWidth: "30px", textAlign: "center", color: "red" }}>{counter}</p>
                 <button onClick={addDishHandler}>
