@@ -72,7 +72,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
     if (oldHeaderColorRef.current) {
-      window.Telegram.WebApp.setBackgroundColor(oldHeaderColorRef.current);
+      window.Telegram.WebApp.setHeaderColor(oldHeaderColorRef.current);
     }
   };
 
@@ -89,7 +89,7 @@ var DishDetail = () => {
     console.log("onLoadImageHandler complete", e?.target?.complete);
     setIsImageLoad(false);
     oldHeaderColorRef.current = window.Telegram.WebApp.headerColor;
-    window.Telegram.WebApp.setBackgroundColor("#dae0e4");
+    window.Telegram.WebApp.setHeaderColor("#dae0e4");
   };
 
   var addDishHandler = () => {
