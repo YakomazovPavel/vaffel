@@ -125,10 +125,12 @@
         outline: unset;
         border: unset;
         background: unset;
+        border-radius: 50%;
       }
       &:focus-visible {
         outline: unset;
         border: unset;
+        border-radius: 50%;
       }
     }
   }
