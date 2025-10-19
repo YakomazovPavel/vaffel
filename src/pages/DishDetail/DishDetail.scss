@@ -103,13 +103,12 @@
     justify-content: space-between;
 
     height: 50px;
-    // width: max-content;
-    // min-width: 40%;
     border-radius: 50px;
     background-color: var(--tg-theme-button-color);
     align-items: center;
     padding: 2px;
-    max-width: min-content;
+    max-width: 50%;
+    min-width: 30%;
     & button {
       cursor: pointer;
       border: unset;
