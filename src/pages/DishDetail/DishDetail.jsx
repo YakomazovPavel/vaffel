@@ -37,6 +37,11 @@ var DishDetail = () => {
     setCounter(1);
     window.Telegram.WebApp.MainButton.hide();
     window.Telegram.WebApp.MainButton.hasShineEffect = false;
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
   };
 
   var dispatch = useDispatch();
