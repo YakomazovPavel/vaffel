@@ -88,9 +88,9 @@ var DishDetail = () => {
     setCounter((prev) => ++prev);
   };
 
-  useEffect(() => {
-    if (counter == 0) {
-      console.log("counter == 0!!!!");
+  var removeDishHandler = () => {
+    if (counter == 1) {
+      console.log("counter будет 0");
 
       setTimeout(() => {
         console.log("scrollTo after 300ms");
@@ -101,9 +101,6 @@ var DishDetail = () => {
         });
       }, 300);
     }
-  }, [counter]);
-
-  var removeDishHandler = () => {
     setCounter((prev) => --prev);
   };
 
