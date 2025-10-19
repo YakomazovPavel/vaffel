@@ -106,7 +106,7 @@
     border-radius: 50px;
     background-color: var(--tg-theme-button-color);
     align-items: center;
-    padding: 2px;
+    // padding: 2px;
     max-width: 50%;
     min-width: 33%;
     overflow: hidden;
@@ -121,7 +121,7 @@
       min-height: 50px;
       max-height: 50px;
       border-radius: 50%;
-      background-color: red;
+      // background-color: red;
       &:active {
         outline: unset;
         border: unset;
