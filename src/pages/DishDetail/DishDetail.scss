@@ -122,7 +122,12 @@
       max-height: 50px;
       border-radius: 50%;
       &:active {
-        outline: solid white;
+        outline: unset;
+        border: unset;
+        background: unset;
+      }
+      &:focus-visible {
+        outline: unset;
         border: unset;
       }
     }
