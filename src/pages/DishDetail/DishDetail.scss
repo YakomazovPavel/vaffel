@@ -132,6 +132,11 @@
         border: unset;
         border-radius: 50%;
       }
+      &:focus {
+        outline: unset;
+        border: unset;
+        border-radius: 50%;
+      }
     }
   }
   &_price_control {
