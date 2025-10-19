@@ -93,6 +93,7 @@ var DishDetail = () => {
       console.log("counter == 0!!!!");
 
       setTimeout(() => {
+        console.log("scrollTo after 300ms");
         window.scrollTo({
           left: 0,
           top: document.body.scrollHeight,
