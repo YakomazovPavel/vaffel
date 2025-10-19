@@ -120,6 +120,11 @@
       min-width: 50px;
       min-height: 50px;
       max-height: 50px;
+      border-radius: 50%;
+      &:active {
+        outline: solid white;
+        border: unset;
+      }
     }
   }
   &_price_control {
