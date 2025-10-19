@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Loader from "../../components/Loader.jsx";
@@ -31,6 +31,9 @@ var DishDetail = () => {
   var [isLoading, dish] = useGetDishDetail({ dishId });
   var [counter, setCounter] = useState(0);
   var [isImageLoad, setIsImageLoad] = useState(true);
+  var oldHeaderColorRef = useRef(null);
+  console.log({ oldHeaderColorRef });
+
   console.log({ isLoading, dish });
 
   var mainButtonHandler = () => {
@@ -68,6 +71,9 @@ var DishDetail = () => {
     window.Telegram.WebApp.MainButton.hasShineEffect = false;
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
+    if (oldHeaderColorRef.current) {
+      window.Telegram.WebApp.setHeaderColor(oldHeaderColorRef.current);
+    }
   };
 
   useEffect(() => {
@@ -82,6 +88,8 @@ var DishDetail = () => {
     console.log("onLoadImageHandler e", e);
     console.log("onLoadImageHandler complete", e?.target?.complete);
     setIsImageLoad(false);
+    oldHeaderColorRef.current = window.Telegram.WebApp.headerColor;
+    window.Telegram.WebApp.setHeaderColor("#dae0e4");
   };
 
   var addDishHandler = () => {
