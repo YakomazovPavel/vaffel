@@ -89,12 +89,14 @@ var DishDetail = () => {
   };
 
   useEffect(() => {
-    if (counter === 0) {
-      window.scrollTo({
-        left: 0,
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
+    if (counter == 0) {
+      setTimeout(() => {
+        window.scrollTo({
+          left: 0,
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 300);
     }
   }, [counter]);
 
