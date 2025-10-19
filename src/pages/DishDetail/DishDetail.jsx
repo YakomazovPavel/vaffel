@@ -31,7 +31,7 @@ var DishDetail = () => {
   var [isLoading, dish] = useGetDishDetail({ dishId });
   var [counter, setCounter] = useState(0);
   var [isImageLoad, setIsImageLoad] = useState(true);
-  var oldHeaderColorRef = useRef(null);
+  var oldHeaderColorRef = useRef(window.Telegram.WebApp.headerColor);
   console.log({ oldHeaderColorRef });
 
   console.log({ isLoading, dish });
@@ -72,7 +72,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
     if (oldHeaderColorRef.current) {
-      window.Telegram.WebApp.setHeaderColor(oldHeaderColorRef.current);
+      window.Telegram.WebApp.setHeaderColor(window.Telegram.WebApp.themeParams.button_color);
     }
   };
 
