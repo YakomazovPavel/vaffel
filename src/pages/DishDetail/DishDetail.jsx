@@ -8,33 +8,37 @@ import "./DishDetail.scss";
 var useGetDishDetail = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
+  var [basketDishes, setBasketDishes] = useState();
   useEffect(() => {
-    // Информация о товаре
-    Backend.getDishDetail({ dishId })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log({ data });
-        setDish(data);
+    Promise.all([
+      // Информация о товаре
+      Backend.getDishDetail({ dishId }),
+      // Информация о заказах этого товара в этой корзине
+      Backend.getBasketDishes({ basketId }).then((response) => response.json()),
+    ])
+      .then(([dish, basketDishes]) => {
+        setDish(dish);
+        setBasketDishes(basketDishes);
       })
       .then(() => {
         setIsLoading(false);
       });
-
-    // Информация о заказах этого товара в этой корзине
   }, []);
-  return [isLoading, dish];
+  return [isLoading, dish, basketDishes];
 };
 
 var DishDetail = () => {
+  var userId = useSelector((state) => state.appSlice.userId);
+  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
-  var [isLoading, dish] = useGetDishDetail({ dishId });
+  var [isLoading, dish, basketDishes] = useGetDishDetail({ dishId });
+  console.log({ isLoading, dish, basketDishes });
+
   var [counter, setCounter] = useState(0);
   var [isImageLoad, setIsImageLoad] = useState(true);
   var oldHeaderColorRef = useRef(window.Telegram.WebApp.headerColor);
   console.log({ oldHeaderColorRef });
-
-  console.log({ isLoading, dish });
 
   var mainButtonHandler = () => {
     setCounter(1);
@@ -93,6 +97,7 @@ var DishDetail = () => {
   };
 
   var addDishHandler = () => {
+    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
     setCounter((prev) => ++prev);
     window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
   };
