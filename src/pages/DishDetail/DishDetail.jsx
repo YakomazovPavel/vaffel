@@ -35,6 +35,7 @@ var getUsersFromBasketDishes = ({ basketDishes }) => {
   return basketDishes?.filter((item) => {
     if (!userIds.find((id) => id == item?.user?.id)) {
       userIds.push(item?.user?.id);
+      return item;
     }
   });
 };
