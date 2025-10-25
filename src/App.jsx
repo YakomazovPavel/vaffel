@@ -18,6 +18,7 @@ var useInizialize = () => {
   window?.Telegram?.WebApp?.expand();
   window?.Telegram?.WebApp?.disableVerticalSwipes();
   window?.Telegram?.WebApp?.lockOrientation();
+  window.Telegram.WebApp.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color);
   var dispatch = useDispatch();
   var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
