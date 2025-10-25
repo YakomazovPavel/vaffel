@@ -28,11 +28,11 @@ var useFetchData = ({ dishId, basketId }) => {
 };
 
 var getCountFromBasketDishes = ({ basketDishes, userId }) => {
-  return basketDishes.filter((item) => item?.user?.id == userId)?.length();
+  return basketDishes?.filter((item) => item?.user?.id == userId)?.length() || 0;
 };
 var getUsersFromBasketDishes = ({ basketDishes }) => {
   var userIds = [];
-  return basketDishes.filter((item) => !userIds.find((id) => id == item?.user?.id))?.length();
+  return basketDishes?.filter((item) => !userIds.find((id) => id == item?.user?.id));
 };
 
 var DishDetail = () => {
