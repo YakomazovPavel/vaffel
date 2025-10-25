@@ -61,6 +61,9 @@ class Backend {
   getBasketDishes = ({ basketId }) => {
     return fetch(this.BASE_URL + `baskets/${basketId}/dishes/`);
   };
+  getBasketDish = ({ basketId, dishId }) => {
+    return fetch(this.BASE_URL + `baskets/${basketId}/dishes/${dishId}/`);
+  };
   getBasketList = ({ userId }) => {
     return fetch(this.BASE_URL + `user/${userId}/baskets/`);
   };

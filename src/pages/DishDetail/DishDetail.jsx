@@ -14,7 +14,7 @@ var useFetchData = ({ dishId, basketId }) => {
       // Информация о товаре
       Backend.getDishDetail({ dishId }).then((response) => response.json()),
       // Информация о заказах этого товара в этой корзине
-      Backend.getBasketDishes({ basketId }).then((response) => response.json()),
+      Backend.getBasketDish({ basketId, dishId }).then((response) => response.json()),
     ])
       .then(([dish, basketDishes]) => {
         setDish(dish);
@@ -27,6 +27,14 @@ var useFetchData = ({ dishId, basketId }) => {
   return [isLoading, dish, basketDishes];
 };
 
+var getCountFromBasketDishes = ({ basketDishes, userId }) => {
+  return basketDishes.filter((item) => item?.user?.id == userId)?.length();
+};
+var getUsersFromBasketDishes = ({ basketDishes }) => {
+  var userIds = [];
+  return basketDishes.filter((item) => !userIds.find((id) => id == item?.user?.id))?.length();
+};
+
 var DishDetail = () => {
   var userId = useSelector((state) => state.appSlice.userId);
   var basketId = useSelector((state) => state.appSlice.currentBasketId);
@@ -35,6 +43,13 @@ var DishDetail = () => {
   console.log({ userId, basketId, dishId });
   var [isLoading, dish, basketDishes] = useFetchData({ dishId, basketId });
   console.log({ isLoading, dish, basketDishes });
+
+  // Получить из basketDishes информацию о количестве и пользователях, что добавили этот товар в эту корзину
+
+  var count = getCountFromBasketDishes({ basketDishes, userId });
+  var users = getUsersFromBasketDishes({ basketDishes });
+
+  console.log({ count, users });
 
   var [counter, setCounter] = useState(0);
   var [isImageLoad, setIsImageLoad] = useState(true);
