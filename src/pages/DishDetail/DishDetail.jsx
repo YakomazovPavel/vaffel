@@ -5,7 +5,7 @@ import Loader from "../../components/Loader.jsx";
 import Backend from "../../api/backend.js";
 import "./DishDetail.scss";
 
-var useFetchData = ({ dishId }) => {
+var useFetchData = ({ dishId, basketId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
   var [basketDishes, setBasketDishes] = useState();
@@ -29,10 +29,10 @@ var useFetchData = ({ dishId }) => {
 
 var DishDetail = () => {
   var userId = useSelector((state) => state.appSlice.userId);
-  var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  var basketId = useSelector((state) => state.appSlice.currentBasketId);
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
-  var [isLoading, dish, basketDishes] = useFetchData({ dishId });
+  var [isLoading, dish, basketDishes] = useFetchData({ dishId, basketId });
   console.log({ isLoading, dish, basketDishes });
 
   var [counter, setCounter] = useState(0);
@@ -97,7 +97,7 @@ var DishDetail = () => {
   };
 
   var addDishHandler = () => {
-    Backend.createBasketDish({ user_id: userId, basket_id: currentBasketId, dish_id: dishId });
+    Backend.createBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
     setCounter((prev) => ++prev);
     window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
   };
