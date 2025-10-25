@@ -28,7 +28,7 @@ var useFetchData = ({ dishId, basketId }) => {
 };
 
 var getCountFromBasketDishes = ({ basketDishes, userId }) => {
-  return basketDishes?.filter((item) => item?.user?.id == userId)?.length() || 0;
+  return basketDishes?.filter((item) => item?.user?.id == userId)?.length || 0;
 };
 var getUsersFromBasketDishes = ({ basketDishes }) => {
   var userIds = [];
