@@ -5,7 +5,7 @@ import Loader from "../../components/Loader.jsx";
 import Backend from "../../api/backend.js";
 import "./DishDetail.scss";
 
-var useGetDishDetail = ({ dishId }) => {
+var useFetchData = ({ dishId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
   var [basketDishes, setBasketDishes] = useState();
@@ -32,7 +32,7 @@ var DishDetail = () => {
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var dishId = useSelector((state) => state.appSlice.currentDishId);
   console.log({ dishId });
-  var [isLoading, dish, basketDishes] = useGetDishDetail({ dishId });
+  var [isLoading, dish, basketDishes] = useFetchData({ dishId });
   console.log({ isLoading, dish, basketDishes });
 
   var [counter, setCounter] = useState(0);
