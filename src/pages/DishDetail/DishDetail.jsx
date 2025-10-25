@@ -134,6 +134,8 @@ var DishDetail = () => {
         });
       }, 300);
     }
+
+    Backend.deleteBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
     setCounter((prev) => --prev);
 
     window?.Telegram?.WebApp?.HapticFeedback?.impactOccurred("light");
