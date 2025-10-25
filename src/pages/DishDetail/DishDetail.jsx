@@ -12,7 +12,7 @@ var useFetchData = ({ dishId, basketId }) => {
   useEffect(() => {
     Promise.all([
       // Информация о товаре
-      Backend.getDishDetail({ dishId }),
+      Backend.getDishDetail({ dishId }).then((response) => response.json()),
       // Информация о заказах этого товара в этой корзине
       Backend.getBasketDishes({ basketId }).then((response) => response.json()),
     ])
@@ -31,7 +31,8 @@ var DishDetail = () => {
   var userId = useSelector((state) => state.appSlice.userId);
   var basketId = useSelector((state) => state.appSlice.currentBasketId);
   var dishId = useSelector((state) => state.appSlice.currentDishId);
-  console.log({ dishId });
+
+  console.log({ userId, basketId, dishId });
   var [isLoading, dish, basketDishes] = useFetchData({ dishId, basketId });
   console.log({ isLoading, dish, basketDishes });
 
