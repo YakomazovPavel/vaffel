@@ -32,7 +32,11 @@ var getCountFromBasketDishes = ({ basketDishes, userId }) => {
 };
 var getUsersFromBasketDishes = ({ basketDishes }) => {
   var userIds = [];
-  return basketDishes?.filter((item) => !userIds.find((id) => id == item?.user?.id));
+  return basketDishes?.filter((item) => {
+    if (!userIds.find((id) => id == item?.user?.id)) {
+      userIds.push(item?.user?.id);
+    }
+  });
 };
 
 var DishDetail = () => {
