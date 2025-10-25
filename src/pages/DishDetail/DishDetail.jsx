@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch, useStore } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, PAGE } from "../../slices/appSlice.js";
 import Loader from "../../components/Loader.jsx";
 import Backend from "../../api/backend.js";
 import "./DishDetail.scss";
 
-var useFetchData = ({ dishId, basketId }) => {
+var getCountFromBasketDishes = ({ basketDishes, userId }) => {
+  return basketDishes?.filter((item) => item?.user?.id == userId)?.length || 0;
+};
+var getCustomersFromBasketDishes = ({ basketDishes }) => {
+  var userIds = [];
+  return basketDishes?.filter((item) => {
+    if (!userIds.find((id) => id == item?.user?.id)) {
+      userIds.push(item?.user?.id);
+      return item;
+    }
+  });
+};
+
+var useFetchData = ({ userId, dishId, basketId }) => {
   var [isLoading, setIsLoading] = useState(true);
   var [dish, setDish] = useState();
   var [basketDishes, setBasketDishes] = useState();
+  var [counter, setCounter] = useState(0);
+  var [customers, setCustomers] = useState();
   useEffect(() => {
     Promise.all([
       // Информация о товаре
@@ -19,25 +34,16 @@ var useFetchData = ({ dishId, basketId }) => {
       .then(([dish, basketDishes]) => {
         setDish(dish);
         setBasketDishes(basketDishes);
+
+        // Получить из basketDishes информацию о количестве и пользователях, что добавили этот товар в эту корзину
+        setCounter(getCountFromBasketDishes({ basketDishes, userId }));
+        setCustomers(getCustomersFromBasketDishes({ basketDishes }));
       })
       .then(() => {
         setIsLoading(false);
       });
   }, []);
-  return [isLoading, dish, basketDishes];
-};
-
-var getCountFromBasketDishes = ({ basketDishes, userId }) => {
-  return basketDishes?.filter((item) => item?.user?.id == userId)?.length || 0;
-};
-var getUsersFromBasketDishes = ({ basketDishes }) => {
-  var userIds = [];
-  return basketDishes?.filter((item) => {
-    if (!userIds.find((id) => id == item?.user?.id)) {
-      userIds.push(item?.user?.id);
-      return item;
-    }
-  });
+  return [isLoading, dish, customers, counter, setCounter];
 };
 
 var DishDetail = () => {
@@ -46,17 +52,9 @@ var DishDetail = () => {
   var dishId = useSelector((state) => state.appSlice.currentDishId);
 
   console.log({ userId, basketId, dishId });
-  var [isLoading, dish, basketDishes] = useFetchData({ dishId, basketId });
-  console.log({ isLoading, dish, basketDishes });
+  var [isLoading, dish, customers, counter, setCounter] = useFetchData({ userId, dishId, basketId });
+  console.log({ isLoading, dish, customers, counter });
 
-  // Получить из basketDishes информацию о количестве и пользователях, что добавили этот товар в эту корзину
-
-  var count = getCountFromBasketDishes({ basketDishes, userId });
-  var users = getUsersFromBasketDishes({ basketDishes });
-
-  console.log({ count, users });
-
-  var [counter, setCounter] = useState(0);
   var [isImageLoad, setIsImageLoad] = useState(true);
   var oldHeaderColorRef = useRef(window.Telegram.WebApp.headerColor);
   console.log({ oldHeaderColorRef });
