@@ -72,7 +72,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
     if (oldHeaderColorRef.current) {
-      window.Telegram.WebApp.setHeaderColor(window.Telegram.WebApp.themeParams.button_color);
+      window.Telegram.WebApp.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color); // цвет шапки
     }
   };
 
@@ -94,6 +94,7 @@ var DishDetail = () => {
 
   var addDishHandler = () => {
     setCounter((prev) => ++prev);
+    window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
   };
 
   var removeDishHandler = () => {
@@ -110,6 +111,8 @@ var DishDetail = () => {
       }, 300);
     }
     setCounter((prev) => --prev);
+
+    window?.Telegram?.WebApp?.HapticFeedback?.impactOccurred("light");
   };
 
   return (

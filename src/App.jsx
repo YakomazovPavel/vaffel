@@ -17,6 +17,7 @@ import Loader from "./components/Loader.jsx";
 var useInizialize = () => {
   window?.Telegram?.WebApp?.expand();
   window?.Telegram?.WebApp?.disableVerticalSwipes();
+  window?.Telegram?.WebApp?.lockOrientation();
   var dispatch = useDispatch();
   var [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
