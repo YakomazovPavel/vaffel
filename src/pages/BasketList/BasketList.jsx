@@ -66,13 +66,11 @@ function BasketList() {
   var open = () => {
     window.Telegram.WebApp.BackButton.show();
     window.Telegram.WebApp.BackButton.isVisible = true;
-    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
 
     window.Telegram.WebApp.MainButton.text = "Создать корзину";
     window.Telegram.WebApp.MainButton.show();
     window.Telegram.WebApp.MainButton.isVisible = true;
     window.Telegram.WebApp.MainButton.isActive = true;
-    window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
   };
 
   var close = () => {
@@ -83,6 +81,8 @@ function BasketList() {
   };
 
   useEffect(() => {
+    window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
+    window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
     return close;
   }, []);
 
