@@ -9,7 +9,7 @@ export var PAGE = {
 };
 
 const initialState = {
-  currentPage: PAGE.DishDetail,
+  currentPage: PAGE.CreateBasket,
   currentBasketId: "1",
   currentDishId: "1378181",
   userId: "1",
