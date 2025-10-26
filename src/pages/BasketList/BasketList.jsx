@@ -76,6 +76,7 @@ function BasketList() {
   };
 
   var close = () => {
+    console.log("Выключить MainButton для страницы со списком корзин");
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
     window.Telegram.WebApp.MainButton.hide();

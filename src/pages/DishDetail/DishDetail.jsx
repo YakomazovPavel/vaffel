@@ -77,11 +77,17 @@ var DishDetail = () => {
 
   var open = () => {
     console.log("counter", counter);
-    if (counter === 0) {
+    if (counter == 0) {
+      console.log("Назначается mainButtonHandler на странице просмотра блюда");
+
+      window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
+      Backend.createBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
+      setCounter((prev) => ++prev);
+
+      window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
       window.Telegram.WebApp.MainButton.text = "Добавить";
       window.Telegram.WebApp.MainButton.show();
       window.Telegram.WebApp.MainButton.hasShineEffect = true;
-      window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
     } else {
       window.Telegram.WebApp.MainButton.hide();
     }
@@ -91,6 +97,7 @@ var DishDetail = () => {
   };
 
   var close = () => {
+    console.log("Снимается mainButtonHandler на странице просмотра блюда");
     window.Telegram.WebApp.MainButton.hasShineEffect = false;
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
