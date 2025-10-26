@@ -56,8 +56,6 @@ var DishDetail = () => {
   console.log({ isLoading, dish, customers, counter });
 
   var [isImageLoad, setIsImageLoad] = useState(true);
-  var oldHeaderColorRef = useRef(window.Telegram.WebApp.headerColor);
-  console.log({ oldHeaderColorRef });
 
   var mainButtonHandler = () => {
     setCounter(1);
@@ -68,6 +66,7 @@ var DishDetail = () => {
       top: document.body.scrollHeight,
       behavior: "smooth",
     });
+    Backend.createBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
   };
 
   var dispatch = useDispatch();
@@ -81,8 +80,6 @@ var DishDetail = () => {
       console.log("Назначается mainButtonHandler на странице просмотра блюда");
 
       window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
-      Backend.createBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
-      setCounter((prev) => ++prev);
 
       window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
       window.Telegram.WebApp.MainButton.text = "Добавить";
@@ -101,9 +98,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.MainButton.hasShineEffect = false;
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
-    if (oldHeaderColorRef.current) {
-      window.Telegram.WebApp.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color); // цвет шапки
-    }
+    window.Telegram.WebApp.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color);
   };
 
   useEffect(() => {
@@ -118,7 +113,6 @@ var DishDetail = () => {
     console.log("onLoadImageHandler e", e);
     console.log("onLoadImageHandler complete", e?.target?.complete);
     setIsImageLoad(false);
-    oldHeaderColorRef.current = window.Telegram.WebApp.headerColor;
     console.log({ dish_color: dish?.color });
     window.Telegram.WebApp.setHeaderColor(dish.color); //"#dae0e4"
   };
