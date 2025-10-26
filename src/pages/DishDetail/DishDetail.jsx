@@ -76,12 +76,7 @@ var DishDetail = () => {
   };
 
   var open = () => {
-    console.log("counter", counter);
     if (counter == 0) {
-      console.log("Назначается mainButtonHandler на странице просмотра блюда");
-
-      window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
-
       window?.Telegram?.WebApp?.HapticFeedback?.notificationOccurred("success");
       window.Telegram.WebApp.MainButton.text = "Добавить";
       window.Telegram.WebApp.MainButton.show();
@@ -103,6 +98,8 @@ var DishDetail = () => {
   };
 
   useEffect(() => {
+    console.log("Назначается mainButtonHandler на странице просмотра блюда");
+    window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
     return close;
   }, []);
 
