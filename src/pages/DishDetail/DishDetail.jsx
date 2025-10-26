@@ -112,7 +112,7 @@ var DishDetail = () => {
     console.log("onLoadImageHandler complete", e?.target?.complete);
     setIsImageLoad(false);
     oldHeaderColorRef.current = window.Telegram.WebApp.headerColor;
-    window.Telegram.WebApp.setHeaderColor("#dae0e4");
+    dish?.color && window.Telegram.WebApp.setHeaderColor(dish.color); //"#dae0e4"
   };
 
   var addDishHandler = () => {
