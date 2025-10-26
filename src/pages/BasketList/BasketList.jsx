@@ -81,6 +81,7 @@ function BasketList() {
   };
 
   useEffect(() => {
+    console.log("Добавить MainButton для страницы со списком корзин");
     window.Telegram.WebApp.BackButton.onClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.onClick(mainButtonHandler);
     return close;
