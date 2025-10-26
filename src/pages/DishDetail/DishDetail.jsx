@@ -67,6 +67,7 @@ var DishDetail = () => {
       behavior: "smooth",
     });
     Backend.createBasketDish({ user_id: userId, basket_id: basketId, dish_id: dishId });
+    window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
   };
 
   var dispatch = useDispatch();
