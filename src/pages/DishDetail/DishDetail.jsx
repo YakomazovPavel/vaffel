@@ -99,7 +99,7 @@ var DishDetail = () => {
     window.Telegram.WebApp.MainButton.hasShineEffect = false;
     window.Telegram.WebApp.BackButton.offClick(backButtonHandler);
     window.Telegram.WebApp.MainButton.offClick(mainButtonHandler);
-    window.Telegram.WebApp.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color);
+    window?.Telegram?.WebApp?.setHeaderColor(window?.Telegram?.WebApp?.themeParams?.bg_color);
   };
 
   useEffect(() => {
@@ -115,7 +115,7 @@ var DishDetail = () => {
     console.log("onLoadImageHandler complete", e?.target?.complete);
     setIsImageLoad(false);
     console.log({ dish_color: dish?.color });
-    window.Telegram.WebApp.setHeaderColor(dish.color); //"#dae0e4"
+    window?.Telegram?.WebApp?.setHeaderColor(dish.color); //"#dae0e4"
   };
 
   var addDishHandler = () => {
