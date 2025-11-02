@@ -262,6 +262,7 @@ function BasketDetail() {
 }
 
 var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
+  var dispatch = useDispatch();
   const [counterKey, setCounterKey] = useState(0);
 
   var plusButtonHandler = () => {
@@ -279,9 +280,15 @@ var Dish = ({ dish, addDishHandler, removeDishHandler }) => {
     }
   };
 
+  var onClickHandler = () => {
+    console.log("onClickHandler", dish.id);
+    dispatch(setCurrentDishId(dish.id));
+    dispatch(setCurrentPage(PAGE.DishDetail));
+  };
+
   return (
     <div class="basket_detail_item">
-      <div className="photo">
+      <div className="photo" onClick={onClickHandler}>
         <img src={dish?.photo_url} />
         <p key={counterKey} style={{ animation: "change 0.7s forwards" }}>
           {dish?.count}
