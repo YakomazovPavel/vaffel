@@ -107,7 +107,6 @@ function BasketList() {
 
   var swipeCheckDirection = () => {
     console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
-
     if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
       backButtonHandler();
     }
@@ -120,26 +119,13 @@ function BasketList() {
     touchendX.current = e.changedTouches[0].screenX;
     swipeCheckDirection();
   };
-  var onMouseDown = (e) => {
-    touchstartX.current = e.pageX;
-  };
-  var onMouseUp = (e) => {
-    touchendX.current = e.pageX;
-    swipeCheckDirection();
-  };
 
   return (
     <>
       {isLoading ? (
         <Loared style={{ left: "calc(50% - 25px)" }} />
       ) : (
-        <div
-          id="page_basket_list"
-          onTouchStartCapture={touchStartHandler}
-          onTouchEndCapture={touchEndHandler}
-          onMouseDownCapture={onMouseDown}
-          onMouseUpCapture={onMouseUp}
-        >
+        <div id="page_basket_list" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
           <div className="settings_wrap">
             <div className="basket_shop searchline">
               <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">

@@ -159,8 +159,26 @@ function Shop() {
     return close;
   }, []);
 
+  var touchstartX = useRef(0);
+  var touchendX = useRef(0);
+
+  var swipeCheckDirection = () => {
+    console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
+    if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
+      backButtonHandler();
+    }
+  };
+
+  var touchStartHandler = (e) => {
+    touchstartX.current = e.changedTouches[0].screenX;
+  };
+  var touchEndHandler = (e) => {
+    touchendX.current = e.changedTouches[0].screenX;
+    swipeCheckDirection();
+  };
+
   return (
-    <div id="page_basket_shop">
+    <div id="page_basket_shop" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
       <div className="settings_wrap">
         <div className="basket_shop searchline">
           <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">

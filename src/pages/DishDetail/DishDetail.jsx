@@ -141,12 +141,30 @@ var DishDetail = () => {
     window?.Telegram?.WebApp?.HapticFeedback?.impactOccurred("light");
   };
 
+  var touchstartX = useRef(0);
+  var touchendX = useRef(0);
+
+  var swipeCheckDirection = () => {
+    console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
+    if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
+      backButtonHandler();
+    }
+  };
+
+  var touchStartHandler = (e) => {
+    touchstartX.current = e.changedTouches[0].screenX;
+  };
+  var touchEndHandler = (e) => {
+    touchendX.current = e.changedTouches[0].screenX;
+    swipeCheckDirection();
+  };
+
   return (
     <>
       {isLoading ? (
         <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
-        <div className="page_dish_detail">
+        <div className="page_dish_detail" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
           <div className="photo_with_loader_wrapper">
             {isImageLoad && <Loader />}
             <img

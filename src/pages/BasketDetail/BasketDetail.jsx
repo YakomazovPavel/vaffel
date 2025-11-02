@@ -205,10 +205,22 @@ function BasketDetail() {
     }
   };
 
-  var onTouchEndHandler = (e) => {
-    if (e.touches[0].clientX - e.touches.at(-1).clientX > 120) {
-      dispatch(setCurrentPage(PAGE.BasketList));
+  var touchstartX = useRef(0);
+  var touchendX = useRef(0);
+
+  var swipeCheckDirection = () => {
+    console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
+    if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
+      backButtonHandler();
     }
+  };
+
+  var touchStartHandler = (e) => {
+    touchstartX.current = e.changedTouches[0].screenX;
+  };
+  var touchEndHandler = (e) => {
+    touchendX.current = e.changedTouches[0].screenX;
+    swipeCheckDirection();
   };
 
   return (
@@ -216,7 +228,7 @@ function BasketDetail() {
       {isLoading ? (
         <Loader style={{ left: "calc(50% - 25px)" }} />
       ) : (
-        <div id="page_basket_detail" onTouchEnd={onTouchEndHandler}>
+        <div id="page_basket_detail" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
           <div class="settings_wrap">
             <div class="basket_detail">
               <div class="basket_detail_heared">
