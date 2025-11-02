@@ -105,16 +105,19 @@ function BasketList() {
   var touchstartX = useRef(0);
   var touchendX = useRef(0);
 
+  var swipeCheckDirection = () => {
+    if (touchendX.current < touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped left!");
+    if (touchendX.current > touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped right!");
+  };
+
   var touchStartHandler = (e) => {
     console.log("!touchStartHandler");
-
     touchstartX.current = e.changedTouches[0].screenX;
   };
   var touchEndHandler = (e) => {
     console.log("!touchEndHandler");
     touchendX.current = e.changedTouches[0].screenX;
-    if (touchendX.current < touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped left!");
-    if (touchendX.current > touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped right!");
+    swipeCheckDirection();
   };
 
   var dragStartHandler = (e) => {
@@ -125,9 +128,12 @@ function BasketList() {
   };
   var onMouseDown = (e) => {
     console.log("!onMouseDown", e);
+    touchstartX.current = e.pageX;
   };
   var onMouseUp = (e) => {
     console.log("!onMouseUp", e);
+    touchendX.current = e.pageX;
+    swipeCheckDirection();
   };
 
   return (
