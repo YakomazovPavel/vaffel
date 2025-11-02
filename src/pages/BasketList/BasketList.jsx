@@ -111,7 +111,7 @@ function BasketList() {
     //   console.log("swiped left!");
 
     // }
-    console.log("touchendX.current - touchstartX.current", touchendX.current - touchstartX.current);
+    console.log("swipeCheckDirection", touchendX.current, touchendX.current - touchstartX.current);
 
     if (touchendX.current < 60 && touchendX.current - touchstartX.current > 200) {
       // window?.Telegram?.WebApp?.showAlert("swiped right!");
