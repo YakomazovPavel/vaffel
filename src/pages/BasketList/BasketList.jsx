@@ -113,7 +113,7 @@ function BasketList() {
     // }
     console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
 
-    if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 200) {
+    if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
       // window?.Telegram?.WebApp?.showAlert("swiped right!");
       console.log("swiped right!");
       backButtonHandler();
