@@ -208,9 +208,7 @@ var DishDetail = () => {
                 {customers.map((customer) => (
                   <img
                     src={customer?.user?.photo_url}
-                    title={`${customer?.user?.first_name}${
-                      customer?.user?.last_name ? " " + customer?.user?.last_name : ""
-                    }`}
+                    title={`${customer?.user?.first_name} ${customer?.user?.last_name}`.trim()}
                   />
                 ))}
               </div>
