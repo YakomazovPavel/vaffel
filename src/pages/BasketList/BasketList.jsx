@@ -106,13 +106,17 @@ function BasketList() {
   var touchendX = useRef(0);
 
   var swipeCheckDirection = () => {
-    if (touchendX.current < touchstartX.current) {
-      window?.Telegram?.WebApp?.showAlert("swiped left!");
-      console.log("swiped left!");
-    }
-    if (touchendX.current > touchstartX.current) {
+    // if (touchendX.current < touchstartX.current) {
+    //   window?.Telegram?.WebApp?.showAlert("swiped left!");
+    //   console.log("swiped left!");
+
+    // }
+    console.log("touchendX.current - touchstartX.current", touchendX.current - touchstartX.current);
+
+    if (touchendX.current - touchstartX.current > 50) {
       window?.Telegram?.WebApp?.showAlert("swiped right!");
       console.log("swiped right!");
+      backButtonHandler();
     }
   };
 
@@ -124,13 +128,6 @@ function BasketList() {
     console.log("!touchEndHandler");
     touchendX.current = e.changedTouches[0].screenX;
     swipeCheckDirection();
-  };
-
-  var dragStartHandler = (e) => {
-    console.log("!dragStartHandler", e);
-  };
-  var dragEndHandler = (e) => {
-    console.log("!dragEndHandler", e);
   };
   var onMouseDown = (e) => {
     console.log("!onMouseDown", e);
@@ -151,8 +148,6 @@ function BasketList() {
           id="page_basket_list"
           onTouchStartCapture={touchStartHandler}
           onTouchEndCapture={touchEndHandler}
-          onDragStartCapture={dragStartHandler}
-          onDragEndCapture={dragEndHandler}
           onMouseDownCapture={onMouseDown}
           onMouseUpCapture={onMouseUp}
         >
