@@ -13,7 +13,7 @@ var getCustomersFromBasketDishes = ({ basketDishes }) => {
   return basketDishes?.filter((item) => {
     if (!userIds.find((id) => id == item?.user?.id)) {
       userIds.push(item?.user?.id);
-      return item;
+      return item?.user;
     }
   });
 };
@@ -206,7 +206,10 @@ var DishDetail = () => {
 
               <div className="dish_body_avatars">
                 {customers.map((customer) => (
-                  <img src={customer?.user?.photo_url} />
+                  <img
+                    src={customer?.photo_url}
+                    title={`${customer?.first_name}${customer?.last_name ? " " + customer?.last_name : ""}`}
+                  />
                 ))}
               </div>
             </div>
