@@ -106,35 +106,24 @@ function BasketList() {
   var touchendX = useRef(0);
 
   var swipeCheckDirection = () => {
-    // if (touchendX.current < touchstartX.current) {
-    //   window?.Telegram?.WebApp?.showAlert("swiped left!");
-    //   console.log("swiped left!");
-
-    // }
     console.log("swipeCheckDirection", touchstartX.current, touchendX.current - touchstartX.current);
 
     if (touchstartX.current < 60 && touchendX.current - touchstartX.current > 120) {
-      // window?.Telegram?.WebApp?.showAlert("swiped right!");
-      console.log("swiped right!");
       backButtonHandler();
     }
   };
 
   var touchStartHandler = (e) => {
-    console.log("!touchStartHandler");
     touchstartX.current = e.changedTouches[0].screenX;
   };
   var touchEndHandler = (e) => {
-    console.log("!touchEndHandler");
     touchendX.current = e.changedTouches[0].screenX;
     swipeCheckDirection();
   };
   var onMouseDown = (e) => {
-    console.log("!onMouseDown", e);
     touchstartX.current = e.pageX;
   };
   var onMouseUp = (e) => {
-    console.log("!onMouseUp", e);
     touchendX.current = e.pageX;
     swipeCheckDirection();
   };
