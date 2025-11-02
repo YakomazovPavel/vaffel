@@ -185,7 +185,7 @@ function Shop() {
       id="page_basket_shop"
       onTouchStartCapture={touchStartHandler}
       onTouchEndCapture={touchEndHandler}
-      style={currentPage == PAGE.Shop ? { display: "block" } : { display: "none" }}
+      style={currentPage == PAGE.Shop ? { display: "flex" } : { display: "none" }}
     >
       <div className="settings_wrap">
         <div className="basket_shop searchline">
