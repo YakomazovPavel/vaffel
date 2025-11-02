@@ -113,8 +113,8 @@ function BasketList() {
   var touchEndHandler = (e) => {
     console.log("!touchEndHandler");
     touchendX.current = e.changedTouches[0].screenX;
-    if (touchendX < touchstartX) window?.Telegram?.WebApp?.showAlert("swiped left!");
-    if (touchendX > touchstartX) window?.Telegram?.WebApp?.showAlert("swiped right!");
+    if (touchendX.current < touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped left!");
+    if (touchendX.current > touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped right!");
   };
 
   var dragStartHandler = (e) => {
@@ -124,7 +124,7 @@ function BasketList() {
     console.log("!dragEndHandler", e);
   };
   var onMouseDown = (e) => {
-    console.log("!dragEndHandler", e);
+    console.log("!onMouseDown", e);
   };
   var onMouseUp = (e) => {
     console.log("!onMouseUp", e);
