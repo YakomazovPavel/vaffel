@@ -517,6 +517,7 @@ input:checked ~ .basket_list_item:not(:last-child) {
   position: relative;
   height: 40px;
   width: 40px;
+  cursor: pointer;
 }
 
 .basket_detail_item > .photo > img {
