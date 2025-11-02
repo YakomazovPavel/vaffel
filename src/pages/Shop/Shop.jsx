@@ -107,6 +107,8 @@ function Shop() {
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
   var currentPage = useSelector((state) => state.appSlice.currentPage);
+  console.log("!Shop currentPage", currentPage);
+
   var userId = useSelector((state) => state.appSlice.userId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
 
