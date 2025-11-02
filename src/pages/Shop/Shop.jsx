@@ -106,6 +106,7 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
+  var currentPage = useSelector((state) => state.appSlice.currentPage);
   var userId = useSelector((state) => state.appSlice.userId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
 
@@ -178,7 +179,12 @@ function Shop() {
   };
 
   return (
-    <div id="page_basket_shop" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
+    <div
+      id="page_basket_shop"
+      onTouchStartCapture={touchStartHandler}
+      onTouchEndCapture={touchEndHandler}
+      style={currentPage == PAGE.Shop ? {} : { display: "none" }}
+    >
       <div className="settings_wrap">
         <div className="basket_shop searchline">
           <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
