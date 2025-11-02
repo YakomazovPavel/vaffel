@@ -106,8 +106,8 @@ function Shop() {
   var dispatch = useDispatch();
   var [searhc, setSearhc] = useState("");
   var currentBasketId = useSelector((state) => state.appSlice.currentBasketId);
-  var currentPage = useSelector((state) => state.appSlice.currentPage);
-  console.log("!Shop currentPage", currentPage);
+  // var currentPage = useSelector((state) => state.appSlice.currentPage);
+  // console.log("!Shop currentPage", currentPage);
 
   var userId = useSelector((state) => state.appSlice.userId);
   var [shopListData, setShopListData, isLoading] = useGetData(currentBasketId);
@@ -185,7 +185,7 @@ function Shop() {
       id="page_basket_shop"
       onTouchStartCapture={touchStartHandler}
       onTouchEndCapture={touchEndHandler}
-      style={currentPage == PAGE.Shop ? { display: "flex" } : { display: "none" }}
+      // style={currentPage == PAGE.Shop ? { display: "flex" } : { display: "none" }}
     >
       <div className="settings_wrap">
         <div className="basket_shop searchline">
