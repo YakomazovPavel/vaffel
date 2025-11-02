@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, PAGE, setCurrentBasketId } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
@@ -102,12 +102,27 @@ function BasketList() {
     dispatch(setCurrentPage(PAGE.BasketDetail));
   };
 
+  var touchstartX = useRef(0);
+  var touchendX = useRef(0);
+
+  var touchStartHandler = (e) => {
+    console.log("!touchStartHandler");
+
+    touchstartX.current = e.changedTouches[0].screenX;
+  };
+  var touchEndHandler = (e) => {
+    console.log("!touchEndHandler");
+    touchendX.current = e.changedTouches[0].screenX;
+    if (touchendX < touchstartX) alert("swiped left!");
+    if (touchendX > touchstartX) alert("swiped right!");
+  };
+
   return (
     <>
       {isLoading ? (
         <Loared style={{ left: "calc(50% - 25px)" }} />
       ) : (
-        <div id="page_basket_list">
+        <div id="page_basket_list" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
           <div className="settings_wrap">
             <div className="basket_shop searchline">
               <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
