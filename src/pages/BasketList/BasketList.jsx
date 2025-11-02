@@ -123,6 +123,12 @@ function BasketList() {
   var dragEndHandler = (e) => {
     console.log("!dragEndHandler", e);
   };
+  var onMouseDown = (e) => {
+    console.log("!dragEndHandler", e);
+  };
+  var onMouseUp = (e) => {
+    console.log("!onMouseUp", e);
+  };
 
   return (
     <>
@@ -135,6 +141,8 @@ function BasketList() {
           onTouchEndCapture={touchEndHandler}
           onDragStartCapture={dragStartHandler}
           onDragEndCapture={dragEndHandler}
+          onMouseDownCapture={onMouseDown}
+          onMouseUpCapture={onMouseUp}
         >
           <div className="settings_wrap">
             <div className="basket_shop searchline">
