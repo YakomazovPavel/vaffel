@@ -113,8 +113,15 @@ function BasketList() {
   var touchEndHandler = (e) => {
     console.log("!touchEndHandler");
     touchendX.current = e.changedTouches[0].screenX;
-    if (touchendX < touchstartX) alert("swiped left!");
-    if (touchendX > touchstartX) alert("swiped right!");
+    if (touchendX < touchstartX) window?.Telegram?.WebApp?.showAlert("swiped left!");
+    if (touchendX > touchstartX) window?.Telegram?.WebApp?.showAlert("swiped right!");
+  };
+
+  var dragStartHandler = (e) => {
+    console.log("!dragStartHandler", e);
+  };
+  var dragEndHandler = (e) => {
+    console.log("!dragEndHandler", e);
   };
 
   return (
@@ -122,7 +129,13 @@ function BasketList() {
       {isLoading ? (
         <Loared style={{ left: "calc(50% - 25px)" }} />
       ) : (
-        <div id="page_basket_list" onTouchStartCapture={touchStartHandler} onTouchEndCapture={touchEndHandler}>
+        <div
+          id="page_basket_list"
+          onTouchStartCapture={touchStartHandler}
+          onTouchEndCapture={touchEndHandler}
+          onDragStartCapture={dragStartHandler}
+          onDragEndCapture={dragEndHandler}
+        >
           <div className="settings_wrap">
             <div className="basket_shop searchline">
               <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
