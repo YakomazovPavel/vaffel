@@ -106,8 +106,14 @@ function BasketList() {
   var touchendX = useRef(0);
 
   var swipeCheckDirection = () => {
-    if (touchendX.current < touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped left!");
-    if (touchendX.current > touchstartX.current) window?.Telegram?.WebApp?.showAlert("swiped right!");
+    if (touchendX.current < touchstartX.current) {
+      window?.Telegram?.WebApp?.showAlert("swiped left!");
+      console.log("swiped left!");
+    }
+    if (touchendX.current > touchstartX.current) {
+      window?.Telegram?.WebApp?.showAlert("swiped right!");
+      console.log("swiped right!");
+    }
   };
 
   var touchStartHandler = (e) => {
