@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { useSelector, useDispatch, useStore } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, setCurrentDishId, PAGE } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 import Loader from "../../components/Loader.jsx";
