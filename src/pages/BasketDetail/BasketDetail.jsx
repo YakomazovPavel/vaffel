@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentPage, PAGE, setBasketDish } from "../../slices/appSlice.js";
+import { setCurrentPage, PAGE, setCurrentDishId } from "../../slices/appSlice.js";
 import Backend from "../../api/backend.js";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "../../components/Loader.jsx";
