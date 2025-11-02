@@ -200,15 +200,18 @@ var DishDetail = () => {
               </div>
             </div>
           </div>
-          <div className="dish_body" style={{ rowGap: "10px" }}>
-            <p>В корзину добавили</p>
+          {!!customers?.length && (
+            <div className="dish_body" style={{ rowGap: "10px" }}>
+              <p>В корзину добавили</p>
 
-            <div className="dish_body_avatars">
-              {customers.map((customer) => (
-                <img src={customer?.user?.photo_url} />
-              ))}
+              <div className="dish_body_avatars">
+                {customers.map((customer) => (
+                  <img src={customer?.user?.photo_url} />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="dish_body dish_body_price_control" style={{ rowGap: "10px" }}>
             <div className="price">
               <h1>{dish?.price} ₽</h1>
